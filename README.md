@@ -2,7 +2,7 @@
 ## Identificação da Equipa
 * **Grupo nº: 8**
 * **Membros: 3**
- * João Freire - -----
+ * João Freire - a2023128832
  * Rodrigo Ferrão - a2022138105
  * Tomás Moreira - a2023143375
 ## Organização do Repositório
