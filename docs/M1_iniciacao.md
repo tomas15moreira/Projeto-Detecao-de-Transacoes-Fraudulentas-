@@ -39,4 +39,4 @@ O dataset selecionado contém transações efetuadas por cartões de crédito eu
 | M3: Modelação | [Data] | Comparação de algoritmos e métricas. |
 | M4: Finalização| [Data] | Pitch e Relatório Final. |
 ---
-*Data de última atualização: [DD/MM/AAAA]*
+*Data de última atualização: [18/02/2026]*
