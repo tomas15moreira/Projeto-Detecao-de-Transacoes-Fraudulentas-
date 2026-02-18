@@ -1,10 +1,12 @@
-# Deteção de Transações Fraudulentas
-## Identificação da Equipa
+# Deteção de Transações Fraudulentas 
+
+## Identificação do Grupo
 * **Grupo nº: 8**
-* **Membros: 3**
- * João Freire - a2023128832
- * Rodrigo Ferrão - a2022138105
- * Tomás Moreira - a2023143375
+* **Membros e Papéis Iniciais:**
+ * **João Freire (a2023128832):** [Modelação e Engenharia de Dados]
+ * **Rodrigo Ferrão (a2022138105):** [Análise Exploratória e Visualização]
+ * **Tomás Moreira (a2023143375):** [Gestão de Repositório e Documentação]
+
 ## Organização do Repositório
 A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenharia de Software:
 * **`data/`**: Armazenamento de dados (dados brutos em `raw/` e processados em `processed/`).
@@ -13,36 +15,55 @@ A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenha
   * **`src/`**: Código-fonte modular (scripts `.py`) para funções reutilizáveis.
 * **`reports/`**: Relatórios finais, apresentações e exportação de figuras (`figures/`).
 * **`requirements.txt`**: Ficheiro de configuração com as bibliotecas necessárias.
+
+---
+
 ## 1. Iniciação (Milestone 1)
 ### Contexto e Problema de Negócio
-[Descreve o problema que pretendem resolver. Qual é o desafio da empresa ou organização?]
-### Objetivos do Projeto
-* **Objetivo 1:** [Ex: Prever a rotatividade de clientes]
-* **Objetivo 2:** [Ex: Identificar os principais fatores de influência]
-### Fonte de Dados
-* **Dataset:**  https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud 
-* **Dimensão:** 248.808 linhas, 31 colunas
+A fraude com cartões de crédito gera prejuízos financeiros massivos para bancos e consumidores. O desafio central é identificar transações fraudulentas em tempo real. No entanto, este é um problema de "procurar uma agulha no palheiro": a grande maioria das transações é legítima, tornando a deteção difícil sem gerar muitos alarmes falsos.
+
+**O Desafio Técnico:** O dataset apresenta um desequilíbrio extremo (apenas 0.172% são fraudes), o que invalida métricas tradicionais como a "Acurácia".
+
+### Objetivos do Projeto (SMART)
+* **S (Específico):** Desenvolver um classificador supervisionado para distinguir transações lícitas de ilícitas.
+* **M (Mensurável):** Maximizar a **AUPRC (Area Under the Precision-Recall Curve)** para valores acima de **0.80**, priorizando o *Recall* (captura da fraude).
+* **A (Atingível):** Utilizar técnicas de *oversampling* (**SMOTE**) para equilibrar os dados de treino e algoritmos robustos (Random Forest/XGBoost).
+* **R (Relevante):** Reduzir as perdas financeiras diretas do banco sem prejudicar a experiência do cliente com bloqueios indevidos.
+* **T (Temporal):** Ter o modelo validado e o relatório de gestão entregue até ao final do semestre.
+
+### Perguntas de Investigação
+1. **Impacto do Balanceamento:** Em que medida o uso de dados sintéticos (SMOTE) melhora a deteção de fraudes comparado com os dados originais?
+2. **Padrões de Comportamento:** Existem montantes específicos (`Amount`) ou horários (`Time`) que indicam maior probabilidade de fraude?
+3. **Custo do Erro:** Qual o *trade-off* ideal entre Precisão e Recall para minimizar o prejuízo financeiro total?
+
+### Fonte de Dados e Ferramentas
+* **Dataset:** [Credit Card Fraud Detection (Kaggle)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
+* **Dimensão:** 284.807 transações, 31 colunas (V1-V28 são componentes PCA).
+* **Ferramentas (Python):** `pandas` (manipulação), `seaborn` (visualização), `scikit-learn` (modelos base), `imbalanced-learn` (SMOTE), `xgboost`.
+
+---
+
 ## 2. Exploração (Milestone 2)
 ### Limpeza e Preparação
-* [Breve resumo das ações de limpeza tomadas. Detalhes em `docs/M2_exploracao.md`]
+* [Breve resumo das ações de limpeza tomadas. Detalhes em docs/M2_exploracao.md]
 ### Principais Conclusões (EDA)
-> *Dica: Insere aqui o gráfico mais importante do projeto.*
-* **Ponto-chave:** [Ex: Identificámos que o fator X influencia em 40% o resultado Y, por aplicação
+> Dica: Insere aqui o gráfico mais importante do projeto.
+* *Ponto-chave:* [Ex: Identificámos que o fator X influencia em 40% o resultado Y, por aplicação
 do método ganho de informação]
 ## 3. Modelação (Milestone 3)
 ### Abordagem Técnica
-* **Modelos:** [Ex: Random Forest e XGBoost]
-* **Métrica Principal:** [Ex: F1-Score ou RMSE]
+* *Modelos:* [Ex: Random Forest e XGBoost]
+* *Métrica Principal:* [Ex: F1-Score ou RMSE]
 ## 4. Finalização (Milestone 4)
 ### Resposta ao Problema
 [Resumo da solução e como ela gera valor para o negócio.]
 ### Recomendações de Inovação
 1. [Sugestão prática baseada nos resultados]
 ## Como Reproduzir este Projeto
-1. Clone o repositório: `git clone [url-do-repo]`
-2. Instale as dependências: `pip install -r requirements.txt`
-3. Execute os notebooks na pasta `notebooks/` seguindo a ordem numérica.
-**Instituição:** Coimbra Business School | ISCAC
-**Curso:** Licenciatura em Ciência de Dados para a Gestão
-**Unidade Curricular:** Projeto em Ciência de Dados
-**Professor Responsável:** Dora Melo (dmelo@iscac.pt) 
+1. Clone o repositório: git clone [url-do-repo]
+2. Instale as dependências: pip install -r requirements.txt
+3. Execute os notebooks na pasta notebooks/ seguindo a ordem numérica.
+*Instituição:* Coimbra Business School | ISCAC
+*Curso:* Licenciatura em Ciência de Dados para a Gestão
+*Unidade Curricular:* Projeto em Ciência de Dados
+*Professor Responsável:* Dora Melo (dmelo@iscac.pt)
