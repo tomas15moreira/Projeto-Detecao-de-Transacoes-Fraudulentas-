@@ -24,6 +24,9 @@ A fraude com cartões de crédito gera prejuízos financeiros massivos para banc
 
 **O Desafio Técnico:** O dataset apresenta um desequilíbrio extremo (apenas 0.172% são fraudes), o que invalida métricas tradicionais como a "Acurácia".
 
+## 2. Objetivos SMART
+Defina os objetivos do projeto seguindo a lógica SMART (Específico, Mensurável, Atingível, Relevante e Temporal):
+1. *Objetivo 1:* Atingir uma métrica AUPRC superior a 0.80 na identificação de fraudes, utilizando técnicas de oversampling (como SMOTE) para contornar o desequilíbrio de classes, até ao final do semestre.
 
 
 ### Perguntas de Investigação
