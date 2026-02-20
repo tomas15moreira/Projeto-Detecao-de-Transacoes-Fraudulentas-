@@ -9,6 +9,7 @@ O dataset selecionado contém transações efetuadas por cartões de crédito eu
 
 ## 2. Objetivos SMART
 1.  **Objetivo 1:** Atingir uma métrica AUPRC superior a 0.80 na identificação de fraudes, utilizando técnicas de oversampling (como SMOTE) para contornar o desequilíbrio de classes, até ao final do semestre.
+2.  **Objetivo 2:** Identificar as 5 variáveis (entre as componentes V1-V28, Time e Amount) com maior poder preditivo na deteção de fraude através de técnicas de Feature Importance, até à entrega da fase de modelação (Milestone 3).
 
 ## 3. Metodologia de Gestão (PBL)
 * **Divisão de Tarefas (Papéis Iniciais):**
