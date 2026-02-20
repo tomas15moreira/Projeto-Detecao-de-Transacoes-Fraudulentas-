@@ -9,14 +9,12 @@
 
 ## Organização do Repositório
 A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenharia de Software:
-* **`data/`**: Armazenamento de dados (dados brutos em `raw/` e processados em `processed/`).
-* **`docs/`**: Documentação técnica detalhada dividida por Milestones (M1, M2 e M3).
-* **`notebooks/`**: Jupyter Notebooks para experimentação, limpeza e modelação.
-  * **`src/`**: Código-fonte modular (scripts `.py`) para funções reutilizáveis.
-* **`reports/`**: Relatórios finais, apresentações e exportação de figuras (`figures/`).
-* **`requirements.txt`**: Ficheiro de configuração com as bibliotecas necessárias.
-
----
+* *data/*: Armazenamento de dados (dados brutos em raw/ e processados em processed/).
+* *docs/*: Documentação técnica detalhada dividida por Milestones (M1, M2 e M3).
+* *notebooks/*: Jupyter Notebooks para experimentação, limpeza e modelação.
+* *src/*: Código-fonte modular (scripts .py) para funções reutilizáveis.
+* *reports/*: Relatórios finais, apresentações e exportação de figuras (figures/).
+* *requirements.txt*: Ficheiro de configuração com as bibliotecas necessárias.
 
 ## 1. Iniciação (Milestone 1)
 ### Contexto e Problema de Negócio
