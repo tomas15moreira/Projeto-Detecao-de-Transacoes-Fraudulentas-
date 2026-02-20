@@ -11,6 +11,11 @@ O dataset selecionado contém transações efetuadas por cartões de crédito eu
 1.  **Objetivo 1:** Atingir uma métrica AUPRC superior a 0.80 na identificação de fraudes, utilizando técnicas de oversampling (como SMOTE) para contornar o desequilíbrio de classes, até ao final do semestre.
 2.  **Objetivo 2:** Identificar as 5 variáveis (entre as componentes V1-V28, Time e Amount) com maior poder preditivo na deteção de fraude através de técnicas de Feature Importance, até à entrega da fase de modelação (Milestone 3).
 
+**Perguntas de investigação** 
+1. Em que medida o uso de dados sintéticos (SMOTE) melhora a deteção de fraudes comparado com os dados originais?
+2. Existem montantes específicos (Amount) ou horários (Time) que indicam maior probabilidade de fraude?
+3. Como podemos afinar o modelo para apanhar o máximo de fraudes possível sem começar a bloquear injustamente os cartões dos clientes normais?
+
 ## 3. Metodologia de Gestão (PBL)
 * **Divisão de Tarefas:**
     * **João Freire:** Modelação e Engenharia de Dados.
