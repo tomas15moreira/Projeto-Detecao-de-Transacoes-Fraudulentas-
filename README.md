@@ -25,11 +25,7 @@ A fraude com cartões de crédito gera prejuízos financeiros massivos para banc
 **O Desafio Técnico:** O dataset apresenta um desequilíbrio extremo (apenas 0.172% são fraudes), o que invalida métricas tradicionais como a "Acurácia".
 
 ### Objetivos do Projeto (SMART)
-* **S (Específico):** Desenvolver um classificador supervisionado para distinguir transações lícitas de ilícitas.
-* **M (Mensurável):** Maximizar a **AUPRC (Area Under the Precision-Recall Curve)** para valores acima de **0.80**, priorizando o *Recall* (captura da fraude).
-* **A (Atingível):** Utilizar técnicas de *oversampling* (**SMOTE**) para equilibrar os dados de treino e algoritmos robustos (Random Forest/XGBoost).
-* **R (Relevante):** Reduzir as perdas financeiras diretas do banco sem prejudicar a experiência do cliente com bloqueios indevidos.
-* **T (Temporal):** Ter o modelo validado e o relatório de gestão entregue até ao final do semestre.
+
 
 ### Perguntas de Investigação
 1. **Impacto do Balanceamento:** Em que medida o uso de dados sintéticos (SMOTE) melhora a deteção de fraudes comparado com os dados originais?
