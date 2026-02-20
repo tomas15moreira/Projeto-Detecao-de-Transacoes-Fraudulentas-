@@ -31,3 +31,28 @@ A fraude com cartões de crédito gera prejuízos financeiros massivos para banc
 * **Dimensão:** 284.807 transações, 31 colunas (V1-V28 são componentes PCA).
 
 
+## 2. Exploração (Milestone 2)
+### Limpeza e Preparação
+* [Breve resumo das ações de limpeza tomadas. Detalhes em `docs/M2_exploracao.md`]
+### Principais Conclusões (EDA)
+> *Dica: Insere aqui o gráfico mais importante do projeto.*
+* **Ponto-chave:** [Ex: Identificámos que o fator X influencia em 40% o resultado Y, por aplicação
+do método ganho de informação]
+## 3. Modelação (Milestone 3)
+### Abordagem Técnica
+* **Modelos:** [Ex: Random Forest e XGBoost]
+* **Métrica Principal:** [Ex: F1-Score ou RMSE]
+## 4. Finalização (Milestone 4)
+### Resposta ao Problema
+[Resumo da solução e como ela gera valor para o negócio.]
+### Recomendações de Inovação
+1. [Sugestão prática baseada nos resultados]
+## Como Reproduzir este Projeto
+1. Clone o repositório: `git clone [url-do-repo]`
+2. Instale as dependências: `pip install -r requirements.txt`
+3. Execute os notebooks na pasta `notebooks/` seguindo a ordem numérica.
+**Instituição:** Coimbra Business School | ISCAC
+**Curso:** Licenciatura em Ciência de Dados para a Gestão
+**Unidade Curricular:** Projeto em Ciência de Dados
+**Professor Responsável:** Dora Melo (dmelo@iscac.pt)
+
