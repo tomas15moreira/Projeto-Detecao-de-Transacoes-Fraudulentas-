@@ -33,7 +33,18 @@ O dataset selecionado contém transações efetuadas por cartões de crédito eu
     * Os dados cumprem rigorosos padrões de privacidade. As variáveis `V1` a `V28` são o resultado de uma transformação PCA, garantindo que não temos acesso a dados pessoais identificáveis (PII) dos utilizadores, o que elimina barreiras éticas no tratamento da informação.
     * As únicas variáveis não transformadas são `Time` e `Amount`.
 
-## 5. Cronograma Interno
+## 5. Descrição Técnica e Verificação de Integridade
+
+Após a importação e verificação inicial do conjunto de dados `creditcardfraud.csv`, documentamos as seguintes impressões técnicas:
+
+* **Dimensão do Dataset:** O conjunto de dados é composto por 284.807 registos (transações) e 31 colunas (variáveis).
+* **Verificação de Valores Nulos (Missing Values):** Foi efetuada uma verificação de integridade e **não existem valores nulos (NaN)** em nenhuma das colunas. O dataset encontra-se perfeitamente preenchido, dispensando a necessidade de técnicas de imputação de dados.
+* **Tipos de Dados (Data Types):** Todas as 31 variáveis são estritamente numéricas, não existindo variáveis do tipo `object` (texto/categorias de strings).
+  * As variáveis transformadas por PCA (`V1` a `V28`), bem como as variáveis `Time` e `Amount`, são do tipo ponto flutuante (`float64`).
+  * A variável alvo, `Class` (onde 0 = Normal e 1 = Fraude), é do tipo inteiro (`int64`).
+* **Conclusão Inicial:** O dataset apresenta uma excelente integridade estrutural. Por não possuir valores ausentes ou variáveis categóricas por tratar, a fase de pré-processamento poderá focar-se inteiramente no escalonamento (*scaling*) das variáveis `Time` e `Amount` e, principalmente, na resolução do extremo desequilíbrio da variável `Class`.
+  
+## 6. Cronograma Interno
 | Fase | Data Limite | Entregável Esperado |
 | :--- | :--- | :--- |
 | M1: Iniciação | 24/02/2026 | Repositório estruturado e Plano de Projeto. |
