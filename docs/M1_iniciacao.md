@@ -8,8 +8,8 @@ Neste contexto, um modelo que simplesmente classifique todas as transações com
 O dataset selecionado contém transações efetuadas por cartões de crédito europeus em setembro de 2013, onde as variáveis de entrada foram anonimizadas através de uma transformação PCA (Principal Component Analysis) para proteção de dados sensíveis.
 
 ## 2. Objetivos SMART
-1.  **Objetivo 1:** Atingir uma métrica AUPRC superior a 0.80 na identificação de fraudes, utilizando técnicas de oversampling (como SMOTE) para contornar o desequilíbrio de classes, até ao final do semestre.
-2.  **Objetivo 2:** Identificar as 5 variáveis (entre as componentes V1-V28, Time e Amount) com maior poder preditivo na deteção de fraude através de técnicas de Feature Importance, até à entrega da fase de modelação (Milestone 3).
+1.  **Objetivo 1:** Atingir uma métrica AUPRC superior a 0.80 na identificação de fraudes, utilizando técnicas de oversampling (como SMOTE) para contornar o desequilíbrio de classes, até ao Milestone 3.
+2.  **Objetivo 2:** Identificar as 5 variáveis com maior poder preditivo na deteção de fraude através de técnicas de Feature Importance, até à entrega da fase de modelação (Milestone 3).
 
 **Perguntas de investigação** 
 1. Em que medida o uso de dados sintéticos (SMOTE) melhora a deteção de fraudes comparado com os dados originais?
