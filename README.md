@@ -28,7 +28,7 @@ A fraude com cartões de crédito gera prejuízos financeiros massivos para banc
 
 ### Fonte de Dados
 * **Dataset:** [Credit Card Fraud Detection (Kaggle)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
-* **Dimensão:** 284.807 transações, 31 colunas (V1-V28 são componentes PCA).
+* **Dimensão:** 284.807 transações, 31 colunas.
 
 
 ## 2. Exploração (Milestone 2)
