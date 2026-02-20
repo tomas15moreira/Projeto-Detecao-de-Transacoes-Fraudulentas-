@@ -8,11 +8,7 @@ Neste contexto, um modelo que simplesmente classifique todas as transações com
 O dataset selecionado contém transações efetuadas por cartões de crédito europeus em setembro de 2013, onde as variáveis de entrada foram anonimizadas através de uma transformação PCA (Principal Component Analysis) para proteção de dados sensíveis.
 
 ## 2. Objetivos SMART
-
-1.  **Objetivo Técnico (S/M):** Desenvolver um classificador binário capaz de atingir uma **AUPRC (Area Under the Precision-Recall Curve)** superior a **0.80** no conjunto de teste, superando a performance de modelos de base (dummy classifiers).
-2.  **Objetivo Metodológico (A):** Implementar e validar a eficácia da técnica **SMOTE (Synthetic Minority Over-sampling Technique)** para corrigir o desequilíbrio de classes (0.172% fraudes) no conjunto de treino.
-3.  **Objetivo de Negócio (R):** Identificar quais as variáveis comportamentais (ex: `Time` ou `Amount`) têm maior correlação com a fraude, produzindo um relatório de *insights* para a gestão de risco.
-4.  **Objetivo Temporal (T):** Ter o protótipo do modelo validado, com o relatório de custos de erro (Matriz de Confusão Financeira), entregue até ao final do semestre letivo.
+1.  **Objetivo 1:** Atingir uma métrica AUPRC superior a 0.80 na identificação de fraudes, utilizando técnicas de oversampling (como SMOTE) para contornar o desequilíbrio de classes, até ao final do semestre.
 
 ## 3. Metodologia de Gestão (PBL)
 * **Divisão de Tarefas (Papéis Iniciais):**
