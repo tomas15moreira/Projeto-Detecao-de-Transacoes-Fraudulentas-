@@ -27,7 +27,7 @@ A fraude com cartões de crédito gera prejuízos financeiros massivos para banc
 ## 2. Objetivos SMART
 Defina os objetivos do projeto seguindo a lógica SMART (Específico, Mensurável, Atingível, Relevante e Temporal):
 1. *Objetivo 1:* Atingir uma métrica AUPRC superior a 0.80 na identificação de fraudes, utilizando técnicas de oversampling (como SMOTE) para contornar o desequilíbrio de classes, até ao final do semestre.
-
+2. *Objetivo 2:* Identificar as 5 variáveis (entre as componentes V1-V28, Time e Amount) com maior poder preditivo na deteção de fraude através de técnicas de Feature Importance, até à entrega da fase de modelação (Milestone 3).
 
 ### Perguntas de Investigação
 1. **Impacto do Balanceamento:** Em que medida o uso de dados sintéticos (SMOTE) melhora a deteção de fraudes comparado com os dados originais?
