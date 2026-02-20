@@ -12,7 +12,7 @@ O dataset selecionado contém transações efetuadas por cartões de crédito eu
 2.  **Objetivo 2:** Identificar as 5 variáveis (entre as componentes V1-V28, Time e Amount) com maior poder preditivo na deteção de fraude através de técnicas de Feature Importance, até à entrega da fase de modelação (Milestone 3).
 
 ## 3. Metodologia de Gestão (PBL)
-* **Divisão de Tarefas (Papéis Iniciais):**
+* **Divisão de Tarefas:**
     * **João Freire:** Modelação e Engenharia de Dados.
     * **Rodrigo Ferrão:** Análise Exploratória e Visualização.
     * **Tomás Moreira:** Gestão do Repositório e Documentação.
@@ -24,7 +24,7 @@ O dataset selecionado contém transações efetuadas por cartões de crédito eu
 ## 4. Análise de Viabilidade dos Dados
 * **Disponibilidade:** Os dados foram obtidos via Kaggle (*Credit Card Fraud Detection*) e já se encontram no repositório na pasta `data/raw/`.
 * **Qualidade Inicial:** O dataset é considerado de "alta qualidade" técnica (limpo), com 284.807 registos. Não existem valores nulos (NaN), o que acelera a fase de limpeza.
-* **Ética e Privacidade:**
+* **Ética:**
     * Os dados cumprem rigorosos padrões de privacidade. As variáveis `V1` a `V28` são o resultado de uma transformação PCA, garantindo que não temos acesso a dados pessoais identificáveis (PII) dos utilizadores, o que elimina barreiras éticas no tratamento da informação.
     * As únicas variáveis não transformadas são `Time` e `Amount`.
 
