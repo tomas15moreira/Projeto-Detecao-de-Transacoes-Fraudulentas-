@@ -2,10 +2,10 @@
 
 ## Identificação do Grupo
 * **Grupo nº: 8**
-* **Membros e Papéis Iniciais:**
- * **João Freire (a2023128832):** [Modelação e Engenharia de Dados]
- * **Rodrigo Ferrão (a2022138105):** [Análise Exploratória e Visualização]
- * **Tomás Moreira (a2023143375):** [Gestão de Repositório e Documentação]
+* **Membros:**
+ * **João Freire (a2023128832)**
+ * **Rodrigo Ferrão (a2022138105)** 
+ * **Tomás Moreira (a2023143375)** 
 
 ## Organização do Repositório
 A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenharia de Software:
