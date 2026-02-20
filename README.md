@@ -24,7 +24,6 @@ A fraude com cartões de crédito gera prejuízos financeiros massivos para banc
 
 **O Desafio Técnico:** O dataset apresenta um desequilíbrio extremo (apenas 0.172% são fraudes), o que invalida métricas tradicionais como a "Acurácia".
 
-### Objetivos do Projeto (SMART)
 
 
 ### Perguntas de Investigação
