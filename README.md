@@ -1,11 +1,11 @@
 # Deteção de Transações Fraudulentas 
 
-## Identificação do Grupo
+## Identificação da Equipa
 * **Grupo nº: 8**
 * **Membros:**
- * **João Freire (a2023128832)**
- * **Rodrigo Ferrão (a2022138105)** 
- * **Tomás Moreira (a2023143375)** 
+ * **João Freire - (a2023128832)**
+ * **Rodrigo Ferrão - (a2022138105)** 
+ * **Tomás Moreira - (a2023143375)** 
 
 ## Organização do Repositório
 A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenharia de Software:
@@ -23,8 +23,8 @@ A fraude com cartões de crédito gera prejuízos financeiros massivos para banc
 **O Desafio Técnico:** O dataset apresenta um desequilíbrio extremo (apenas 0.172% são fraudes), o que invalida métricas tradicionais como a "Acurácia".
 
 ### Objetivos do Projeto
-* **Objetivo 1:** Atingir uma métrica AUPRC superior a 0.80 na identificação de fraudes, utilizando técnicas de oversampling (como SMOTE) para contornar o desequilíbrio de classes, até ao Milestone 3.
-* **Objetivo 2:** Identificar as 5 variáveis com maior poder preditivo na deteção de fraude através de técnicas de Feature Importance, até à entrega da fase de modelação (Milestone 3).
+* **Objetivo 1:** Desenvolver um modelo de classificação para identificar transações fraudulentas em cartões de crédito com uma métrica AUPRC mínima de 0.80, utilizando o dataset disponibilizado no Kaggle, para ser validado e apresentado no Milestone 3.
+* **Objetivo 2:** Aplicar a técnica SMOTE (oversampling) para corrigir o desequilíbrio extremo dos dados, treinando um algoritmo que atinja uma Sensibilidade (Recall) superior a 85%, garantindo a minimização de perdas financeiras (falsos negativos), até à entrega final do projeto.
 
 ### Fonte de Dados
 * **Dataset:** [Credit Card Fraud Detection (Kaggle)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
