@@ -8,13 +8,13 @@ Neste contexto, um modelo que simplesmente classifique todas as transações com
 O dataset selecionado contém transações efetuadas por cartões de crédito europeus em setembro de 2013, onde as variáveis de entrada foram anonimizadas através de uma transformação PCA (Principal Component Analysis) para proteção de dados sensíveis.
 
 ## 2. Objetivos SMART
-1.  **Objetivo 1:** Atingir uma métrica AUPRC superior a 0.80 na identificação de fraudes, utilizando técnicas de oversampling (como SMOTE) para contornar o desequilíbrio de classes, até ao Milestone 3.
-2.  **Objetivo 2:** Identificar as 5 variáveis com maior poder preditivo na deteção de fraude através de técnicas de Feature Importance, até à entrega da fase de modelação (Milestone 3).
+1.  **Objetivo 1:** Desenvolver um modelo de classificação para identificar transações fraudulentas em cartões de crédito com uma métrica AUPRC mínima de 0.80, utilizando o dataset disponibilizado no Kaggle, para ser validado e apresentado no Milestone 3.
+2.  **Objetivo 2:** Aplicar a técnica SMOTE (oversampling) para corrigir o desequilíbrio extremo dos dados, treinando um algoritmo que atinja uma Sensibilidade (Recall) superior a 85%, garantindo a minimização de perdas financeiras (falsos negativos), até à entrega final do projeto.
 
 **Perguntas de investigação** 
-1. Em que medida o uso de dados sintéticos (SMOTE) melhora a deteção de fraudes comparado com os dados originais?
-2. Existem montantes específicos (Amount) ou horários (Time) que indicam maior probabilidade de fraude?
-3. Como podemos afinar o modelo para apanhar o máximo de fraudes possível sem começar a bloquear injustamente os cartões dos clientes normais?
+1. Existe uma correlação direta entre o montante da transação e a probabilidade de esta ser classificada como fraude, ou as fraudes tendem a ocorrer em valores mais baixos para passar despercebidas?
+2. Quais são as 3 variáveis que mais contribuem para a previsão correta de uma transação ilícita?
+3. Existem padrões temporais específicos que sejam mais comuns nas transações fraudulentas comparativamente às transações legítimas?
 
 ## 3. Metodologia de Gestão (PBL)
 * **Divisão de Tarefas:**
@@ -52,4 +52,4 @@ Após a importação e verificação inicial do conjunto de dados `creditcardfra
 | M3: Modelação | [Data] | Comparação de algoritmos e métricas. |
 | M4: Finalização| [Data] | Pitch e Relatório Final. |
 ---
-*Data de última atualização: [20/02/2026]*
+*Data de última atualização: [24/02/2026]*
