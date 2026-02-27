@@ -33,7 +33,20 @@ O dataset selecionado contém transações efetuadas por cartões de crédito eu
     * Os dados cumprem rigorosos padrões de privacidade. As variáveis `V1` a `V28` são o resultado de uma transformação PCA, garantindo que não temos acesso a dados pessoais identificáveis (PII) dos utilizadores, o que elimina barreiras éticas no tratamento da informação.
     * As únicas variáveis não transformadas são `Time` e `Amount`.
 
-## 5. Descrição Técnica e Verificação de Integridade
+## 5. Dicionário de Dados 
+
+O dataset utilizado neste projeto contém transações efetuadas por titulares de cartões de crédito europeus durante o mês de setembro de 2013. A base de dados é composta por 284.807 registos e 31 variáveis, refletindo um cenário real de fraude bancária caracterizado por um desequilíbrio extremo de classes (as fraudes representam apenas 0,172% do total de transações).
+
+Uma particularidade técnica fundamental deste conjunto de dados é o seu elevado nível de anonimização. Para proteger a privacidade dos utilizadores e os dados sensíveis das operações, as características originais das transações foram submetidas a uma Análise de Componentes Principais (PCA). Como resultado, a maioria das variáveis explicativas (`V1` a `V28`) consiste em componentes numéricas contínuas cuja identidade original foi ocultada, restando apenas o tempo e o montante como variáveis ativas diretamente interpretáveis.
+
+| Variável | Tipo de Dados | Descrição Principal |
+| :--- | :--- | :--- |
+| **`Time`** | Numérico Contínuo | Número de segundos decorridos entre a transação atual e a primeira transação registada no *dataset*. Útil para análise de padrões temporais. |
+| **`V1` a `V28`** | Numérico Contínuo | 28 variáveis resultantes de uma transformação de dimensionalidade PCA (*Principal Component Analysis*). Os dados originais foram ocultados para cumprir normas de privacidade bancária. |
+| **`Amount`** | Numérico Contínuo | Valor monetário (montante) da transação. Esta variável mantém a sua escala original (não sofreu transformação PCA). |
+| **`Class`** | Categórico Binário | Variável alvo (*Target*). O valor **`1`** indica uma transação **fraudulenta** e o valor **`0`** indica uma transação **legítima**. |
+
+## 6. Descrição Técnica e Verificação de Integridade
 
 Após a importação e verificação inicial do conjunto de dados `creditcardfraud.csv`, documentamos as seguintes impressões técnicas:
 
@@ -44,7 +57,7 @@ Após a importação e verificação inicial do conjunto de dados `creditcardfra
   * A variável alvo, `Class` (onde 0 = Normal e 1 = Fraude), é do tipo inteiro (`int64`).
 * **Conclusão Inicial:** O dataset apresenta uma excelente integridade estrutural. Por não possuir valores ausentes ou variáveis categóricas por tratar, a fase de pré-processamento poderá focar-se inteiramente no escalonamento (*scaling*) das variáveis `Time` e `Amount` e, principalmente, na resolução do extremo desequilíbrio da variável `Class`.
   
-## 6. Cronograma Interno
+## 7. Cronograma Interno
 | Fase | Data Limite | Entregável Esperado |
 | :--- | :--- | :--- |
 | M1: Iniciação | 24/02/2026 | Repositório estruturado e Plano de Projeto. |
