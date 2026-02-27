@@ -16,12 +16,17 @@ Através da análise de frequências, observou-se que a variável apresenta um d
 **Métricas de Avaliação:** Este desequilíbrio extremo dita que a métrica padrão de Accuracy (Exatidão) será enganadora (Paradoxo da Exatidão). Um modelo "ingénuo" que classifique sempre todas as transações como `0` (legítimas) obterá uma accuracy de 99,83%, mas falhará redondamente o objetivo do negócio, pois deixará passar 100% das fraudes. Por conseguinte, a avaliação do modelo terá de ser ancorada em métricas robustas ao desequilíbrio, nomeadamente: Recall (taxa de deteção de fraudes), Precision (taxa de acerto quando diz que é fraude), F1-Score e a área sob a curva AUPRC (Area Under the Precision-Recall Curve).
 
 ### 1.2. Correlações Relevantes
-*Quais as variáveis que têm maior relação com o problema? Incluam referências a gráficos que
-geraram no Kaggle.*
-* **Atributo A vs. Alvo:** (Ex: "Notámos que quanto maior a idade, menor a probabilidade de
-cancelamento.")
-* **Atributo B vs. Alvo:** (Ex: "O tipo de contrato mensal está fortemente ligado à saída de
-clientes.")
+Para identificar as relações mais fortes com o nosso problema, gerámos uma Matriz de Correlação (Heatmap) e uma Matriz de Dispersão (Pairplot) no Kaggle. É importante notar que, como os atributos `V1` a `V28` resultam de uma transformação PCA prévia (para anonimização dos dados), eles não apresentam correlação entre si (correlação zero), o que nos permitiu focar exclusivamente na relação de cada atributo isolado com a variável alvo.
+
+
+
+* **Atributos `V17`, `V14` e `V12` vs. Alvo:** Notámos que estas três variáveis apresentam as correlações negativas mais fortes com a probabilidade de fraude (com valores de -0.32, -0.30 e -0.26, respetivamente). Através dos gráficos de dispersão, é visível que quanto menores (e mais negativos) forem os valores nestes atributos, maior é a probabilidade de a transação ser fraudulenta. Os pontos vermelhos (fraudes) isolam-se claramente na extremidade inferior dos eixos destas variáveis.
+
+* **Atributo `V11` vs. Alvo:** Em contraste, a variável `V11` apresenta a correlação positiva mais elevada (0.15) com a nossa variável alvo. Os gráficos demonstram que valores mais altos em `V11` estão frequentemente associados a transações ilícitas.
+
+* **`Hora` vs. Alvo:** Cruzando a nova variável temporal que criámos com os atributos PCA na nossa matriz de dispersão, notámos uma alteração de comportamento dependente da hora. Durante o período da madrugada (ex: 02h00 - 06h00), o volume de transações normais cai drasticamente, mas as transações fraudulentas mantêm um ritmo constante ou apresentam picos relativos. Isto indica que o horário noturno está fortemente ligado a um risco proporcionalmente mais elevado de fraude.
+
+
 
 ## 2. Qualidade dos Dados e Limpeza
 ### 2.1. Tratamento de Dados em Falta (Missing Data)
