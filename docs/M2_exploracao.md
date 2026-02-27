@@ -27,12 +27,12 @@ Para identificar as relações mais fortes com o nosso problema, gerámos uma Ma
 * **`Hora` vs. Alvo:** Cruzando a nova variável temporal que criámos com os atributos PCA na nossa matriz de dispersão, notámos uma alteração de comportamento dependente da hora. Durante o período da madrugada (ex: 02h00 - 06h00), o volume de transações normais cai drasticamente, mas as transações fraudulentas mantêm um ritmo constante ou apresentam picos relativos. Isto indica que o horário noturno está fortemente ligado a um risco proporcionalmente mais elevado de fraude.
 
 
-
 ## 2. Qualidade dos Dados e Limpeza
 ### 2.1. Tratamento de Dados em Falta (Missing Data)
-* **Colunas afetadas:** [Lista de colunas]
-* **Estratégia adotada:** (Ex: "Substituímos os nulos da coluna 'Salário' pela mediana para
-evitar o impacto de outliers.")
+O primeiro passo na garantia da qualidade dos dados consistiu em verificar a existência de valores nulos ou em falta em toda a estrutura do dataset. Através da aplicação da função `isnull().sum()` da biblioteca Pandas, confirmámos que o dataset está 100% preenchido em todas as suas 284.807 instâncias e 31 colunas.
+
+* **Colunas afetadas:** Nenhuma. A verificação rigorosa confirmou a ausência total de valores nulos (`NaN`) no dataset.
+* **Estratégia adotada:** Como não foram detetados valores em falta, não foi necessária nenhuma intervenção de imputação (ex: substituição pela média/mediana) ou remoção de registos. Optou-se por preservar a integridade original dos dados na sua totalidade para as fases seguintes.
 ### 2.2. Outliers e Inconsistências
 *Descrevam se encontraram valores impossíveis (ex: idade = 200) e como os resolveram.*
 ## 3. Engenharia de Atributos (Feature Engineering)
