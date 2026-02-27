@@ -41,10 +41,10 @@ Uma particularidade técnica fundamental deste conjunto de dados é o seu elevad
 
 | Variável | Tipo de Dados | Descrição Principal |
 | :--- | :--- | :--- |
-| **`Time`** | Numérico Contínuo | Número de segundos decorridos entre a transação atual e a primeira transação registada no *dataset*. Útil para análise de padrões temporais. |
-| **`V1` a `V28`** | Numérico Contínuo | 28 variáveis resultantes de uma transformação de dimensionalidade PCA (*Principal Component Analysis*). Os dados originais foram ocultados para cumprir normas de privacidade bancária. |
-| **`Amount`** | Numérico Contínuo | Valor monetário (montante) da transação. Esta variável mantém a sua escala original (não sofreu transformação PCA). |
-| **`Class`** | Categórico Binário | Variável alvo (*Target*). O valor **`1`** indica uma transação **fraudulenta** e o valor **`0`** indica uma transação **legítima**. |
+| **`Time`** | Numérico Contínuo | Número de segundos decorridos entre a transação atual e a primeira transação registada no dataset. Útil para análise de padrões temporais. |
+| **`V1` a `V28`** | Numérico Contínuo | 28 variáveis resultantes de uma transformação de dimensionalidade PCA. Os dados originais foram ocultados para cumprir normas de privacidade bancária. |
+| **`Amount`** | Numérico Contínuo | Valor monetário da transação. Esta variável mantém a sua escala original (não sofreu transformação PCA). |
+| **`Class`** | Categórico Binário | Variável alvo. O valor **`1`** indica uma transação fraudulenta e o valor **`0`** indica uma transação legítima. |
 
 ## 6. Descrição Técnica e Verificação de Integridade
 
