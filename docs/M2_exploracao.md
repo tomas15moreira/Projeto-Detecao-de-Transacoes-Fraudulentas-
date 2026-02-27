@@ -22,6 +22,7 @@ geraram no Kaggle.*
 cancelamento.")
 * **Atributo B vs. Alvo:** (Ex: "O tipo de contrato mensal está fortemente ligado à saída de
 clientes.")
+
 ## 2. Qualidade dos Dados e Limpeza
 ### 2.1. Tratamento de Dados em Falta (Missing Data)
 * **Colunas afetadas:** [Lista de colunas]
