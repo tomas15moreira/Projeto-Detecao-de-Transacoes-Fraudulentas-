@@ -25,20 +25,17 @@ Para identificar as relações mais fortes com o nosso problema, gerámos uma Ma
 
 
 ## 2. Qualidade dos Dados e Limpeza
-### 2.1. Tratamento de Dados em Falta (Missing Data)
-O primeiro passo na garantia da qualidade dos dados consistiu em verificar a existência de valores nulos ou em falta em toda a estrutura do dataset. Através da aplicação da função `isnull().sum()` da biblioteca Pandas, confirmámos que o dataset está 100% preenchido em todas as suas 284.807 instâncias e 31 colunas.
+### 2.1. Tratamento de Dados em Falta e Duplicados
+O primeiro passo na garantia da qualidade dos dados consistiu em verificar a integridade estrutural do dataset.
+* **Valores Nulos (Missing Data):** Através da função `isnull().sum()`, confirmámos que o dataset está 100% preenchido. Não existem valores nulos (`NaN`) em nenhuma das 31 colunas, dispensando o uso de técnicas de imputação.
+* **Registos Duplicados:** Aplicámos a verificação de duplicados e identificámos a existência de 1.081 transações repetidas. Estes registos foram removidos do dataset (através do método `drop_duplicates()`), reduzindo o número total de observações de 284.807 para 283.726. Esta ação de limpeza é crucial para evitar o enviesamento (overfitting) do modelo, garantindo que o algoritmo não "decora" transações repetidas.
 
-* **Colunas afetadas:** Nenhuma. A verificação rigorosa confirmou a ausência total de valores nulos (`NaN`) no dataset.
-* **Estratégia adotada:** Como não foram detetados valores em falta, não foi necessária nenhuma intervenção de imputação (ex: substituição pela média/mediana) ou remoção de registos. Optou-se por preservar a integridade original dos dados na sua totalidade para as fases seguintes.
 ### 2.2. Outliers e Inconsistências
+Num contexto de deteção de fraudes financeiras, a abordagem aos outliers (valores atípicos) exige especial cautela.
+* **Inconsistências Lógicas:** Não foram detetados valores impossíveis (como, por exemplo, valores negativos na variável `Amount`). As variáveis resultantes do PCA (`V1` a `V28`) apresentam distribuições coerentes com a sua transformação matemática.
+* **Análise de Outliers no Montante (`Amount`):** A análise estatística descritiva e as visualizações geradas no nosso notebook revelaram uma cauda longa à direita na variável `Amount`. Enquanto 75% das transações são inferiores a 78€, o valor máximo atinge os 25.691,16€.
+* **Estratégia Adotada:** Decidimos não remover nenhum outlier. Num cenário de fraude, as próprias transações ilícitas são, por definição, anomalias. Remover valores extremos através de métodos tradicionais (como o Intervalo Interquartil - IQR) poderia resultar na eliminação inadvertida das fraudes que pretendemos detetar ou de transações legítimas de clientes premium. Em vez de remover, a nossa estratégia consistirá em mitigar o peso numérico destes extremos aplicando a técnica de escalonamento `RobustScaler` na fase de modelação.
 
-Durante a análise exploratória, realizámos uma verificação detalhada a potenciais inconsistências lógicas e valores atípicos (outliers), com especial foco nas variáveis originais não transformadas.
-
-* Inconsistências Lógicas: Não foram detetados valores impossíveis ou erróneos no dataset. A variável de montante (Amount) não possui valores negativos (o valor mínimo é 0.00, o que é um comportamento padrão em transações de verificação/autorização de cartões). As variáveis V1 a V28 apresentam-se dentro de distribuições estatísticas esperadas resultantes da transformação PCA.
-* Análise de Outliers (Amount): Através das estatísticas descritivas e das visualizações gráficas geradas no notebook, identificámos uma quantidade significativa de outliers severos na variável Amount. A distribuição tem uma assimetria positiva muito acentuada (cauda longa à direita): enquanto o montante médio das transações ronda os 88€ e 75% das transações são inferiores a 78€, o valor máximo registado no dataset atinge os 25.691,16€.
-* Decisão e Resolução: Num contexto de deteção de fraudes financeiras, a abordagem tradicional de eliminar outliers (por exemplo, aplicando a regra do intervalo interquartil - IQR) é inadequada. As próprias fraudes são anomalias estatísticas, e os valores extremos legítimos representam simplesmente compras de alto valor feitas por clientes de maior rendimento. Por conseguinte, a nossa decisão foi a de não remover nenhum registo. 
-
-Para resolver o impacto negativo que estes valores extremos poderiam ter nos algoritmos de Machine Learning, a estratégia delineada consiste em aplicar a técnica de RobustScaler durante a Engenharia de Atributos, escalonando os dados com base na mediana e nos quartis, sem eliminar a informação valiosa contida nas extremidades.
 ## 3. Engenharia de Atributos (Feature Engineering)
 ### 3.1. Transformações Realizadas
 * **Encoding:** (Ex: "Convertemos a variável 'Género' em numérica usando One-Hot Encoding.")
