@@ -34,7 +34,14 @@ O primeiro passo na garantia da qualidade dos dados consistiu em verificar a exi
 * **Colunas afetadas:** Nenhuma. A verificação rigorosa confirmou a ausência total de valores nulos (`NaN`) no dataset.
 * **Estratégia adotada:** Como não foram detetados valores em falta, não foi necessária nenhuma intervenção de imputação (ex: substituição pela média/mediana) ou remoção de registos. Optou-se por preservar a integridade original dos dados na sua totalidade para as fases seguintes.
 ### 2.2. Outliers e Inconsistências
-*Descrevam se encontraram valores impossíveis (ex: idade = 200) e como os resolveram.*
+
+Durante a análise exploratória (documentada no nosso notebook 1.0_eda_limpeza.ipynb), realizámos uma verificação detalhada a potenciais inconsistências lógicas e valores atípicos (outliers), com especial foco nas variáveis originais não transformadas.
+
+* *Inconsistências Lógicas:* Não foram detetados valores impossíveis ou erróneos no dataset. A variável de montante (Amount) não possui valores negativos (o valor mínimo é 0.00, o que é um comportamento padrão em transações de verificação/autorização de cartões). As variáveis V1 a V28 apresentam-se dentro de distribuições estatísticas esperadas resultantes da transformação PCA.
+* *Análise de Outliers (Amount):* Através das estatísticas descritivas e das visualizações gráficas geradas no notebook, identificámos uma quantidade significativa de outliers severos na variável Amount. A distribuição tem uma assimetria positiva muito acentuada (cauda longa à direita): enquanto o montante médio das transações ronda os 88€ e 75% das transações são inferiores a 78€, o valor máximo registado no dataset atinge os 25.691,16€.
+* *Decisão e Resolução:* Num contexto de deteção de fraudes financeiras, a abordagem tradicional de eliminar outliers (por exemplo, aplicando a regra do intervalo interquartil - IQR) é inadequada. As próprias fraudes são anomalias estatísticas, e os valores extremos legítimos representam simplesmente compras de alto valor feitas por clientes de maior rendimento. Por conseguinte, *a nossa decisão foi a de não remover nenhum registo*. 
+
+Para resolver o impacto negativo que estes valores extremos poderiam ter nos algoritmos de Machine Learning, a estratégia delineada consiste em aplicar a técnica de RobustScaler durante a Engenharia de Atributos, escalonando os dados com base na mediana e nos quartis, sem eliminar a informação valiosa contida nas extremidades.
 ## 3. Engenharia de Atributos (Feature Engineering)
 ### 3.1. Transformações Realizadas
 * **Encoding:** (Ex: "Convertemos a variável 'Género' em numérica usando One-Hot Encoding.")
