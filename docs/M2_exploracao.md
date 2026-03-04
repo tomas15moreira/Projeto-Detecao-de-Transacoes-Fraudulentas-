@@ -1,7 +1,4 @@
 # Milestone 2: Análise Exploratória e Engenharia de Atributos
-> **Nota de Revisão:** Este documento pressupõe que o dataset já foi identificado e descrito no
-ficheiro `docs/M1_iniciacao.md`. Caso precise de consultar o significado original das variáveis,
-deve consultar essa Milestone.
 ## 1. Análise Exploratória de Dados (EDA)
 ### 1.1. Distribuição da Variável Alvo
 A variável alvo que pretendemos prever neste projeto é a `Class`. Esta variável é de natureza categórica binária, indicando se uma determinada transação de cartão de crédito é legítima (representada pelo valor `0`) ou fraudulenta (representada pelo valor `1`).
