@@ -44,8 +44,14 @@ A aplicação de técnicas de codificação (*One-Hot Encoding* ou *Label Encodi
 * **Pré-Requisito Matemático do PCA:** É imperativo compreender a origem dos dados (`V1` a `V28`). A Análise de Componentes Principais (PCA) é um algoritmo de álgebra linear que exige que todos os dados de entrada sejam estritamente numéricos para calcular a matriz de covariância. Isto significa que qualquer codificação necessária nas variáveis originais (ex: "País de Origem" ou "Tipo de Cartão") já foi tratada a montante pelos engenheiros de dados antes da aplicação do PCA. O *dataset* atual já reflete o estado da arte do pré-processamento.
 * **Prevenção da "Maldição da Dimensionalidade":** A ausência de necessidade de *One-Hot Encoding* traz vantagens cruciais para a arquitetura do modelo. A codificação de variáveis nominais resulta frequentemente na criação de matrizes esparsas. Num *dataset* com quase 300.000 registos, introduzir dezenas de colunas binárias aumentaria drasticamente o consumo de memória RAM e o tempo de treino dos algoritmos, além de elevar o risco de *overfitting* (sobreajuste). Ao operarmos exclusivamente num espaço numérico denso, mantemos o modelo altamente eficiente.**
   
-* **Escalonamento:** (Ex: "Aplicámos o StandardScaler nas variáveis numéricas para que todas
-fiquem na mesma escala.")
+* **Escalonamento:** A adequação da escala das variáveis é um pré-requisito crítico para garantir que os algoritmos de Machine Learning (especialmente os baseados em cálculos de distância ou gradiente descendente) não atribuam um peso desproporcional a variáveis apenas por terem valores absolutos maiores. 
+
+No nosso dataset, as features V1 a V28 já se encontravam transformadas e escalonadas devido à aplicação prévia de PCA pelo emissor do cartão. O nosso desafio residia exclusivamente na uniformização das variáveis Amount (Montante da transação) e Time (Tempo decorrido).
+
+* *Avaliação de Técnicas Tradicionais (Standardization vs. Normalization):* Analisámos a viabilidade das técnicas clássicas. A *Normalization (Min-Max Scaler)* revelou-se inadequada: devido à presença de outliers extremos no Amount (com transações a atingir os 25.691€), esta técnica comprimiria a esmagadora maioria das transações legítimas (que rondam os 10€ a 80€) num intervalo infinitesimal próximo de zero. Da mesma forma, a *Standardization (Standard Scaler)* baseia-se na média e no desvio padrão, métricas que são fortemente distorcidas por estes mesmos valores atípicos.
+* *Estratégia Adotada (Robust Scaling):* Uma vez que na fase de "Qualidade de Dados" decidimos manter os outliers extremos (por conterem instâncias confirmadas de fraude financeira), a nossa escolha técnica recaiu sobre o *RobustScaler* da biblioteca Scikit-Learn. 
+* *Justificação Matemática:* O Robust Scaler utiliza a Mediana e o Intervalo Interquartil (IQR) para efetuar o redimensionamento. Ao ignorar a média clássica, este método permitiu-nos colocar o Amount e o Time numa escala comparável à das variáveis PCA, garantindo que os valores monetários extremos não distorcessem a distribuição matemática global dos dados de treino.
+
 ### 3.2. Criação de Novos Atributos
 *Descrevam as variáveis que criaram para ajudar o modelo.*
 * **Nova Variável [Nome]:** (Ex: "Criámos a 'Tenure_Per_Year' que divide o tempo de contrato
