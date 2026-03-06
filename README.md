@@ -37,7 +37,7 @@ A fraude com cartões de crédito gera prejuízos financeiros massivos para banc
 * **Registos Duplicados:** Foram identificadas e removidas 1.081 transações duplicadas, resultando num conjunto final de 283.726 registos. Este passo de limpeza é fundamental para evitar o enviesamento (overfitting) dos modelos de Machine Learning.
 * **Tratamento de Outliers:** Optou-se estrategicamente por manter os valores extremos (especialmente na variável `Amount`). Como o objetivo é detetar fraudes (que são anomalias estatísticas), a remoção cega de outliers poderia eliminar as próprias transações que pretendemos prever. A amplitude destes valores será tratada com `RobustScaler` na próxima fase.
 ### Principais Conclusões (EDA)
-![Gráfico de Densidade de Transações por Hora](reports/figures/grafico_das_fraudes_por_hora.jpg)
+![Gráfico de Densidade de Transações por Hora](reports/figures/grafico_das_fraudes_em_2_dias.jpg)
 * **Ponto-chave: Entre as 2h e as 3h e ás 11h são as horas onde ocorrem o maior número de fraudes**
 do método ganho de informação]
 ## 3. Modelação (Milestone 3)
