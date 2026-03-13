@@ -20,13 +20,16 @@ A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenha
 ### Contexto e Problema de Negócio
 A fraude com cartões de crédito gera prejuízos financeiros massivos para bancos e consumidores. O desafio central é identificar transações fraudulentas em tempo real. No entanto, este é um problema de "procurar uma agulha no palheiro": a grande maioria das transações é legítima, tornando a deteção difícil sem gerar muitos alarmes falsos.
 
-**O Desafio Técnico:** O dataset apresenta um desequilíbrio extremo (apenas 0.172% são fraudes), o que invalida métricas tradicionais como a "Acurácia".
+**O Desafio Técnico:** O _dataset_ apresenta um desequilíbrio extremo (apenas 0.172% são fraudes), o que invalida métricas tradicionais como a "Acurácia".
 
 ### Objetivos do Projeto (SMART)
-* **Objetivo 1:** Desenvolver um modelo de classificação para identificar transações fraudulentas em cartões de crédito com uma métrica AUPRC mínima de 0.80, utilizando o dataset disponibilizado no Kaggle, para ser validado e apresentado no _Milestone 3_.
-* **Objetivo 2:** Aplicar a técnica SMOTE (oversampling) para corrigir o desequilíbrio extremo dos dados, treinando um algoritmo que atinja uma Sensibilidade (Recall) superior a 85%, garantindo a minimização de perdas financeiras (falsos negativos), até à entrega final do projeto.
+* **Objetivo 1:** Desenvolver um modelo de classificação para identificar transações fraudulentas em cartões de crédito com uma métrica AUPRC mínima de 0.80, utilizando o _dataset_ disponibilizado no Kaggle, para ser validado e apresentado no _Milestone 3_.
+* **Objetivo 2:** Aplicar a técnica SMOTE (_oversampling_) para corrigir o desequilíbrio extremo dos dados, treinando um algoritmo que atinja uma Sensibilidade (Recall) superior a 85%, garantindo a minimização de perdas financeiras (falsos negativos), até à entrega final do projeto.
 
 ### Perguntas de Investigação
+1. Existe uma correlação direta entre o montante da transação e a probabilidade de esta ser classificada como fraude, ou as fraudes tendem a ocorrer em valores mais baixos para passar despercebidas?
+2. Quais são as 3 variáveis que mais contribuem para a previsão correta de uma transação ilícita?
+3. Existem padrões temporais específicos que sejam mais comuns nas transações fraudulentas comparativamente às transações legítimas?
 
 ### Fonte de Dados
 * **Dataset:** [Credit Card Fraud Detection (Kaggle)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
@@ -35,9 +38,9 @@ A fraude com cartões de crédito gera prejuízos financeiros massivos para banc
 
 ## 2. Exploração (Milestone 2)
 ### Limpeza e Preparação
-* **Valores Nulos:** Confirmou-se a integridade total do dataset (zero valores nulos em todas as colunas).
-* **Registos Duplicados:** Foram identificadas e removidas 1.081 transações duplicadas, resultando num conjunto final de 283.726 registos. Este passo de limpeza é fundamental para evitar o enviesamento (overfitting) dos modelos de Machine Learning.
-* **Tratamento de Outliers:** Optou-se estrategicamente por manter os valores extremos (especialmente na variável `Amount`). Como o objetivo é detetar fraudes (que são anomalias estatísticas), a remoção cega de outliers poderia eliminar as próprias transações que pretendemos prever. A amplitude destes valores será tratada com `RobustScaler` na próxima fase.
+* **Valores Nulos:** Confirmou-se a integridade total do _dataset_ (zero valores nulos em todas as colunas).
+* **Registos Duplicados:** Foram identificadas e removidas 1.081 transações duplicadas, resultando num conjunto final de 283.726 registos. Este passo de limpeza é fundamental para evitar o enviesamento (_overfitting_) dos modelos de _Machine Learning_.
+* **Tratamento de Outliers:** Optou-se estrategicamente por manter os valores extremos (especialmente na variável `Amount`). Como o objetivo é detetar fraudes (que são anomalias estatísticas), a remoção cega de _outliers_ poderia eliminar as próprias transações que pretendemos prever. A amplitude destes valores será tratada com _`RobustScaler`_ na próxima fase.
 ### Principais Conclusões (EDA)
 ![Gráfico de Densidade de Transações por Hora](reports/figures/grafico_das_fraudes_em_2_dias.jpg)
 * Ponto-chave: Entre as 2h e as 3h e ás 11h são as horas onde ocorrem o maior número de fraudes
