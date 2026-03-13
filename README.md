@@ -3,9 +3,9 @@
 ## Identificação da Equipa
 * **Grupo nº: 8**
 * **Membros:**
- * **João Freire - (a2023128832)**
- * **Rodrigo Ferrão - (a2022138105)** 
- * **Tomás Moreira - (a2023143375)** 
+  * **João Freire - (a2023128832)**
+  * **Rodrigo Ferrão - (a2022138105)** 
+  * **Tomás Moreira - (a2023143375)** 
 
 ## Organização do Repositório
 A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenharia de Software:
@@ -22,9 +22,11 @@ A fraude com cartões de crédito gera prejuízos financeiros massivos para banc
 
 **O Desafio Técnico:** O dataset apresenta um desequilíbrio extremo (apenas 0.172% são fraudes), o que invalida métricas tradicionais como a "Acurácia".
 
-### Objetivos do Projeto
-* **Objetivo 1:** Desenvolver um modelo de classificação para identificar transações fraudulentas em cartões de crédito com uma métrica AUPRC mínima de 0.80, utilizando o dataset disponibilizado no Kaggle, para ser validado e apresentado no Milestone 3.
+### Objetivos do Projeto (SMART)
+* **Objetivo 1:** Desenvolver um modelo de classificação para identificar transações fraudulentas em cartões de crédito com uma métrica AUPRC mínima de 0.80, utilizando o dataset disponibilizado no Kaggle, para ser validado e apresentado no _Milestone 3_.
 * **Objetivo 2:** Aplicar a técnica SMOTE (oversampling) para corrigir o desequilíbrio extremo dos dados, treinando um algoritmo que atinja uma Sensibilidade (Recall) superior a 85%, garantindo a minimização de perdas financeiras (falsos negativos), até à entrega final do projeto.
+
+### Perguntas de Investigação
 
 ### Fonte de Dados
 * **Dataset:** [Credit Card Fraud Detection (Kaggle)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
@@ -49,12 +51,16 @@ do método ganho de informação
 [Resumo da solução e como ela gera valor para o negócio.]
 ### Recomendações de Inovação
 1. [Sugestão prática baseada nos resultados]
+## 5. Referências
+1. 
+
 ## Como Reproduzir este Projeto
 1. Clone o repositório: `git clone [url-do-repo]`
 2. Instale as dependências: `pip install -r requirements.txt`
 3. Execute os notebooks na pasta `notebooks/` seguindo a ordem numérica.
-**Instituição:** Coimbra Business School | ISCAC
-**Curso:** Licenciatura em Ciência de Dados para a Gestão
-**Unidade Curricular:** Projeto em Ciência de Dados
-**Professor Responsável:** Dora Melo (dmelo@iscac.pt)
+
+**Instituição:** Coimbra Business School | ISCAC  
+**Curso:** Licenciatura em Ciência de Dados para a Gestão  
+**Unidade Curricular:** Projeto em Ciência de Dados  
+**Professor Responsável:** Dora Melo (dmelo@iscac.pt)  
 
