@@ -60,6 +60,7 @@ do método ganho de informação
 1. [Sugestão prática baseada nos resultados]
 ## 5. Referências
 1. https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+2. https://www.kaggle.com/code/janiobachmann/credit-fraud-dealing-with-imbalanced-datasets
 
 ## Como Reproduzir este Projeto
 1. Clone o repositório: `git clone [url-do-repo]`
