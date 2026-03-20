@@ -1,1 +1,21 @@
-
+# ============================================================
+# requirements.txt — Projeto: Deteção de Transações Fraudulentas
+# Curso: Licenciatura em Ciência de Dados para Gestão | ISCAC
+# Unidade Curricular: Projeto em Ciência de Dados
+# ============================================================
+# Para instalar todas as dependências:
+#   pip install -r requirements.txt
+ 
+# --- Manipulação e Análise de Dados ---
+pandas>=1.5.0
+numpy>=1.23.0
+ 
+# --- Visualização de Dados ---
+matplotlib>=3.6.0
+seaborn>=0.12.0
+ 
+# --- Machine Learning ---
+scikit-learn>=1.1.0
+ 
+# --- Estatística ---
+scipy>=1.9.0
