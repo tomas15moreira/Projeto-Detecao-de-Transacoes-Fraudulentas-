@@ -59,7 +59,7 @@ do método ganho de informação
 ### Recomendações de Inovação
 1. [Sugestão prática baseada nos resultados]
 ## 5. Referências
-1. 
+1. https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
 
 ## Como Reproduzir este Projeto
 1. Clone o repositório: `git clone [url-do-repo]`
