@@ -69,4 +69,4 @@ Para enriquecer a capacidade preditiva do modelo e extrair inteligência de neg�
 *O que aprenderam sobre o dataset que não sabiam no final do Milestone 1? Os dados são suficientes
 para avançar para a modelação?*
 ---
-*Data de última atualização: [11/03/2026]* 
+*Data de última atualização: [20/03/2026]* 
