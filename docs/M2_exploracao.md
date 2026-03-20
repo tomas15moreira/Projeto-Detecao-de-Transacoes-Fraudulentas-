@@ -59,6 +59,7 @@ Para enriquecer a capacidade preditiva do modelo e extrair inteligência de neg�
 * **Nova Variável `Nivel_da_Transacao_Monetaria`**: Criada a partir da variável contínua `Amount`. Esta variável segmenta os valores monetários em diferentes escalões ou níveis (ex: Baixo, Médio, Alto). Esta categorização ajuda o modelo ao reduzir o "ruído" das variações exatas de cêntimos e euros, permitindo que os algoritmos de _Machine Learning_ (como árvores de decisão) identifiquem rapidamente se o perfil da fraude está associado a transações de teste (níveis baixos) ou a extrações de grande valor (níveis altos).
 
 ## 4. Dicionário de Dados Final (Pós-Processamento)
+A tabela seguinte apresenta a estrutura final do *dataset* processado que será utilizado na fase de modelação (Fase 3), detalhando os atributos finais e os respetivos métodos de pré-processamento aplicados:
 
 | Atributo | Tipo | Descrição | Método Aplicado |
 | :--- | :--- | :--- | :--- |
@@ -67,10 +68,10 @@ Para enriquecer a capacidade preditiva do modelo e extrair inteligência de neg�
 | **`V1` a `V28`** | Float | 28 componentes numéricas mantidas intactas, resultantes da anonimização dos dados bancários. |  |
 | **`Class`** | Inteiro | Variável alvo binária (0 = Legítima; 1 = Fraude). |  |
 | **`Hora`** | Inteiro | Hora do dia (0 a 23) em que ocorreu a transação. | Transformação Matemática (a partir de `Time`) |
-| **`Periodo_do_Dia`** | Categoria (Texto) | Segmentação da hora em 4 blocos temporais (Madrugada, Manhã, Tarde, Noite). | Agrupamento (*Binning*) |
-| **`Nivel_da_Transacao_Monetaria`**| Categoria (Texto) | Segmentação do montante em 4 escalões (Baixo, Médio, Alto, Muito Alto). | Agrupamento (*Binning*) |
+| **`Periodo_do_Dia`** | Categoria (Texto) | Segmentação da hora em 4 blocos temporais (Madrugada, Manhã, Tarde, Noite). | Discretização |
+| **`Nivel_da_Transacao_Monetaria`**| Categoria (Texto) | Segmentação do montante em 4 escalões (Baixo, Médio, Alto, Muito Alto). | Discretização |
 | **`scaled_hora`** | Float | Versão escalonada da variável temporal para uniformização da escala. | `RobustScaler` |
-| **`scaled_amount`** | Float | Versão escalonada da variável de montante, mitigando o peso de *outliers*. | `RobustScaler` |
+| **`scaled_amount`** | Float | Versão escalonada da variável de montante, mitigando o peso de _outliers_. | `RobustScaler` |
 
 ## 5. Conclusões da Fase de Exploração
 *O que aprenderam sobre o dataset que não sabiam no final do Milestone 1? Os dados são suficientes
