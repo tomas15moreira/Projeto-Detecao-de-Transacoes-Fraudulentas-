@@ -19,7 +19,7 @@ Para identificar as relações mais fortes com o nosso problema, gerámos uma Ma
 
 * **Atributos V17, V14 e V12 vs. Alvo:** Notámos que estas três variáveis apresentam as correlações negativas mais fortes com a probabilidade de fraude (com valores de -0.32, -0.30 e -0.26, respetivamente). Através dos gráficos de dispersão, é visível que quanto menores (e mais negativos) forem os valores nestes atributos, maior é a probabilidade de a transação ser fraudulenta. Os pontos vermelhos (fraudes) isolam-se claramente na extremidade inferior dos eixos destas variáveis.
 
-* **Atributo V11 vs. Alvo:** Em contraste, a variável `V11` apresenta a correlação positiva mais elevada (0.15) com a nossa variável alvo. Os gráficos demonstram que valores mais altos em `V11` estão frequentemente associados a transações ilícitas.
+* **Atributo V11 vs. Alvo:** Em contraste, a variável V11 apresenta a correlação positiva mais elevada (0.15) com a nossa variável alvo. Os gráficos demonstram que valores mais altos em V11 estão frequentemente associados a transações ilícitas.
 
 * **Hora vs. Alvo:** Cruzando a nova variável temporal que criámos com os atributos PCA na nossa matriz de dispersão, notámos uma alteração de comportamento dependente da hora. Durante o período da madrugada (ex: 02h00 - 06h00), o volume de transações normais cai drasticamente, mas as transações fraudulentas mantêm um ritmo constante ou apresentam picos relativos. Isto indica que o horário noturno está fortemente ligado a um risco proporcionalmente mais elevado de fraude.
 
