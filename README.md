@@ -7,6 +7,10 @@
   * **Rodrigo Ferrão - (a2022138105)** 
   * **Tomás Moreira - (a2023143375)** 
 
+## Identificação Kaggle
+* **Username do Grupo: Projeto_Detecção_de_Transações_Fraudulentas**
+* **Link do Perfil/Submissão:https://www.kaggle.com/code/tomsalm/projeto-detec-o-de-transa-es-fraudulentas**
+
 ## Organização do Repositório
 A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenharia de Software:
 * *data/*: Armazenamento de dados (dados brutos em raw/ e processados em processed/).
