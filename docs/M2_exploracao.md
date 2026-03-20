@@ -80,7 +80,7 @@ Nesta fase de Análise Exploratória e Engenharia de Atributos, o nosso conhecim
 1. **Impacto dos Duplicados:** Descobrimos a existência de 1.081 transações repetidas. A sua remoção foi um passo crítico que desconhecíamos no M1, mas que agora garante que os nossos futuros modelos não sofrerão de enviesamento (_overfitting_).
 2. **Comportamento dos Outliers:** Compreendemos que os valores extremos na variável _Amount_ não são erros de inserção, mas sim transações reais de alto valor. Isto mudou a nossa abordagem de uma eliminação padrão para a aplicação do _RobustScaler_.
 3. **Poder Preditivo Oculto:** Apesar da anonimização das variáveis PCA, a EDA revelou-nos que componentes específicas (como V17, V14 e V12) isolam com grande clareza o comportamento fraudulento através de fortes correlações negativas.
-4. **Padrões Temporais de Risco:** Provámos através dos dados que a fraude tem um comportamento distinto durante a noite/madrugada. Este _insight_ de negócio permitiu-nos criar variáveis totalmente novas e com elevado potencial preditivo, como o `Periodo_do_Dia` e o `Nivel_da_Transacao_Monetaria`.
+4. **Padrões Temporais de Risco:** Provámos através dos dados que a fraude tem um comportamento distinto durante a noite/madrugada. Este _insight_ de negócio permitiu-nos criar variáveis totalmente novas e com elevado potencial preditivo, como o Periodo_do_Dia e o Nivel_da_Transacao_Monetaria.
 
 **Os dados são suficientes para avançar para a modelação?**
 Sim, de forma categórica. O conjunto de dados está agora isento de ruído (sem nulos ou duplicados), possui escalas matemáticas uniformizadas compatíveis com algoritmos sensíveis a distâncias, e foi enriquecido com inteligência de negócio através de novos atributos. 
