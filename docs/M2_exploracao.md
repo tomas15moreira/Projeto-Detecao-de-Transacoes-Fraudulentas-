@@ -53,9 +53,11 @@ No nosso _dataset_, as features V1 a V28 já se encontravam transformadas e esca
 * **Justificação Matemática:** O _Robust Scaler_ utiliza a Mediana e o Intervalo Interquartil (IQR) para efetuar o redimensionamento. Ao ignorar a média clássica, este método permitiu-nos colocar o _Amount_ e o _Time_ numa escala comparável à das variáveis PCA, garantindo que os valores monetários extremos não distorcessem a distribuição matemática global dos dados de treino.
 
 ### 3.2. Criação de Novos Atributos
-*Descrevam as variáveis que criaram para ajudar o modelo.*
-* **Nova Variável [Nome]:** (Ex: "Criámos a 'Tenure_Per_Year' que divide o tempo de contrato
-pela idade do cliente.")
+Para enriquecer a capacidade preditiva do modelo e extrair inteligência de negócio das variáveis originais, criámos as seguintes variáveis através do agrupamento de dados:
+
+* **Nova Variável `Periodo_do_Dia`**: Criada a partir da transformação da variável temporal (hora). Em vez de o modelo analisar 24 horas distintas, agrupámos as transações em grandes blocos comportamentais (ex: Manhã, Tarde, Noite, Madrugada). Isto ajuda o modelo a capturar tendências de risco mais amplas, visto que a nossa análise exploratória demonstrou que a proporção de fraudes aumenta significativamente em períodos de menor atividade legítima (como a madrugada).
+* **Nova Variável `Nivel_da_Transacao_Monetaria`**: Criada a partir da variável contínua `Amount`. Esta variável segmenta os valores monetários em diferentes escalões ou níveis (ex: Baixo, Médio, Alto). Esta categorização ajuda o modelo ao reduzir o "ruído" das variações exatas de cêntimos e euros, permitindo que os algoritmos de _Machine Learning_ (como árvores de decisão) identifiquem rapidamente se o perfil da fraude está associado a transações de teste (níveis baixos) ou a extrações de grande valor (níveis altos).
+
 ## 4. Dicionário de Dados Final (Pós-Processamento)
 *Listagem final das variáveis que serão entregues ao modelo na Fase 3.*
 | Atributo | Tipo | Descrição |
