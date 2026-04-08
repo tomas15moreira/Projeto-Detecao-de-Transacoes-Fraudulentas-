@@ -1,6 +1,6 @@
 # Milestone 3: Modelação e Avaliação
 ## 1. Estratégia de Modelação
-A preparação dos dados para os algoritmos de _Machine Learning_ focou-se na estabilização das variáveis numéricas e na inclusão de inteligência de negócio. Procedemos ao escalonamento das variáveis _Time_ e _Amount_ utilizando o _RobustScaler_, garantindo que os _outliers_ monetários não enviesam o modelo. Além disso, o conjunto de dados foi enriquecido com as variáveis categóricas Periodo_do_Dia e Nivel_da_Transacao_Monetaria, que capturam padrões de risco identificados na análise exploratória. Para resolver o desequilíbrio de classes, planeou-se a aplicação da técnica SMOTE (_Synthetic Minority Over-sampling Technique_) exclusivamente sobre os dados de treino.
+A estratégia definida para esta fase foca-se na construção de um ecossistema de avaliação robusto, capaz de lidar com o extremo desequilíbrio de classes do dataset (onde as fraudes representam apenas 0,17% do total) e de garantir que as métricas refletem o real impacto no negócio.
 
 **Divisão do dataset:** Utilizámos uma divisão de 80% para treino e 20% para teste. Esta divisão foi executada de forma estratificada (stratify=y), assegurando que a raríssima proporção de 0,17% de fraudes é preservada tanto no treino como no teste. Definimos uma semente aleatória fixa (random_state=42) para garantir a reprodutibilidade total das experiências e resultados.
 
