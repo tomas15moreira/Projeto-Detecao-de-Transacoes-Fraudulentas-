@@ -31,6 +31,19 @@ Este modelo foi treinado exclusivamente com os dados de treino originais process
 * *Algoritmo:* Regressão Logística.
 * *Parâmetros:* max_iter=1000 (para garantir a convergência matemática sem erros) e random_state=42 (para garantir a reprodutibilidade dos resultados).
 
+*Registo de Desempenho:*
+Após o treino, abrimos o conjunto de teste (isolado) e avaliámos o modelo. Os resultados obtidos definem o nosso ponto de partida obrigatório:
+
+* *Recall (Sensibilidade):* [Insere o valor que te deu, ex: 0.62]
+* *Precision (Precisão):* [Insere o valor que te deu, ex: 0.85]
+* *F1-Score:* [Insere o valor que te deu, ex: 0.71]
+* *AUPRC (Área sob a Curva PR):* [Insere o valor que te deu, ex: 0.74]
+* *Matriz de Confusão:* O modelo deixou escapar [Insere o número de Falsos Negativos] fraudes (Falsos Negativos), representando o risco máximo.
+
+*Análise e Conclusão do Baseline:*
+Como teorizado na fase de Análise Exploratória, um modelo padrão treinado em dados com extrema disparidade de classes sofre na deteção da classe minoritária. Embora a precisão possa ser relativamente alta, o *Recall encontra-se significativamente abaixo do nosso objetivo de negócio (> 85%)* e a *AUPRC não atinge a meta delineada (≥ 0.80)*. 
+
+Este modelo define o "chão" analítico do projeto. Todas as futuras otimizações e arquiteturas avançadas de Machine Learning (como a introdução de pesos balanceados nos modelos Random Forest e XGBoost) terão a obrigatoriedade de superar as métricas aqui registadas para provarem a sua viabilidade de negócio.
 ### 2.2. Modelos Candidatos
 *Listagem dos algoritmos testados e a justificação da escolha.*
 | Algoritmo | Parâmetros Base | Métrica (Treino) | Métrica (Teste) | Notas |
