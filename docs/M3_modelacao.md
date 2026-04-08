@@ -23,9 +23,14 @@ Para validar toda esta arquitetura de testes antes de avançar para algoritmos c
 
 ## 2. Experiências Realizadas
 ### 2.1. Modelo Baseline
-*O ponto de partida simples.*
-* **Algoritmo:** (p/ex.: Regressão Logística)
-* **Resultado:** (p/ex.: Accuracy: 0.72)
+Para estabelecer um patamar mínimo de desempenho e validar a nossa arquitetura de testes, iniciámos a fase de experimentação com o treino de um algoritmo de baixa complexidade: a *Regressão Logística* (LogisticRegression). 
+
+Este modelo foi treinado exclusivamente com os dados de treino originais processados, preservando propositadamente o desequilíbrio extremo de classes (sem a aplicação de técnicas de oversampling como o SMOTE), com o objetivo de estabelecer um referencial realista.
+
+*Configuração do Modelo Base:*
+* *Algoritmo:* Regressão Logística.
+* *Parâmetros:* max_iter=1000 (para garantir a convergência matemática sem erros) e random_state=42 (para garantir a reprodutibilidade dos resultados).
+
 ### 2.2. Modelos Candidatos
 *Listagem dos algoritmos testados e a justificação da escolha.*
 | Algoritmo | Parâmetros Base | Métrica (Treino) | Métrica (Teste) | Notas |
