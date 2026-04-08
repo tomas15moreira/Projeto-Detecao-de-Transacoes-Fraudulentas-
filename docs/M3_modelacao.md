@@ -23,27 +23,27 @@ Para validar toda esta arquitetura de testes antes de avançar para algoritmos c
 
 ## 2. Experiências Realizadas
 ### 2.1. Modelo Baseline
-Para estabelecer um patamar mínimo de desempenho e validar a nossa arquitetura de testes, iniciámos a fase de experimentação com o treino de um algoritmo de baixa complexidade: a *Regressão Logística* (LogisticRegression). 
+Para estabelecer um patamar mínimo de desempenho e validar a nossa arquitetura de testes, iniciámos a fase de experimentação com o treino de um algoritmo de baixa complexidade: a Regressão Logística (_LogisticRegression_). 
 
-Este modelo foi treinado exclusivamente com os dados de treino originais processados, preservando propositadamente o desequilíbrio extremo de classes (sem a aplicação de técnicas de oversampling como o SMOTE), com o objetivo de estabelecer um referencial realista.
+Este modelo foi treinado exclusivamente com os dados de treino originais processados, preservando propositadamente o desequilíbrio extremo de classes (sem a aplicação de técnicas de _oversampling_ como o SMOTE), com o objetivo de estabelecer um referencial realista.
 
-*Configuração do Modelo Base:*
-* *Algoritmo:* Regressão Logística.
-* *Parâmetros:* max_iter=1000 (para garantir a convergência matemática sem erros) e random_state=42 (para garantir a reprodutibilidade dos resultados).
+**Configuração do Modelo Base:**
+* **Algoritmo:** Regressão Logística.
+* **Parâmetros:** max_iter=1000 (para garantir a convergência matemática sem erros) e random_state=42 (para garantir a reprodutibilidade dos resultados).
 
-*Registo de Desempenho:*
+**Registo de Desempenho:**
 Após o treino, abrimos o conjunto de teste (isolado) e avaliámos o modelo. Os resultados obtidos definem o nosso ponto de partida obrigatório:
 
-* *Recall (Sensibilidade):* [Insere o valor que te deu, ex: 0.62]
-* *Precision (Precisão):* [Insere o valor que te deu, ex: 0.85]
-* *F1-Score:* [Insere o valor que te deu, ex: 0.71]
-* *AUPRC (Área sob a Curva PR):* [Insere o valor que te deu, ex: 0.74]
-* *Matriz de Confusão:* O modelo deixou escapar [Insere o número de Falsos Negativos] fraudes (Falsos Negativos), representando o risco máximo.
+* **Recall (Sensibilidade):** 0.5789.
+* **Precision (Precisão):** 0.8462.
+* **F1-Score:** 0.6875.
+* **AUPRC:** 0.6955
+* **Matriz de Confusão:** O modelo deixou escapar 40 fraudes (Falsos Negativos), representando o risco máximo.
 
-*Análise e Conclusão do Baseline:*
-Como teorizado na fase de Análise Exploratória, um modelo padrão treinado em dados com extrema disparidade de classes sofre na deteção da classe minoritária. Embora a precisão possa ser relativamente alta, o *Recall encontra-se significativamente abaixo do nosso objetivo de negócio (> 85%)* e a *AUPRC não atinge a meta delineada (≥ 0.80)*. 
+**Análise e Conclusão do Baseline:**
+Como teorizado na fase de Análise Exploratória, um modelo padrão treinado em dados com extrema disparidade de classes sofre na deteção da classe minoritária. Embora a precisão possa ser relativamente alta, o Recall encontra-se significativamente abaixo do nosso objetivo de negócio (> 85%) e a AUPRC não atinge a meta delineada (≥ 0.80). 
 
-Este modelo define o "chão" analítico do projeto. Todas as futuras otimizações e arquiteturas avançadas de Machine Learning (como a introdução de pesos balanceados nos modelos Random Forest e XGBoost) terão a obrigatoriedade de superar as métricas aqui registadas para provarem a sua viabilidade de negócio.
+Este modelo define o "chão" analítico do projeto. Todas as futuras otimizações e arquiteturas avançadas de _Machine Learning_ (como a introdução de pesos balanceados nos modelos Random Forest e XGBoost) terão a obrigatoriedade de superar as métricas aqui registadas para provarem a sua viabilidade de negócio.
 ### 2.2. Modelos Candidatos
 *Listagem dos algoritmos testados e a justificação da escolha.*
 | Algoritmo | Parâmetros Base | Métrica (Treino) | Métrica (Teste) | Notas |
