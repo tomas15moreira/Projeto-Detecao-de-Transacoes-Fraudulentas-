@@ -44,12 +44,13 @@ Após o treino, abrimos o conjunto de teste (isolado) e avaliámos o modelo. Os 
 Como teorizado na fase de Análise Exploratória, um modelo padrão treinado em dados com extrema disparidade de classes sofre na deteção da classe minoritária. Embora a precisão possa ser relativamente alta, o Recall encontra-se significativamente abaixo do nosso objetivo de negócio (> 85%) e a AUPRC não atinge a meta delineada (≥ 0.80). 
 
 Este modelo define o "chão" analítico do projeto. Todas as futuras otimizações e arquiteturas avançadas de _Machine Learning_ (como a introdução de pesos balanceados nos modelos Random Forest e XGBoost) terão a obrigatoriedade de superar as métricas aqui registadas para provarem a sua viabilidade de negócio.
+
 ### 2.2. Modelos Candidatos
-Após o estabelecimento do baseline, avançámos para a fase de experimentação com algoritmos de maior complexidade. A escolha recaiu sobre métodos de Ensemble Learning, especificamente arquiteturas de árvores de decisão, por serem reconhecidamente eficazes em lidar com relações não-lineares e dados desbalanceados.
+Após o estabelecimento do _baseline_, avançámos para a fase de experimentação com algoritmos de maior complexidade. A escolha recaiu sobre métodos de _Ensemble Learning_, especificamente arquiteturas de árvores de decisão, por serem reconhecidamente eficazes em lidar com relações não-lineares e dados desbalanceados.
 
 #### Algoritmos Selecionados e Configuração
-1. *Random Forest (Bagging):* Escolhido pela sua robustez e capacidade de reduzir a variância. Para lidar com o desequilíbrio, utilizámos o parâmetro class_weight='balanced', que ajusta os pesos das classes inversamente proporcional às suas frequências no treino.
-2. *XGBoost (Gradient Boosting):* Selecionado pela sua alta performance e eficiência computacional. Implementámos a técnica de scale_pos_weight, calculando o rácio matemático exato entre as classes para penalizar mais severamente os erros na classe minoritária (fraude).
+1. **Random Forest (Bagging):** Escolhido pela sua robustez e capacidade de reduzir a variância. Para lidar com o desequilíbrio, utilizámos o parâmetro _class_weight=balanced_, que ajusta os pesos das classes inversamente proporcional às suas frequências no treino.
+2. **XGBoost (Gradient Boosting):** Selecionado pela sua alta performance e eficiência computacional. Implementámos a técnica de _scale_pos_weight_, calculando o rácio matemático exato entre as classes para penalizar mais severamente os erros na classe minoritária (fraude).
 
 #### Resultados de Desempenho (Tabela Comparativa)
 
@@ -57,16 +58,16 @@ A tabela abaixo resume a performance obtida nos conjuntos de Treino e Teste. Est
 
 | Modelo | Recall (Treino) | Recall (Teste) | F1-Score (Teste) | AUPRC (Teste) |
 | :--- | :--- | :--- | :--- | :--- |
-| *Baseline (Log. Reg.)* | 61.64 % | 57.89 % | 68.75 % | 69.55 % |
-| *Random Forest* | 97.35 % | 74.74 % | 81.14 % | 78.05 % |
-| *XGBoost* | 100% | 78.95 % | 85.71 % | 82.51 % |
+| *Baseline (Log. Reg.)* | 61.64% | 57.89% | 68.75% | 69.55% |
+| *Random Forest* | 97.35% | 74.74% | 81.14% | 78.05% |
+| *XGBoost* | 100% | 78.95% | 85.71% | 82.51% |
 
 #### Análise Crítica da Experimentação
 
-* *O Algoritmo de Destaque:* O *[Escolhe o vencedor, ex: XGBoost]* revelou-se o modelo mais promissor. Não só superou largamente o baseline em termos de *Recall* (conseguindo capturar mais fraudes reais), como manteve uma *AUPRC* consistente e próxima do nosso objetivo de 0.80. A sua capacidade de generalização é superior, apresentando uma diferença mínima entre as métricas de treino e teste.
-* *Onde houve dificuldades:* O *[Escolhe o que teve menos performance, ex: Random Forest], embora tenha apresentado resultados de treino quase perfeitos, demonstrou uma ligeira tendência para o *overfitting ou uma precisão inferior comparativamente ao XGBoost. Isto sugere que, apesar de capturar as fraudes, o modelo gera um volume superior de alarmes falsos (Falsos Positivos), o que teria um impacto operacional negativo no negócio.
+* **O Algoritmo de Destaque:** O XGBoost revelou-se o modelo mais promissor. Não só superou largamente o baseline em termos de _Recall_ (conseguindo capturar mais fraudes reais), como manteve uma _AUPRC_ consistente e próxima do nosso objetivo de 0.80. A sua capacidade de generalização é superior, apresentando uma diferença mínima entre as métricas de treino e teste.
+* **Onde houve dificuldades:** O Random Forest, embora tenha apresentado resultados de treino quase perfeitos, demonstrou uma ligeira tendência para o _overfitting_ ou uma precisão inferior comparativamente ao XGBoost. Isto sugere que, apesar de capturar as fraudes, o modelo gera um volume superior de alarmes falsos (Falsos Positivos), o que teria um impacto operacional negativo no negócio.
 
-*Conclusão desta fase:* Com base nesta análise comparativa, o modelo selecionado para a fase de otimização final (Hyperparameter Tuning) será o *[Nome do Modelo Vencedor]*, por apresentar o melhor equilíbrio entre a proteção financeira (deteção de fraude) e a experiência do utilizador (minimização de bloqueios indevidos).
+**Conclusão desta fase:** Com base nesta análise comparativa, o modelo selecionado para a fase de otimização final (_Hyperparameter Tuning_) será o XGBoost, por apresentar o melhor equilíbrio entre a proteção financeira (deteção de fraude) e a experiência do utilizador (minimização de bloqueios indevidos).
 
 ## 3. Otimização (Tuning)
 *Descrevam como melhoraram o melhor modelo.*
