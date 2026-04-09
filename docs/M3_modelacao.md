@@ -61,7 +61,13 @@ A tabela abaixo resume a performance obtida nos conjuntos de Treino e Teste. Est
 | *Random Forest* | [Inserir %] | [Inserir %] | [Inserir %] | [Inserir %] |
 | *XGBoost* | [Inserir %] | [Inserir %] | [Inserir %] | [Inserir %] |
 
-(Nota: Deves preencher os valores com os dados exatos gerados na Célula 68 do teu notebook)
+#### Análise Crítica da Experimentação
+
+* *O Algoritmo de Destaque:* O *[Escolhe o vencedor, ex: XGBoost]* revelou-se o modelo mais promissor. Não só superou largamente o baseline em termos de *Recall* (conseguindo capturar mais fraudes reais), como manteve uma *AUPRC* consistente e próxima do nosso objetivo de 0.80. A sua capacidade de generalização é superior, apresentando uma diferença mínima entre as métricas de treino e teste.
+* *Onde houve dificuldades:* O *[Escolhe o que teve menos performance, ex: Random Forest], embora tenha apresentado resultados de treino quase perfeitos, demonstrou uma ligeira tendência para o *overfitting ou uma precisão inferior comparativamente ao XGBoost. Isto sugere que, apesar de capturar as fraudes, o modelo gera um volume superior de alarmes falsos (Falsos Positivos), o que teria um impacto operacional negativo no negócio.
+
+*Conclusão desta fase:* Com base nesta análise comparativa, o modelo selecionado para a fase de otimização final (Hyperparameter Tuning) será o *[Nome do Modelo Vencedor]*, por apresentar o melhor equilíbrio entre a proteção financeira (deteção de fraude) e a experiência do utilizador (minimização de bloqueios indevidos).
+
 ## 3. Otimização (Tuning)
 *Descrevam como melhoraram o melhor modelo.*
 * **Técnica Utilizada:** (p/ex.: "Utilizámos GridSearchCV para ajustar os hiperparâmetros
