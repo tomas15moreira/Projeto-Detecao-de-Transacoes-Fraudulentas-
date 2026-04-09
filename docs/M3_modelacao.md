@@ -45,12 +45,11 @@ Como teorizado na fase de Análise Exploratória, um modelo padrão treinado em 
 
 Este modelo define o "chão" analítico do projeto. Todas as futuras otimizações e arquiteturas avançadas de _Machine Learning_ (como a introdução de pesos balanceados nos modelos Random Forest e XGBoost) terão a obrigatoriedade de superar as métricas aqui registadas para provarem a sua viabilidade de negócio.
 ### 2.2. Modelos Candidatos
-*Listagem dos algoritmos testados e a justificação da escolha.*
-| Algoritmo | Parâmetros Base | Métrica (Treino) | Métrica (Teste) | Notas |
-| :--- | :--- | :--- | :--- | :--- |
-| Random Forest | n_estimators=100 | 0.95 | 0.82 | Sinais de overfitting |
-| XGBoost | default | 0.88 | 0.85 | Melhor generalização |
-| SVM | kernel='rbf' | 0.80 | 0.79 | Lento no treino |
+Após o estabelecimento do baseline, avançámos para a fase de experimentação com algoritmos de maior complexidade. A escolha recaiu sobre métodos de Ensemble Learning, especificamente arquiteturas de árvores de decisão, por serem reconhecidamente eficazes em lidar com relações não-lineares e dados desbalanceados.
+
+#### Algoritmos Selecionados e Configuração
+1. *Random Forest (Bagging):* Escolhido pela sua robustez e capacidade de reduzir a variância. Para lidar com o desequilíbrio, utilizámos o parâmetro class_weight='balanced', que ajusta os pesos das classes inversamente proporcional às suas frequências no treino.
+2. *XGBoost (Gradient Boosting):* Selecionado pela sua alta performance e eficiência computacional. Implementámos a técnica de scale_pos_weight, calculando o rácio matemático exato entre as classes para penalizar mais severamente os erros na classe minoritária (fraude).
 ## 3. Otimização (Tuning)
 *Descrevam como melhoraram o melhor modelo.*
 * **Técnica Utilizada:** (p/ex.: "Utilizámos GridSearchCV para ajustar os hiperparâmetros
