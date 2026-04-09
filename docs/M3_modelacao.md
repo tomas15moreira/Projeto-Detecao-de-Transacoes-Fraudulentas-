@@ -57,7 +57,7 @@ A tabela abaixo resume a performance obtida nos conjuntos de Treino e Teste. Est
 
 | Modelo | Recall (Treino) | Recall (Teste) | F1-Score (Teste) | AUPRC (Teste) |
 | :--- | :--- | :--- | :--- | :--- |
-| *Baseline (Log. Reg.)* | [Inserir %] | [Inserir %] | [Inserir %] | [Inserir %] |
+| *Baseline (Log. Reg.)* | [61.64 %] | [57.89 %] | [72.02 %] | [68.75 %] |
 | *Random Forest* | [Inserir %] | [Inserir %] | [Inserir %] | [Inserir %] |
 | *XGBoost* | [Inserir %] | [Inserir %] | [Inserir %] | [Inserir %] |
 
