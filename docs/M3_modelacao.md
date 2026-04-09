@@ -50,6 +50,18 @@ Após o estabelecimento do baseline, avançámos para a fase de experimentação
 #### Algoritmos Selecionados e Configuração
 1. *Random Forest (Bagging):* Escolhido pela sua robustez e capacidade de reduzir a variância. Para lidar com o desequilíbrio, utilizámos o parâmetro class_weight='balanced', que ajusta os pesos das classes inversamente proporcional às suas frequências no treino.
 2. *XGBoost (Gradient Boosting):* Selecionado pela sua alta performance e eficiência computacional. Implementámos a técnica de scale_pos_weight, calculando o rácio matemático exato entre as classes para penalizar mais severamente os erros na classe minoritária (fraude).
+
+#### Resultados de Desempenho (Tabela Comparativa)
+
+A tabela abaixo resume a performance obtida nos conjuntos de Treino e Teste. Esta comparação é fundamental para identificar possíveis problemas de overfitting (onde o modelo decora o treino mas falha no teste).
+
+| Modelo | Recall (Treino) | Recall (Teste) | F1-Score (Teste) | AUPRC (Teste) |
+| :--- | :--- | :--- | :--- | :--- |
+| *Baseline (Log. Reg.)* | [Inserir %] | [Inserir %] | [Inserir %] | [Inserir %] |
+| *Random Forest* | [Inserir %] | [Inserir %] | [Inserir %] | [Inserir %] |
+| *XGBoost* | [Inserir %] | [Inserir %] | [Inserir %] | [Inserir %] |
+
+(Nota: Deves preencher os valores com os dados exatos gerados na Célula 68 do teu notebook)
 ## 3. Otimização (Tuning)
 *Descrevam como melhoraram o melhor modelo.*
 * **Técnica Utilizada:** (p/ex.: "Utilizámos GridSearchCV para ajustar os hiperparâmetros
