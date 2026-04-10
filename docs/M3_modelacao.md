@@ -88,7 +88,7 @@ A análise detalhada das discrepâncias entre o treino e o teste revelou os segu
 ### 3.3. Ações Planeadas para Correção de Imperfeições
 Para elevar o desempenho do modelo vencedor (XGBoost) ao patamar de excelência definido no Milestone 1, planeámos as seguintes intervenções técnicas:
 
-1.  **Regularização via Hiperparâmetros:** Para corrigir o ligeiro _overfitting_, utilizaremos _GridSearchCV_ para restringir a profundidade das árvores (`max_depth`) e aumentar a penalização de erros, forçando o modelo a focar-se em padrões globais e não em ruído.
+1.  **Regularização via Hiperparâmetros:** Para corrigir o ligeiro _overfitting_, utilizaremos _GridSearchCV_ para restringir a profundidade das árvores (_max_depth_) e aumentar a penalização de erros, forçando o modelo a focar-se em padrões globais e não em ruído.
 2.  **Otimização do Limiar de Decisão (_Threshold Tuning_):** Como o nosso objetivo de negócio privilegia o _Recall_ (>85%), iremos ajustar o limiar de probabilidade do modelo. Esta ação visa reduzir os Falsos Negativos (fraudes que escapam), mesmo que isso implique um aumento controlado de Falsos Positivos.
 3.  **_Feature Importance Re-evaluation_:** Iremos remover variáveis que apresentem importância quase nula, simplificando o modelo e aumentando a sua estabilidade perante novos dados.
 
