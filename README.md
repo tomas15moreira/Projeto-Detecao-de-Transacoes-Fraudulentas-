@@ -3,9 +3,9 @@
 ## Identificação da Equipa
 * **Grupo nº: 8**
 * **Membros:**
-  * **João Freire - (a2023128832)**
-  * **Rodrigo Ferrão - (a2022138105)** 
-  * **Tomás Moreira - (a2023143375)** 
+  * **João Freire- (a2023128832)**
+  * **Rodrigo Ferrão- (a2022138105)** 
+  * **Tomás Moreira- (a2023143375)** 
 
 ## Identificação Kaggle
 * **Nome do Grupo: Projeto_Detecção_de_Transações_Fraudulentas**
