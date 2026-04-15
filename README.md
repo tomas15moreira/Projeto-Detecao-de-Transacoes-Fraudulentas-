@@ -28,7 +28,7 @@ A fraude com cartões de crédito gera prejuízos financeiros massivos para banc
 
 ### Objetivos do Projeto (SMART)
 * **Objetivo 1:** Desenvolver um modelo de classificação para identificar transações fraudulentas em cartões de crédito com uma métrica AUPRC mínima de 0.80, utilizando o _dataset_ disponibilizado no Kaggle, para ser validado e apresentado no _Milestone 3_.
-* **Objetivo 2:** *Desenvolver um modelo de classificação supervisionada que atinja uma *Sensibilidade (*Recall) superior a 85%* na deteção de transações fraudulentas no conjunto de teste, minimizando os Falsos Negativos (fraudes não detetadas, que representam o maior risco financeiro), até à entrega do _Milestone 3_.
+* **Objetivo 2:** *Desenvolver um modelo de classificação supervisionada que atinja uma *Sensibilidade (*Recall) superior a 85%* na deteção de transações fraudulentas no conjunto de teste, minimizando os Falsos Negativos (fraudes não detetadas, que representam o maior risco financeiro), até à entrega do _Milestone 3_.*
 
 ### Perguntas de Investigação
 1. Existe uma correlação direta entre o montante da transação e a probabilidade de esta ser classificada como fraude, ou as fraudes tendem a ocorrer em valores mais baixos para passar despercebidas?
