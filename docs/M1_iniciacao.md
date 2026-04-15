@@ -83,7 +83,14 @@ Nesta fase inicial do projeto (Milestone 1), estabelecemos as fundações teóri
 
 Em suma, a equipa encontra-se munida de um conjunto de dados altamente viável e de um plano de ação claro, estando preparada para avançar para a fase de Análise Exploratória de Dados (Milestone 2).
 
-## 8. Cronograma Interno
+## 8. Referências Bibliográficas
+Machine Learning Group - ULB & Worldline. (2018). _Credit Card Fraud Detection_. Kaggle. Recuperado de: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+
+Chawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic Minority Over-sampling Technique. _Journal of Artificial Intelligence Research_, 16, 321-357. Recuperado de: https://doi.org/10.1613/jair.953
+
+Saito, T., & Rehmsmeier, M. (2015). The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets. _PLOS ONE_, 10(3), e0118432. Recuperado de: https://doi.org/10.1371/journal.pone.0118432
+
+## 9. Cronograma Interno
 | Fase | Data Limite | Entregável Esperado |
 | :--- | :--- | :--- |
 | M1: Iniciação | [24/02/2026] | Repositório estruturado e Plano de Projeto. |
