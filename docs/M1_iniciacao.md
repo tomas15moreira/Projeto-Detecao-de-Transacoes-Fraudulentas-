@@ -21,12 +21,13 @@ Para responder a este problema, a solução exigirá a aplicação de técnicas 
 
 ## 2. Objetivos SMART
 1.  **Objetivo 1:** Desenvolver um modelo de classificação para identificar transações fraudulentas em cartões de crédito com uma métrica AUPRC mínima de 0.80, utilizando o _dataset_ disponibilizado no Kaggle, para ser validado e apresentado no _Milestone 3_.
-2.  **Objetivo 2:** Aplicar a técnica SMOTE (_oversampling_) para corrigir o desequilíbrio extremo dos dados, treinando um algoritmo que atinja uma Sensibilidade (_Recall_) superior a 85%, garantindo a minimização de perdas financeiras (falsos negativos), até à entrega final do projeto.
+2.  **Objetivo 2:** Desenvolver um modelo de classificação supervisionada que atinja uma *Sensibilidade (*Recall) superior a 85%* na deteção de transações fraudulentas no conjunto de teste, minimizando os Falsos Negativos, até à entrega do _Milestone 3_*
 
 **Perguntas de investigação** 
 1. Existe uma correlação direta entre o montante da transação e a probabilidade de esta ser classificada como fraude, ou as fraudes tendem a ocorrer em valores mais baixos para passar despercebidas?
 2. Quais são as 3 variáveis que mais contribuem para a previsão correta de uma transação ilícita?
 3. Existem padrões temporais específicos que sejam mais comuns nas transações fraudulentas comparativamente às transações legítimas?
+4. A aplicação de técnicas de reamostragem sintética (SMOTE) sobre os dados de treino melhora significativamente a capacidade de deteção de fraudes face ao tratamento nativo de desequilíbrio via scale_pos_weight?
 
 ## 3. Metodologia de Gestão (PBL)
 * **Divisão de Tarefas:**
