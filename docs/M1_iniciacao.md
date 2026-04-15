@@ -73,12 +73,22 @@ No que diz respeito à tipologia e formato da informação, todas as 31 colunas 
 
 O mesmo formato (_float64_) é partilhado pelas duas únicas variáveis preditivas que mantêm o seu estado original e não sofreram transformação PCA: a variável _Time_, que contabiliza os segundos decorridos entre cada registo e a primeira transação do _dataset_, e a variável _Amount_, que representa o valor monetário exato da operação. Por fim, a variável alvo do nosso estudo, denominada _Class_, encontra-se codificada como um número inteiro binário (int64), assumindo estritamente o valor 0 para identificar transações normais e o valor 1 para assinalar as transações fraudulentas.
   
-## 7. Cronograma Interno
+## 7. Resumo e Conclusões da Fase de Iniciação
+Nesta fase inicial do projeto (Milestone 1), estabelecemos as fundações teóricas, técnicas e de negócio que guiarão o desenvolvimento do modelo preditivo. Da análise preliminar, destacam-se os seguintes pontos críticos:
+
+* **O Desafio do Desequilíbrio como Foco Central:** Constatou-se que o verdadeiro desafio deste projeto não é a complexidade estrutural dos dados, mas sim a extrema raridade do evento alvo (apenas 0,172% das transações são fraudes). Esta característica ditará obrigatoriamente a necessidade de aplicar técnicas de amostragem avançadas (como o SMOTE) nas fases seguintes.
+* **Métricas Alinhadas com o Negócio:** Ficou estabelecido que métricas tradicionais, como a Exatidão (_Accuracy_), são ilusórias neste contexto. O sucesso do projeto será medido pela capacidade de maximizar a deteção de fraudes reais (_Recall_) mantendo a precisão, refletida na nossa métrica principal: a **AUPRC (objetivo ≥ 0.80)**.
+* **Viabilidade Técnica Confirmada:** A auditoria preliminar ao _dataset_ confirmou a sua integridade (ausência de valores nulos e formatação 100% numérica). Isto garante que o esforço da equipa na Fase 2 será canalizado para a Análise Exploratória (EDA) e criação de inteligência analítica, sem desperdício de tempo em limpezas básicas.
+* **Restrição de Interpretabilidade (PCA):** O facto de 28 das 30 variáveis preditivas estarem ofuscadas por componentes principais (PCA) limitará a capacidade de extrair regras de negócio puramente intuitivas. A resposta a este desafio passará por uma forte aposta em algoritmos de _Machine Learning_ capazes de mapear relações não-lineares ocultas.
+
+Em suma, a equipa encontra-se munida de um conjunto de dados altamente viável e de um plano de ação claro, estando preparada para avançar para a fase de Análise Exploratória de Dados (Milestone 2).
+
+## 8. Cronograma Interno
 | Fase | Data Limite | Entregável Esperado |
 | :--- | :--- | :--- |
-| M1: Iniciação | 24/02/2026 | Repositório estruturado e Plano de Projeto. |
-| M2: Exploração | 24/03/2026 | Notebook de EDA e Dados Processados. |
-| M3: Modelação | [Data] | Comparação de algoritmos e métricas. |
+| M1: Iniciação | [24/02/2026] | Repositório estruturado e Plano de Projeto. |
+| M2: Exploração | [24/03/2026] | Notebook de EDA e Dados Processados. |
+| M3: Modelação | [23/04/2026] | Comparação de algoritmos e métricas. |
 | M4: Finalização| [Data] | Pitch e Relatório Final. |
 ---
-*Data de última atualização: [20/03/2026]*
+*Data de última atualização: [15/04/2026]*
