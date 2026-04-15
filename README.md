@@ -1,4 +1,4 @@
-# Deteção de Transações Fraudulentas 
+# Deteção de Transações Fraudulentas em Cartões de Crédito
 
 ## Identificação da Equipa
 * **Grupo nº: 8**
