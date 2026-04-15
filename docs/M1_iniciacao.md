@@ -53,16 +53,18 @@ A viabilidade técnica do _dataset_ foi validada através da verificação rigor
 **Conclusão da Viabilidade**
 Conclui-se que o _dataset_ cumpre todos os requisitos técnicos para aplicação de algoritmos de _Machine Learning_. A sua elevada qualidade estrutural garante que o esforço da equipa não será consumido na limpeza básica de ficheiros corrompidos, mas sim focado na resolução dos verdadeiros desafios matemáticos do projeto: o tratamento do extremo desequilíbrio de classes e a modelação preditiva sobre variáveis anonimizadas (PCA).
 
-## 5. Dicionário de Dados 
-O dataset utilizado neste projeto contém transações efetuadas por titulares de cartões de crédito. Uma particularidade técnica fundamental deste conjunto de dados é o seu elevado nível de anonimização. Para proteger a privacidade dos utilizadores e os dados sensíveis das operações, as características originais das transações foram submetidas a uma Análise de Componentes Principais (PCA). 
-Como resultado, a maioria das variáveis explicativas (V1 a V28) consiste em componentes numéricas contínuas cuja identidade original foi ocultada, restando apenas o tempo e o montante como variáveis ativas diretamente interpretáveis.
+## 5. Dicionário de Dados
 
-| Variável | Tipo de Dados | Descrição Principal |
-| :--- | :--- | :--- |
-| **Time** | Numérico Contínuo | Número de segundos decorridos entre a transação atual e a primeira transação registada no _dataset_. Útil para análise de padrões temporais. |
-| **V1 a V28** | Numérico Contínuo | 28 variáveis resultantes de uma transformação de dimensionalidade PCA. Os dados originais foram ocultados para cumprir normas de privacidade bancária. |
-| **Amount** | Numérico Contínuo | Valor monetário da transação. Esta variável mantém a sua escala original (não sofreu transformação PCA). |
-| **Class** | Categórico Binário | Variável alvo. O valor 1 indica uma transação fraudulenta e o valor 0 indica uma transação legítima. |
+Abaixo apresenta-se o dicionário de dados detalhado, incluindo a descrição, a tipologia e o intervalo de valores (mínimo e máximo) observados no _dataset_ original para cada uma das 31 variáveis:
+
+| Variável | Descrição | Tipo de Dado | Intervalo de Valores (Min - Máx) |
+| :--- | :--- | :--- | :--- |
+| **Time** | Segundos decorridos entre cada transação e a primeira transação registada no _dataset_. | _Float64_ | [0.0, 172792.0] (Equivalente a 48 horas) |
+| **V1 a V28** | 28 variáveis numéricas anonimizadas, resultantes da transformação de dimensionalidade por _Principal Component Analysis_ (PCA) para proteger as identidades dos utilizadores. | _Float64_ | Contínuos. Teoricamente ilimitados, mas empiricamente variam entre [-113.55, 120.58] dependendo da componente. |
+| **Amount** | O valor monetário da transação. | _Float64_ | [0.00, 25691.16] |
+| **Class** | Variável alvo (_Target_). Indica a legitimidade da transação. | _Int64_ (Categórica) | 0 (Transação Normal) ou 1 (Fraude) |
+
+**Nota sobre a variável _Amount_:** O facto de o valor mínimo ser 0.00 indica a presença de transações de validação de cartão ou autorizações pendentes que não movimentaram fundos reais, algo que será tratado na fase de Análise Exploratória (Milestone 2).
 
 ## 6. Descrição Técnica 
 Após a importação e verificação inicial do ficheiro _creditcardfraud.csv_, procedeu-se à análise da estrutura técnica do conjunto de dados. O _dataset_ apresenta uma dimensão considerável, sendo composto por exatamente 284.807 registos de transações distribuídos por 31 colunas distintas. Em termos de integridade, a base de dados destaca-se por estar perfeitamente preenchida, não apresentando qualquer valor nulo (NaN) ou ausente em toda a sua extensão, o que atesta a sua fiabilidade e dispensa a aplicação prévia de técnicas de imputação de dados.
