@@ -28,17 +28,17 @@ A fraude com cartões de crédito gera prejuízos financeiros massivos para banc
 
 ### Objetivos do Projeto (SMART)
 * **Objetivo 1:** Desenvolver um modelo de classificação para identificar transações fraudulentas em cartões de crédito com uma métrica AUPRC mínima de 0.80, utilizando o _dataset_ disponibilizado no Kaggle, para ser validado e apresentado no _Milestone 3_.
-* **Objetivo 2:** Aplicar a técnica SMOTE (_oversampling_) para corrigir o desequilíbrio extremo dos dados, treinando um algoritmo que atinja uma Sensibilidade (Recall) superior a 85%, garantindo a minimização de perdas financeiras (falsos negativos), até à entrega final do projeto.
+* **Objetivo 2:** *Desenvolver um modelo de classificação supervisionada que atinja uma *Sensibilidade (*Recall) superior a 85%* na deteção de transações fraudulentas no conjunto de teste, minimizando os Falsos Negativos (fraudes não detetadas, que representam o maior risco financeiro), até à entrega do _Milestone 3_.
 
 ### Perguntas de Investigação
 1. Existe uma correlação direta entre o montante da transação e a probabilidade de esta ser classificada como fraude, ou as fraudes tendem a ocorrer em valores mais baixos para passar despercebidas?
 2. Quais são as 3 variáveis que mais contribuem para a previsão correta de uma transação ilícita?
 3. Existem padrões temporais específicos que sejam mais comuns nas transações fraudulentas comparativamente às transações legítimas?
+4. A aplicação de técnicas de reamostragem sintética (SMOTE — Synthetic Minority Over-sampling Technique) sobre os dados de treino melhora significativamente a capacidade de deteção de fraudes (Recall) face ao tratamento nativo de desequilíbrio via scale_pos_weight?
 
 ### Fonte de Dados
 * **Dataset:** [Credit Card Fraud Detection (Kaggle)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
 * **Dimensão:** 284.807 transações, 31 colunas.
-
 
 ## 2. Exploração (Milestone 2)
 ### Limpeza e Preparação
