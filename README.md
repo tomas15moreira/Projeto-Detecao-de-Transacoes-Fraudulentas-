@@ -59,8 +59,8 @@ do método ganho de informação
 ### Recomendações de Inovação
 1. [Sugestão prática baseada nos resultados]
 ## 5. Referências
-1. Machine Learning Group - ULB (Owner), Credit Card Fraud Detection, https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud, consultado em 15/04/2026
-2. Janio Martinez Bachmann, Credit Fraud || Dealing with Imbalanced Datasets, https://www.kaggle.com/code/janiobachmann/credit-fraud-dealing-with-imbalanced-datasets, consultado em 15/04/2026
+1. _Machine Learning Group - ULB (Owner), Credit Card Fraud Detection, https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud, consultado em 15/04/2026_
+2. _Janio Martinez Bachmann, Credit Fraud || Dealing with Imbalanced Datasets, https://www.kaggle.com/code/janiobachmann/credit-fraud-dealing-with-imbalanced-datasets, consultado em 15/04/2026_
 
 ## Como Reproduzir este Projeto
 1. Clone o repositório: `git clone [url-do-repo]`
