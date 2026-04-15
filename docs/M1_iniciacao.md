@@ -1,11 +1,23 @@
 # Milestone 1: Iniciação e Definição do Projeto
 
-## 1. Descrição Detalhada do Problema
-O setor bancário enfrenta um desafio contínuo com a fraude em cartões de crédito, que resulta em prejuízos financeiros diretos para as instituições e perda de confiança por parte dos consumidores. O problema central deste projeto não é apenas detetar a fraude, mas fazê-lo num cenário de extremo desequilíbrio: a grande maioria das transações é legítima.
+## 1. Descrição Detalhada do Problema e Contextualização
+O setor bancário enfrenta um desafio contínuo com a fraude em cartões de crédito, que resulta em prejuízos financeiros diretos para as instituições e perda de confiança por parte dos consumidores. O problema central da modelação preditiva neste domínio não é apenas detetar a fraude, mas fazê-lo num cenário de extremo desequilíbrio de classes.
 
-Neste contexto, um modelo que simplesmente classifique todas as transações como "legítimas" teria uma precisão de 99.9%, mas falharia completamente o objetivo de negócio (detetar a fraude). O desafio de gestão reside no _trade-off_ entre bloquear transações fraudulentas (evitar Falsos Negativos - perda de dinheiro) e não bloquear transações legítimas (evitar Falsos Positivos - insatisfação do cliente).
+**O Desafio dos Dados e do Negócio**
+O _dataset_ selecionado para este projeto, intitulado "Credit Card Fraud Detection" e disponibilizado no Kaggle, ilustra perfeitamente esta realidade. Este conjunto contém transações efetuadas por cartões de crédito europeus em setembro de 2013, onde as fraudes representam uma minoria ínfima: apenas 492 transações fraudulentas num universo de 284.807 transações totais (cerca de 0,172%).
 
-O _dataset_ selecionado contém transações efetuadas por cartões de crédito europeus em setembro de 2013, onde as variáveis de entrada foram anonimizadas através de uma transformação PCA (_Principal Component Analysis_) para proteção de dados sensíveis.
+Perante esta distribuição, um modelo ingénuo que previsse matematicamente todas as transações como "legítimas" atingiria uma exatidão (_accuracy_) superior a 99,8%. Contudo, este modelo seria inútil do ponto de vista de negócio, pois falharia a deteção de todas as fraudes reais. 
+
+**O Trade-off de Gestão**
+A formulação da solução exige a gestão rigorosa do equilíbrio (_trade-off_) entre dois tipos de erro de classificação, com impactos drásticos na operação bancária:
+* **Falsos Negativos (Risco Máximo):** Ocorre quando o modelo deixa passar uma fraude real. O impacto é uma perda financeira direta e irreversível para a instituição.
+* **Falsos Positivos (Atrito Operacional):** Ocorre quando uma transação legítima é erradamente sinalizada como fraude. O impacto reflete-se no bloqueio indevido do cartão do cliente, gerando insatisfação severa, perda de confiança e potenciais danos reputacionais.
+
+**Pergunta de Investigação**
+Considerando as restrições do _dataset_ (onde as variáveis preditivas originais foram transformadas e anonimizadas por componentes principais - PCA - por motivos de privacidade), a questão central que orienta este projeto é:
+* **"Como desenvolver um modelo de Machine Learning capaz de identificar eficazmente transações fraudulentas num cenário de extremo desequilíbrio de classes, minimizando o risco financeiro (Falsos Negativos) sem comprometer gravemente a experiência do cliente (Falsos Positivos)?"**
+
+Para responder a este problema, a solução exigirá a aplicação de técnicas de balanceamento de dados e a seleção de métricas de avaliação que penalizem a incapacidade de deteção da classe minoritária, como a AUPRC (_Area Under the Precision-Recall Curve_).
 
 ## 2. Objetivos SMART
 1.  **Objetivo 1:** Desenvolver um modelo de classificação para identificar transações fraudulentas em cartões de crédito com uma métrica AUPRC mínima de 0.80, utilizando o _dataset_ disponibilizado no Kaggle, para ser validado e apresentado no _Milestone 3_.
