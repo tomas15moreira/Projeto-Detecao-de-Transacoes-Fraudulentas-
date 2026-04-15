@@ -39,11 +39,19 @@ Para responder a este problema, a solução exigirá a aplicação de técnicas 
     * **Controlo de Versão:** Git (Branching strategy: _main_ para produção, branches individuais para desenvolvimento).
 
 ## 4. Análise de Viabilidade dos Dados
-* **Disponibilidade:** Os dados foram obtidos via Kaggle (_Credit Card Fraud Detection_) e já se encontram no repositório na pasta _data/raw/_.
-* **Qualidade Inicial:** O _dataset_ é considerado de "alta qualidade" técnica (limpo), com 284.807 registos. Não existem valores nulos (NaN), o que acelera a fase de limpeza.
-* **Ética:**
-    * Os dados cumprem rigorosos padrões de privacidade. As variáveis V1 a V28 são o resultado de uma transformação PCA, garantindo que não temos acesso a dados pessoais identificáveis (PII) dos utilizadores, o que elimina barreiras éticas no tratamento da informação.
-    * As únicas variáveis não transformadas são _Time_ e _Amount_.
+A viabilidade deste projeto assenta na adequação, origem e integridade do conjunto de dados escolhido. Para garantir o rigor científico e a reprodutibilidade do estudo, a análise de viabilidade foi estruturada em duas dimensões principais: origem da informação e critérios de qualidade.
+
+**Disponibilidade e Origem**
+O _dataset_ utilizado, intitulado "Credit Card Fraud Detection", é de domínio público e encontra-se disponível na plataforma Kaggle. Os dados originais foram recolhidos e disponibilizados através de uma parceria de investigação oficial entre a empresa Worldline e o _Machine Learning Group_ (MLG) da _Université Libre de Bruxelles_ (ULB). Esta proveniência académica e corporativa atesta a legitimidade e a relevância real da amostra.
+
+**Critérios de Qualidade dos Dados**
+A viabilidade técnica do _dataset_ foi validada através da verificação rigorosa dos seguintes critérios de qualidade da informação:
+* **Completude (Ausência de Nulos):** O ficheiro não contém qualquer valor ausente (_missing values_, _Nulls_ ou _NAs_) nas suas 284.807 observações. Este facto é crucial, pois elimina a necessidade de aplicar métodos de imputação artificial na fase de pré-processamento, evitando a introdução de viés (_bias_) nos dados.
+* **Consistência de Formatação:** Todos os 31 atributos apresentam uma consistência estrutural perfeita, mantendo um formato estritamente numérico (_float64_ para as variáveis independentes e _int64_ para a variável alvo). Não existem erros tipográficos, anomalias de formatação ou dados corrompidos.
+* **Representatividade:** O conjunto de dados reflete transações reais capturadas ao longo de 48 horas consecutivas, fornecendo uma janela temporal e comportamental autêntica do mercado europeu.
+
+**Conclusão da Viabilidade**
+Conclui-se que o _dataset_ cumpre todos os requisitos técnicos para aplicação de algoritmos de _Machine Learning_. A sua elevada qualidade estrutural garante que o esforço da equipa não será consumido na limpeza básica de ficheiros corrompidos, mas sim focado na resolução dos verdadeiros desafios matemáticos do projeto: o tratamento do extremo desequilíbrio de classes e a modelação preditiva sobre variáveis anonimizadas (PCA).
 
 ## 5. Dicionário de Dados 
 O dataset utilizado neste projeto contém transações efetuadas por titulares de cartões de crédito. Uma particularidade técnica fundamental deste conjunto de dados é o seu elevado nível de anonimização. Para proteger a privacidade dos utilizadores e os dados sensíveis das operações, as características originais das transações foram submetidas a uma Análise de Componentes Principais (PCA). 
