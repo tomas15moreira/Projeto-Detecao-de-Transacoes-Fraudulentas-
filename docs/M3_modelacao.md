@@ -50,28 +50,28 @@ Esta comparação é fundamental para identificar fenómenos de Overfitting (mem
 * **Curvas de Aprendizagem:** A análise das curvas confirmou que o XGBoost é estável, mas beneficiaria de uma redução na complexidade dos hiperparâmetros para fechar o "gap" entre treino e teste.
 
 ## 3. Otimização (Tuning)
-Nesta fase, submetemos o modelo vencedor (XGBoost) a um processo de sintonização fina (_Fine-Tuning_) para explorar se um ajuste exaustivo de hiperparâmetros resultaria em ganhos significativos para o negócio bancário.
+Nesta fase, submetemos o modelo vencedor (XGBoost) a um processo de sintonização fina (_Fine-Tuning_) para explorar se um ajuste exaustivo de hiperparâmetros resultaria em ganhos significativos para os objetivos SMART definidos, comparando a versão base com a versão otimizada.
 
 ### 3.1. Técnica e Configuração Ideal Encontrada
-Utilizámos o algoritmo _RandomizedSearchCV_ (30 combinações testadas via validação cruzada), focando a otimização na métrica de _Recall_. O algoritmo identificou a seguinte configuração ideal para maximizar a captura de fraudes:
+Utilizámos o algoritmo _RandomizedSearchCV_ (30 combinações testadas via validação cruzada), focando a otimização na métrica de _Recall_ para garantir a proteção contra o risco financeiro. O algoritmo identificou a seguinte configuração ideal:
 * **Parâmetros Ótimos:** max_depth: 3, n_estimators: 200, learning_rate: 0.1, subsample: 0.7, colsample_bytree: 0.8 e scale_pos_weight: 899.21.
 
 ### 3.2. Comparação Crítica e Decisão Final (Modelo Base vs. Otimizado)
-A análise comparativa entre o desempenho do modelo XGBoost Simples (original) e o XGBoost Tuned revelou um _trade-off_ de desempenho crítico para a operação:
+A análise comparativa entre o desempenho do XGBoost Simples (configuração original) e o XGBoost Tuned (pós-otimização) revelou um _trade-off_ crítico que fundamentou a nossa decisão estratégica:
 
-| Métrica (Teste) | XGBoost Simples (Base) | XGBoost Tuned (Otimizado) |
-| :--- | :--- | :--- |
-| **AUPRC** | **0.8251** | 0.7936 |
-| **Recall (Sensibilidade)** | 78.95% | **83.16%** |
-| **Precisão** | **93.75%** | 44.89% |
-| **F1-Score** | **0.8571** | 0.5830 |
+| Métrica (Teste) | XGBoost Simples (Vencedor) | XGBoost Tuned (Otimizado) | Variação (Delta) |
+| :--- | :--- | :--- | :--- |
+| **AUPRC** | **0.8251** | 0.7936 | **- 0.0315** |
+| **Recall (Sensibilidade)** | 78.95% | **83.16%** | **+ 4.21%** |
+| **Precisão** | **93.75%** | 44.89% | **- 48.86%** |
+| **F1-Score** | **0.8571** | 0.5830 | **- 0.2741** |
 
-**Análise de Decisão:**
+**Análise Crítica e Justificação:**
 Embora o processo de _tuning_ tenha conseguido elevar o _Recall_ para 83,16% no teste (e uma média de 85,98% em validação cruzada), fê-lo com um custo operacional desproporcional. A Precisão caiu drasticamente de 93,75% para 44,89% e o F1-Score desceu de 0.86 para 0.58. 
 
-Esta degradação significa que, para apanhar mais 4% de fraudes, o modelo passaria a bloquear indevidamente mais de metade das transações sinalizadas, gerando uma insatisfação insustentável nos clientes legítimos. Além disso, o modelo otimizado falhou o cumprimento do Objetivo SMART 1 (AUPRC ≥ 0.80) ao registar 0.79 no teste.
+Na prática, para detetar mais 4% de fraudes, o modelo passaria a bloquear indevidamente mais de metade das transações que sinaliza como suspeitas. Esta degradação geraria um atrito inaceitável com clientes legítimos. Além disso, o modelo otimizado baixou a AUPRC para 0.79, falhando o cumprimento do Objetivo SMART 1 (≥ 0.80) no conjunto de teste. 
 
-**Conclusão:** Decidimos manter o XGBoost Simples como a solução final. Esta configuração provou ser a mais equilibrada e robusta, garantindo uma proteção financeira elevada (AUPRC de 0.825) com um nível de atrito operacional (Falsos Positivos) significativamente inferior, sendo esta a arquitetura que melhor serve os interesses da instituição bancária.
+**Conclusão:** Optámos por manter o XGBoost Simples como a solução final. Esta configuração provou ser a mais equilibrada e robusta, garantindo uma performance superior global e uma proteção financeira elevada sem comprometer a experiência do utilizador.
 
 ## 4. Avaliação do Modelo Final
 ### 4.1. Matriz de Confusão / Erros
