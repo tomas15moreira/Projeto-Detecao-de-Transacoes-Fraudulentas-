@@ -162,8 +162,6 @@ A aplicação do SMOTE **não trouxe valor** neste contexto específico: todas a
 
 > **Nota:** Esta lista será continuamente atualizada à medida que novas referências bibliográficas e científicas forem incorporadas no desenvolvimento do projeto.
 
-> **Nota:** Esta lista será continuamente atualizada à medida que novas referências bibliográficas e científicas forem incorporadas no desenvolvimento do projeto.
-
 ---
 
 ## Como Reproduzir este Projeto
