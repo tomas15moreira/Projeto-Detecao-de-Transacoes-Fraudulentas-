@@ -21,82 +21,39 @@ O objetivo principal do negócio é maximizar a deteção de fraudes (minimizar 
 
 Para validar toda esta arquitetura de testes antes de avançar para algoritmos complexos ou técnicas de _oversampling_ (SMOTE), treinámos com sucesso um modelo de referência (Baseline) utilizando Regressão Logística.
 
-## 2. Experiências Realizadas
+## 2. Experiências Realizadas e Diagnóstico de Desempenho
+Nesta fase, o foco transitou da preparação para a experimentação algorítmica, com o objetivo de identificar a arquitetura mais robusta para detetar fraudes.
+
 ### 2.1. Modelo Baseline
-Para estabelecer um patamar mínimo de desempenho e validar a nossa arquitetura de testes, iniciámos a fase de experimentação com o treino de um algoritmo de baixa complexidade: a Regressão Logística (_LogisticRegression_). 
+Para estabelecer um patamar mínimo de desempenho, utilizámos a Regressão Logística. Este modelo serviu para validar a nossa arquitetura de testes antes de avançarmos para algoritmos de maior complexidade.
 
-Este modelo foi treinado exclusivamente com os dados de treino originais processados, preservando propositadamente o desequilíbrio extremo de classes (sem a aplicação de técnicas de _oversampling_ como o SMOTE), com o objetivo de estabelecer um referencial realista.
+**Registo de Desempenho (Baseline):**
+* **_Recall_ (Sensibilidade):** 0.5789 (O modelo deixou escapar 40 fraudes reais).
+* **AUPRC:** 0.6955 (Abaixo da meta de 0.80).
+* **Diagnóstico:** Sinais claros de Underfitting (Subajuste). A simplicidade do modelo linear não foi capaz de capturar as relações não-lineares dos dados.
 
-**Configuração do Modelo Base:**
-* **Algoritmo:** Regressão Logística.
-* **Parâmetros:** max_iter=1000 (para garantir a convergência matemática sem erros) e random_state=42 (para garantir a reprodutibilidade dos resultados).
+### 2.2. Modelos Candidatos e Análise de Ajuste (Fit)
+Avançámos para métodos de _Ensemble Learning_ (Random Forest e XGBoost), reconhecidos pela eficácia em dados desbalanceados.
 
-**Registo de Desempenho:**
-Após o treino, abrimos o conjunto de teste (isolado) e avaliámos o modelo. Os resultados obtidos definem o nosso ponto de partida obrigatório:
-
-* **Recall (Sensibilidade):** 0.5789.
-* **Precision (Precisão):** 0.8462.
-* **F1-Score:** 0.6875.
-* **AUPRC:** 0.6955
-* **Matriz de Confusão:** O modelo deixou escapar 40 fraudes (Falsos Negativos), representando o risco máximo.
-
-**Análise e Conclusão do Baseline:**
-Como teorizado na fase de Análise Exploratória, um modelo padrão treinado em dados com extrema disparidade de classes sofre na deteção da classe minoritária. Embora a precisão possa ser relativamente alta, o Recall encontra-se significativamente abaixo do nosso objetivo de negócio (> 85%) e a AUPRC não atinge a meta delineada (≥ 0.80). 
-
-Este modelo define o "chão" analítico do projeto. Todas as futuras otimizações e arquiteturas avançadas de _Machine Learning_ (como a introdução de pesos balanceados nos modelos Random Forest e XGBoost) terão a obrigatoriedade de superar as métricas aqui registadas para provarem a sua viabilidade de negócio.
-
-### 2.2. Modelos Candidatos
-Após o estabelecimento do _baseline_, avançámos para a fase de experimentação com algoritmos de maior complexidade. A escolha recaiu sobre métodos de _Ensemble Learning_, especificamente arquiteturas de árvores de decisão, por serem reconhecidamente eficazes em lidar com relações não-lineares e dados desbalanceados.
-
-#### Algoritmos Selecionados e Configuração
-1. **Random Forest (Bagging):** Escolhido pela sua robustez e capacidade de reduzir a variância. Para lidar com o desequilíbrio, utilizámos o parâmetro _class_weight=balanced_, que ajusta os pesos das classes inversamente proporcional às suas frequências no treino.
-2. **XGBoost (Gradient Boosting):** Selecionado pela sua alta performance e eficiência computacional. Implementámos a técnica de _scale_pos_weight_, calculando o rácio matemático exato entre as classes para penalizar mais severamente os erros na classe minoritária (fraude).
-
-#### Resultados de Desempenho (Tabela Comparativa)
-
-A tabela abaixo resume a performance obtida nos conjuntos de Treino e Teste. Esta comparação é fundamental para identificar possíveis problemas de overfitting (onde o modelo decora o treino mas falha no teste).
+#### Tabela Comparativa de Desempenho (Treino vs. Teste)
+Esta comparação é fundamental para identificar fenómenos de Overfitting (memorização) ou Generalização (aprendizagem real).
 
 | Modelo | Recall (Treino) | Recall (Teste) | F1-Score (Teste) | AUPRC (Teste) |
 | :--- | :--- | :--- | :--- | :--- |
-| *Baseline (Log. Reg.)* | 61.64% | 57.89% | 68.75% | 69.55% |
-| *Random Forest* | 97.35% | 74.74% | 81.14% | 78.05% |
-| *XGBoost* | 100% | 78.95% | 85.71% | 82.51% |
+| **Baseline (Log. Reg.)** | 61.64% | 57.89% | 68.75% | 69.55% |
+| **Random Forest** | 97.35% | 74.74% | 81.14% | 78.05% |
+| **XGBoost** | 100% | 78.95% | 85.71% | 82.51% |
 
-#### Análise Crítica da Experimentação
+#### Análise Crítica e Diagnóstico
+* **O Problema do Random Forest (_Overfitting_):** Apesar de um desempenho de treino excelente, o modelo sofreu uma quebra significativa no teste. Isto indica que o algoritmo "decorou" casos específicos do histórico em vez de aprender o padrão geral da fraude.
+* **A Vitória do XGBoost (Generalização):** O XGBoost revelou-se o modelo mais promissor. Embora apresente 100% no treino (devido à complexidade inicial), manteve a melhor performance de teste e a maior proximidade ao nosso objetivo SMART (AUPRC > 0.80).
+* **Curvas de Aprendizagem:** A análise das curvas confirmou que o XGBoost é estável, mas beneficiaria de uma redução na complexidade dos hiperparâmetros para fechar o "gap" entre treino e teste.
 
-* **O Algoritmo de Destaque:** O XGBoost revelou-se o modelo mais promissor. Não só superou largamente o baseline em termos de _Recall_ (conseguindo capturar mais fraudes reais), como manteve uma _AUPRC_ consistente e próxima do nosso objetivo de 0.80. A sua capacidade de generalização é superior, apresentando uma diferença mínima entre as métricas de treino e teste.
-* **Onde houve dificuldades:** O Random Forest, embora tenha apresentado resultados de treino quase perfeitos, demonstrou uma ligeira tendência para o _overfitting_ ou uma precisão inferior comparativamente ao XGBoost. Isto sugere que, apesar de capturar as fraudes, o modelo gera um volume superior de alarmes falsos (Falsos Positivos), o que teria um impacto operacional negativo no negócio.
+## 3. Otimização (Tuning)
+Com base no diagnóstico anterior, o XGBoost foi selecionado para a fase de ajuste fino.
 
-**Conclusão desta fase:** Com base nesta análise comparativa, o modelo selecionado para a fase de otimização final (_Hyperparameter Tuning_) será o XGBoost, por apresentar o melhor equilíbrio entre a proteção financeira (deteção de fraude) e a experiência do utilizador (minimização de bloqueios indevidos).
-
-## 3. Diagnóstico de Desempenho
-Nesta fase, o foco deixou de ser apenas a obtenção de métricas elevadas para se concentrar no diagnóstico da capacidade de generalização dos modelos. Analisámos se os algoritmos estão a aprender os padrões reais da fraude ou se estão apenas a memorizar o ruído dos dados de treino.
-
-### 3.1. Seleção de Algoritmos 
-Para garantir uma base de comparação sólida, testámos três arquiteturas com diferentes níveis de complexidade:
-1.  **Regressão Logística (_Baseline_):** Modelo linear simples para definir o patamar mínimo.
-2.  **Random Forest (_Ensemble/Bagging_):** Modelo complexo que utiliza múltiplas árvores de decisão.
-3.  **XGBoost (_Ensemble/Boosting_):** Modelo otimizado que aprende com os erros das árvores anteriores.
-
-### 3.2. Análise Crítica: Discrepância de Erros e Curvas de Aprendizagem
-A análise detalhada das discrepâncias entre o treino e o teste revelou os seguintes diagnósticos:
-
-* **Identificação de _Underfitting_:** O modelo de Regressão Logística apresentou um desempenho base insatisfatório em ambos os conjuntos. A sua simplicidade matemática não permitiu capturar a complexidade das variáveis PCA e as relações não-lineares da fraude financeira.
-* **Identificação de _Overfitting_:** O _Random Forest_ demonstrou um cenário clássico de sobreajuste. Ao atingir quase 100% de _Recall_ no treino mas sofrer uma quebra significativa no teste, o modelo provou estar a "decorar" casos específicos do histórico, perdendo utilidade para detetar novas fraudes.
-* **Análise das Curvas de Aprendizagem:** As curvas geradas para o modelo final (XGBoost) mostram uma convergência saudável. No entanto, o ligeiro "gap" persistente entre a curva de treino e a de validação confirma que o modelo ainda beneficiaria de uma redução na complexidade dos hiperparâmetros ou de um volume superior de dados de fraude.
-
-### 3.3. Ações Planeadas para Correção de Imperfeições
-Para elevar o desempenho do modelo vencedor (XGBoost) ao patamar de excelência definido no Milestone 1, planeámos as seguintes intervenções técnicas:
-
-1.  **Regularização via Hiperparâmetros:** Para corrigir o ligeiro _overfitting_, utilizaremos _GridSearchCV_ para restringir a profundidade das árvores (_max_depth_) e aumentar a penalização de erros, forçando o modelo a focar-se em padrões globais e não em ruído.
-2.  **Otimização do Limiar de Decisão (_Threshold Tuning_):** Como o nosso objetivo de negócio privilegia o _Recall_ (>85%), iremos ajustar o limiar de probabilidade do modelo. Esta ação visa reduzir os Falsos Negativos (fraudes que escapam), mesmo que isso implique um aumento controlado de Falsos Positivos.
-3.  **_Feature Importance Re-evaluation_:** Iremos remover variáveis que apresentem importância quase nula, simplificando o modelo e aumentando a sua estabilidade perante novos dados.
-
-## 4. Otimização (Tuning)
-Nesta fase, pegámos no modelo vencedor do diagnóstico (XGBoost) e aplicámos técnicas de ajuste fino para maximizar a sua performance e garantir que o algoritmo é o mais robusto possível para os objetivos de negócio, focando-nos especialmente na captura rigorosa da classe minoritária (Fraude).
-
-* **Técnica Utilizada:** Utilizámos a técnica de pesquisa aleatória _RandomizedSearchCV_ acoplada a um processo rigoroso de validação cruzada (_StratifiedKFold_ com 5 _folds_). Esta abordagem testou várias combinações de hiperparâmetros, priorizando o _Recall_ como métrica-alvo. O foco técnico foi forçar a generalização do modelo para evitar a memorização do treino (_overfitting_). O modelo vencedor elegeu parâmetros conservadores de complexidade: limitou a profundidade das árvores (_max_depth=3_), utilizou 200 árvores (_n_estimators_), e aplicou técnicas de amostragem de dados e colunas (_subsample=0.7_, _colsample_bytree=0.8_).
-* **Melhoria Obtida:** A sintonização transformou o perfil do modelo. O _Recall_ (capacidade de apanhar fraudes) subiu para 83,16% no conjunto de teste, revelando uma consistência excecional na validação cruzada (média de 85,98%). Apesar de uma queda planeada e aceitável na Precisão (_Precision_), o modelo manteve a nossa métrica principal AUPRC nos 0.8131, ultrapassando formalmente a barreira do nosso objetivo SMART (≥ 0.80). O baixíssimo desvio padrão registado nas métricas da validação cruzada (≤ 0.04) prova que o modelo está matematicamente estável, altamente robusto e perfeitamente apto para um cenário de produção em tempo real.
+* **Técnica Utilizada:** Utilizámos _RandomizedSearchCV_ com _StratifiedKFold_ (5 _folds_). Focámo-nos em restringir a profundidade das árvores (_max_depth=3_) e ajustar o peso da classe minoritária para forçar o modelo a focar-se em padrões globais e não em ruído.
+* **Melhoria Obtida:** A sintonização estabilizou o modelo. O _Recall_ subiu para 83,16% no teste (média de 85,98% na validação cruzada), e a métrica principal AUPRC atingiu 0.8131, superando formalmente o objetivo SMART definido no Milestone 1.
 
 ## 4. Avaliação do Modelo Final
 ### 4.1. Matriz de Confusão / Erros
