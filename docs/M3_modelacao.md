@@ -69,7 +69,7 @@ A tabela abaixo resume a performance obtida nos conjuntos de Treino e Teste. Est
 
 **Conclusão desta fase:** Com base nesta análise comparativa, o modelo selecionado para a fase de otimização final (_Hyperparameter Tuning_) será o XGBoost, por apresentar o melhor equilíbrio entre a proteção financeira (deteção de fraude) e a experiência do utilizador (minimização de bloqueios indevidos).
 
-## 3. Otimização (Tuning)
+## 3. Diagnóstico de Desempenho
 Nesta fase, o foco deixou de ser apenas a obtenção de métricas elevadas para se concentrar no diagnóstico da capacidade de generalização dos modelos. Analisámos se os algoritmos estão a aprender os padrões reais da fraude ou se estão apenas a memorizar o ruído dos dados de treino.
 
 ### 3.1. Seleção de Algoritmos 
