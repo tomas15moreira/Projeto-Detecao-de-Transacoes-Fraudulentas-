@@ -9,7 +9,10 @@
 
 ## Identificação Kaggle
 * **Nome do Notebook:** Projeto_Detecção_de_Transações_Fraudulentas
-* **Autor (perfil Kaggle):** [tomsalm](https://www.kaggle.com/tomsalm)
+* **Autores:**
+  * Tomás Moreira — [tomsalm](https://www.kaggle.com/tomsalm)
+  * Rodrigo Ferrão — [rodrigoferrao24](https://www.kaggle.com/rodrigoferrao24)
+  * João Freire — [joaodfeire2004](https://www.kaggle.com/joaodfeire2004)
 * **Link do Notebook:** [Kaggle — Projeto Deteção de Transações Fraudulentas](https://www.kaggle.com/code/tomsalm/projeto-detec-o-de-transa-es-fraudulentas)
 * **Link do Dataset:** [Kaggle — Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
 * **Ambiente de Computação:** Kaggle Notebooks (Python 3, GPU desativada)
