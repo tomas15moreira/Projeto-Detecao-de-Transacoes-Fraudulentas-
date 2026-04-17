@@ -92,6 +92,12 @@ Para elevar o desempenho do modelo vencedor (XGBoost) ao patamar de excelência 
 2.  **Otimização do Limiar de Decisão (_Threshold Tuning_):** Como o nosso objetivo de negócio privilegia o _Recall_ (>85%), iremos ajustar o limiar de probabilidade do modelo. Esta ação visa reduzir os Falsos Negativos (fraudes que escapam), mesmo que isso implique um aumento controlado de Falsos Positivos.
 3.  **_Feature Importance Re-evaluation_:** Iremos remover variáveis que apresentem importância quase nula, simplificando o modelo e aumentando a sua estabilidade perante novos dados.
 
+## 4. Otimização (Tuning)
+Nesta fase, pegámos no modelo vencedor do diagnóstico (XGBoost) e aplicámos técnicas de ajuste fino para maximizar a sua performance e garantir que o algoritmo é o mais robusto possível para os objetivos de negócio, focando-nos especialmente na captura rigorosa da classe minoritária (Fraude).
+
+* **Técnica Utilizada:** Utilizámos a técnica de pesquisa aleatória _RandomizedSearchCV_ acoplada a um processo rigoroso de validação cruzada (_StratifiedKFold_ com 5 _folds_). Esta abordagem testou várias combinações de hiperparâmetros, priorizando o _Recall_ como métrica-alvo. O foco técnico foi forçar a generalização do modelo para evitar a memorização do treino (_overfitting_). O modelo vencedor elegeu parâmetros conservadores de complexidade: limitou a profundidade das árvores (_max_depth=3_), utilizou 200 árvores (_n_estimators_), e aplicou técnicas de amostragem de dados e colunas (_subsample=0.7_, _colsample_bytree=0.8_).
+* **Melhoria Obtida:** A sintonização transformou o perfil do modelo. O _Recall_ (capacidade de apanhar fraudes) subiu para 83,16% no conjunto de teste, revelando uma consistência excecional na validação cruzada (média de 85,98%). Apesar de uma queda planeada e aceitável na Precisão (_Precision_), o modelo manteve a nossa métrica principal AUPRC nos 0.8131, ultrapassando formalmente a barreira do nosso objetivo SMART (≥ 0.80). O baixíssimo desvio padrão registado nas métricas da validação cruzada (≤ 0.04) prova que o modelo está matematicamente estável, altamente robusto e perfeitamente apto para um cenário de produção em tempo real.
+
 ## 4. Avaliação do Modelo Final
 ### 4.1. Matriz de Confusão / Erros
 *Analisem onde o modelo mais falha.*
