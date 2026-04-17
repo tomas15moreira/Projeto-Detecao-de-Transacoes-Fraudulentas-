@@ -25,8 +25,6 @@ A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenha
 * **`reports/`**: Relatórios finais, apresentações e exportação de figuras (`figures/`).
 * **`requirements.txt`**: Ficheiro de configuração com as bibliotecas necessárias.
 
-> **Nota de visualização:** caso o notebook não renderize corretamente no GitHub (devido ao tamanho dos outputs gráficos), pode ser visualizado através do [nbviewer](https://nbviewer.org/github/tomas15moreira/Projeto-Detecao-de-Transacoes-Fraudulentas-/blob/main/notebooks/2.0_modelacao_treino.ipynb).
-
 ---
 
 ## 1. Iniciação (Milestone 1)
