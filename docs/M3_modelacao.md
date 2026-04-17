@@ -74,16 +74,32 @@ Na prática, para detetar mais 4% de fraudes, o modelo passaria a bloquear indev
 **Conclusão:** Optámos por manter o XGBoost Simples como a solução final. Esta configuração provou ser a mais equilibrada e robusta, garantindo uma performance superior global e uma proteção financeira elevada sem comprometer a experiência do utilizador.
 
 ## 4. Avaliação do Modelo Final
-### 4.1. Matriz de Confusão / Erros
-*Analisem onde o modelo mais falha.*
-> **Análise:** (p/ex.: "O modelo ainda confunde a Classe A com a Classe B em 10% dos casos devido
-à semelhança nos atributos X e Y.")
+Nesta secção, procedemos à auditoria detalhada do comportamento do modelo XGBoost Simples, identificando não apenas o seu sucesso, mas também a natureza estatística das suas falhas.
+
+### 4.1. Matriz de Confusão e Interpretação de Erros
+A análise da matriz de confusão no conjunto de teste revela um desempenho de alta precisão, mas com margem de otimização na captura total de eventos:
+
+* **Verdadeiros Positivos (75):** O modelo identificou com sucesso a grande maioria das fraudes.
+* **Falsos Positivos (5):** Apenas 5 clientes legítimos teriam os seus cartões bloqueados indevidamente. Esta "limpeza" operacional é o ponto forte do modelo escolhido.
+* **Falsos Negativos (20):** O modelo deixou passar 20 fraudes (Risco Máximo).
+
+**Análise Crítica das Falhas:**
+A menor fiabilidade do modelo em detetar estes 20 casos não é um erro algorítmico aleatório, mas sim uma limitação estatística dos dados:
+1.  **Escassez de Exemplos (Amostragem):** Mesmo com o ajuste de pesos, o treino conta com apenas ~400 exemplos de fraude contra centenas de milhares de transações normais. Estatisticamente, o modelo tem dificuldade em mapear "subgrupos de fraude" que ocorrem com padrões muito específicos ou raros.
+2.  **Sobreposição de Classes (Zonas Cinzentas):** A análise visual sugere que estes Falsos Negativos residem numa zona de intersecção estatística, onde os atributos da transação fraudulenta (valor, tempo e componentes PCA) são matematicamente indistinguíveis de uma transação legítima habitual do utilizador.
+
 ### 4.2. Importância dos Atributos (Feature Importance)
-*Quais as variáveis que o modelo considerou mais importantes para decidir?*
-1. [Variável X]
-2. [Variável Y]
+A interpretação estatística da decisão do modelo indica que o XGBoost baseia a sua classificação num grupo restrito de variáveis críticas:
+
+1.  **V17 e V14:** Foram identificadas como as variáveis com maior poder discriminatório. Estatisticamente, estas componentes capturam desvios comportamentais extremos que são os maiores indicadores de anomalia.
+2.  **V12 e V10:** Atuam como variáveis de suporte, ajudando o modelo a refinar a fronteira de decisão.
+3.  **Variáveis de Baixo Impacto:** Notou-se que variáveis como _Time_ têm pouca relevância na decisão final, sugerindo que a fraude neste _dataset*_ não segue um padrão horário rígido, mas sim padrões de valor e tipo de transação (refletidos nas componentes PCA).
+
+### 4.3. Fiabilidade em Cenários Reais
+O modelo apresenta elevada fiabilidade para detetar padrões de fraude "óbvios" ou de alto impacto, onde o desvio estatístico é claro. No entanto, a fiabilidade é moderada em ataques de "baixa intensidade" (transações que mimetizam perfeitamente o perfil de consumo do cliente), onde a ausência de variáveis contextuais extra-transacionais (como localização GPS ou ID do dispositivo) impede uma separação perfeita das classes.
+
 ## 5. Conclusão da Fase de Modelação
 *Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução
 final.*
 ---
-*Data de última atualização: [DD/MM/AAAA]*
+*Data de última atualização: [17/04/2026]*
