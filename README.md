@@ -146,19 +146,21 @@ A aplicação do SMOTE **não trouxe valor** neste contexto específico: todas a
 
 ## 5. Referências
 
-1. Machine Learning Group — ULB & Worldline. (2018). *Credit Card Fraud Detection*. Kaggle Datasets. Disponível em: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud (consultado em 15/04/2026).
+1. Machine Learning Group — ULB & Worldline. (2018). *Credit Card Fraud Detection*. Kaggle Datasets. Disponível em: [https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud) (consultado em 15/04/2026).
 
-2. Dal Pozzolo, A., Caelen, O., Johnson, R. A., & Bontempi, G. (2015). *Calibrating Probability with Undersampling for Unbalanced Classification*. IEEE Symposium Series on Computational Intelligence (SSCI). — Trabalho científico de referência sobre o *dataset* utilizado, dos autores que disponibilizaram os dados.
+2. Dal Pozzolo, A., Caelen, O., Johnson, R. A., & Bontempi, G. (2015). *Calibrating Probability with Undersampling for Unbalanced Classification*. IEEE Symposium Series on Computational Intelligence (SSCI). Disponível em: [https://doi.org/10.1109/SSCI.2015.33](https://doi.org/10.1109/SSCI.2015.33)
 
-3. Dal Pozzolo, A., Boracchi, G., Caelen, O., Alippi, C., & Bontempi, G. (2018). *Credit Card Fraud Detection: A Realistic Modeling and a Novel Learning Strategy*. IEEE Transactions on Neural Networks and Learning Systems, 29(8), 3784–3797. — Estudo aprofundado sobre estratégias de deteção de fraude com este *dataset*.
+3. Dal Pozzolo, A., Boracchi, G., Caelen, O., Alippi, C., & Bontempi, G. (2018). *Credit Card Fraud Detection: A Realistic Modeling and a Novel Learning Strategy*. IEEE Transactions on Neural Networks and Learning Systems, 29(8), 3784–3797. Disponível em: [https://doi.org/10.1109/TNNLS.2017.2736643](https://doi.org/10.1109/TNNLS.2017.2736643)
 
-4. Chawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). *SMOTE: Synthetic Minority Over-sampling Technique*. Journal of Artificial Intelligence Research, 16, 321–357. — Artigo original que introduz a técnica SMOTE utilizada na fase de experimentação (Pergunta de Investigação 4).
+4. Chawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). *SMOTE: Synthetic Minority Over-sampling Technique*. Journal of Artificial Intelligence Research, 16, 321–357. Disponível em: [https://doi.org/10.1613/jair.953](https://doi.org/10.1613/jair.953)
 
-5. Chen, T., & Guestrin, C. (2016). *XGBoost: A Scalable Tree Boosting System*. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 785–794. — Artigo original do algoritmo selecionado como modelo final.
+5. Chen, T., & Guestrin, C. (2016). *XGBoost: A Scalable Tree Boosting System*. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 785–794. Disponível em: [https://doi.org/10.1145/2939672.2939785](https://doi.org/10.1145/2939672.2939785)
 
-6. Saito, T., & Rehmsmeier, M. (2015). *The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets*. PLoS ONE, 10(3), e0118432. — Justificação metodológica para a escolha de AUPRC como métrica principal.
+6. Saito, T., & Rehmsmeier, M. (2015). *The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets*. PLoS ONE, 10(3), e0118432. Disponível em: [https://doi.org/10.1371/journal.pone.0118432](https://doi.org/10.1371/journal.pone.0118432)
 
-7. Bachmann, J. M. *Credit Fraud || Dealing with Imbalanced Datasets*. Kaggle Notebook. Disponível em: https://www.kaggle.com/code/janiobachmann/credit-fraud-dealing-with-imbalanced-datasets (consultado em 15/04/2026).
+7. Bachmann, J. M. *Credit Fraud || Dealing with Imbalanced Datasets*. Kaggle Notebook. Disponível em: [https://www.kaggle.com/code/janiobachmann/credit-fraud-dealing-with-imbalanced-datasets](https://www.kaggle.com/code/janiobachmann/credit-fraud-dealing-with-imbalanced-datasets) (consultado em 15/04/2026).
+
+> **Nota:** Esta lista será continuamente atualizada à medida que novas referências bibliográficas e científicas forem incorporadas no desenvolvimento do projeto.
 
 > **Nota:** Esta lista será continuamente atualizada à medida que novas referências bibliográficas e científicas forem incorporadas no desenvolvimento do projeto.
 
