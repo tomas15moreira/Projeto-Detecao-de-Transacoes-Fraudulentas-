@@ -91,7 +91,7 @@ A menor fiabilidade do modelo em detetar estes 20 casos não é um erro algorít
 ### 4.2. Importância dos Atributos (Feature Importance)
 A interpretação estatística da decisão do modelo indica que o XGBoost baseia a sua classificação num grupo restrito de variáveis críticas:
 
-1.  **V17 e V14:** Foram identificadas como as variáveis com maior poder discriminatório. Estatisticamente, estas componentes capturam desvios comportamentais extremos que são os maiores indicadores de anomalia.
+1.  **V14**: Destacou-se como a variável com maior poder discriminatório (Gain = 6188.92), seguida de V4 (538.04) e V12 (285.48). De forma interessante, **V17** — que apresentava a correlação mais forte com Class na fase de EDA — não surge no top 5 de importância do modelo final, sugerindo que a sua capacidade preditiva é parcialmente capturada por V14.
 2.  **V12 e V10:** Atuam como variáveis de suporte, ajudando o modelo a refinar a fronteira de decisão.
 3.  **Variáveis de Baixo Impacto:** Notou-se que variáveis como _Time_ têm pouca relevância na decisão final, sugerindo que a fraude neste _dataset*_ não segue um padrão horário rígido, mas sim padrões de valor e tipo de transação (refletidos nas componentes PCA).
 
