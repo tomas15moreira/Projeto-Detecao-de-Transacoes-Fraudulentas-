@@ -85,7 +85,7 @@ Para explorar a hipótese de que a reamostragem sintética poderia superar o tra
 | Precision | 0.9375 | 0.8690 | -0.069 |
 | F1-Score  | 0.8571 | 0.8156 | -0.042 |
 | AUPRC     | 0.8251 | 0.8044 | -0.021 |
-| Falsos Positivos | 5 | 11 | ⬆ +6 |
+| Falsos Positivos | 5 | 11 | +6 |
 
 *Conclusão da experiência:* O SMOTE *não trouxe valor* neste contexto. Todas as métricas pioraram. A explicação técnica reside no facto de o parâmetro scale_pos_weight do XGBoost já tratar do desequilíbrio de forma nativa e matematicamente mais elegante — atribuindo um peso 599× superior a cada exemplo de fraude durante o cálculo do gradiente, sem introduzir ruído artificial. As fraudes sintéticas geradas pelo SMOTE (interpolações lineares entre fraudes reais) criaram exemplos que não correspondiam a nenhum padrão real, confundindo o modelo.
 
