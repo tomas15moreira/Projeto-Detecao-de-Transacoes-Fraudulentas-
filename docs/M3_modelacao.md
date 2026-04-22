@@ -128,7 +128,15 @@ A menor fiabilidade do modelo em detetar estes 20 casos não é um erro algorít
 2.  **Sobreposição de Classes (Zonas Cinzentas):** A análise visual sugere que estes Falsos Negativos residem numa zona de intersecção estatística, onde os atributos da transação fraudulenta (valor, tempo e componentes PCA) são matematicamente indistinguíveis de uma transação legítima habitual do utilizador.
 
 ### 4.2. Importância dos Atributos (Feature Importance)
-A interpretação estatística da decisão do modelo indica que o XGBoost baseia a sua classificação num grupo restrito de variáveis críticas:
+A análise da importância dos atributos, medida pelo Gain (ganho médio de informação nas divisões das árvores), revela que o XGBoost baseia a sua classificação num grupo restrito de variáveis críticas:
+
+| Posição | Variável | Gain |
+| :---: | :--- | ---: |
+| 1 | *V14* | 6188.92 |
+| 2 | *V4* | 538.04 |
+| 3 | *V12* | 285.48 |
+| 4 | V8 | 247.37 |
+| 5 | V3 | 246.47 |
 
 1.  **V14**: Destacou-se como a variável com maior poder discriminatório (Gain = 6188.92), seguida de V4 (538.04) e V12 (285.48). De forma interessante, **V17**, que apresentava a correlação mais forte com Class na fase de EDA, não surge no top 5 de importância do modelo final, sugerindo que a sua capacidade preditiva é parcialmente capturada por V14.
 2.  **V12 e V10:** Atuam como variáveis de suporte, ajudando o modelo a refinar a fronteira de decisão.
@@ -138,7 +146,40 @@ A interpretação estatística da decisão do modelo indica que o XGBoost baseia
 O modelo apresenta elevada fiabilidade para detetar padrões de fraude "óbvios" ou de alto impacto, onde o desvio estatístico é claro. No entanto, a fiabilidade é moderada em ataques de "baixa intensidade" (transações que mimetizam perfeitamente o perfil de consumo do cliente), onde a ausência de variáveis contextuais extra-transacionais (como localização GPS ou ID do dispositivo) impede uma separação perfeita das classes.
 
 ## 5. Conclusão da Fase de Modelação
-*Justifiquem por que razão este modelo está pronto (ou não) para ser apresentado como solução
-final.*
+Após a experimentação com 5 configurações distintas (Regressão Logística, Random Forest, XGBoost, XGBoost + SMOTE, XGBoost Tuned), o modelo selecionado como solução final é o *XGBoost com hiperparâmetros base* (n_estimators=100, max_depth=6, scale_pos_weight=599, random_state=42).
+
+### Cumprimento dos Objetivos SMART (revistos)
+
+| Critério | Limiar | Resultado | Estado |
+| :--- | :---: | :---: | :---: |
+| AUPRC | ≥ 0.80 | 0.8251 | ✅ |
+| Recall | ≥ 0.75 | 0.7895 | ✅ |
+| Precision | ≥ 0.85 | 0.9375 | ✅ |
+
+### Razões da escolha deste modelo em detrimento dos outros candidatos
+
+1. *vs. Regressão Logística (Baseline):* Underfitting severo (Recall = 0.58) — incapaz de capturar a complexidade não-linear dos padrões de fraude.
+2. *vs. Random Forest:* Overfitting mais acentuado (gap Treino-Teste de 22.7 p.p.) e 20× mais lento no treino.
+3. *vs. XGBoost + SMOTE:* o SMOTE piorou todas as métricas — o scale_pos_weight nativo provou ser superior (PI 4 respondida).
+4. *vs. XGBoost Tuned:* o ganho marginal de +4% em Recall custou uma queda de 49 p.p. em Precision e um aumento de 1.840% nos Falsos Positivos — trade-off insustentável para produção bancária.
+
+### Estabilidade
+
+A Stratified K-Fold Cross-Validation (K=5) confirmou Recall médio de 0.8598 ± 0.0413 e AUPRC média de 0.8131 ± 0.0323, demonstrando robustez e repetibilidade.
+
+### Resposta às Perguntas de Investigação
+
+| PI | Resposta |
+| :--- | :--- |
+| *PI 1* (Amount vs. Fraude) | Não existe correlação linear forte entre o montante e a probabilidade de fraude. As fraudes distribuem-se por vários escalões de valor. |
+| *PI 2* (Top 3 variáveis) | V14, V4 e V12 — confirmadas pela Feature Importance do modelo final. V17, apesar de forte na correlação (M2), é redundante com V14. |
+| *PI 3* (Padrões temporais) | Sim — concentração de fraudes no período da madrugada (2h–6h), onde o risco proporcional é significativamente superior. |
+| *PI 4* (SMOTE vs. scale_pos_weight) | O SMOTE *não melhorou* a deteção. O tratamento nativo via scale_pos_weight foi superior em todas as métricas. |
+
+### Fiabilidade e Limitações
+
+O modelo é fiável para detetar padrões de fraude com desvio estatístico claro nas componentes PCA. A sua principal limitação reside na deteção de fraudes de "baixa intensidade" que mimetizam o perfil de consumo legítimo — cenários onde a ausência de variáveis extra-transacionais (geolocalização, endereço IP, histórico de dispositivos) impede uma separação perfeita das classes.
+
+O modelo está pronto para ser apresentado como solução final do projeto.
 ---
-*Data de última atualização: [17/04/2026]*
+*Data de última atualização: [22/04/2026]*
