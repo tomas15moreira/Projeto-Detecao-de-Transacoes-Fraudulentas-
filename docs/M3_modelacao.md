@@ -73,7 +73,7 @@ Na prática, para detetar mais 4% de fraudes, o modelo passaria a bloquear indev
 
 **Conclusão:** Optámos por manter o XGBoost Simples como a solução final. Esta configuração provou ser a mais equilibrada e robusta, garantindo uma performance superior global e uma proteção financeira elevada sem comprometer a experiência do utilizador.
 
-### 3.3. Experiência com SMOTE (Resposta à Pergunta de Investigação 4)
+### 3.3. Experiência com SMOTE 
 
 Para explorar a hipótese de que a reamostragem sintética poderia superar o tratamento nativo de desequilíbrio, aplicámos o SMOTE (Synthetic Minority Over-sampling Technique) exclusivamente sobre os dados de treino (nunca sobre o teste), gerando um conjunto artificialmente balanceado (226.602 normais vs. 226.602 fraudes sintéticas). O XGBoost foi re-treinado sem scale_pos_weight nesta versão.
 
@@ -87,9 +87,9 @@ Para explorar a hipótese de que a reamostragem sintética poderia superar o tra
 | AUPRC     | 0.8251 | 0.8044 | -0.021 |
 | Falsos Positivos | 5 | 11 | +6 |
 
-*Conclusão da experiência:* O SMOTE *não trouxe valor* neste contexto. Todas as métricas pioraram. A explicação técnica reside no facto de o parâmetro scale_pos_weight do XGBoost já tratar do desequilíbrio de forma nativa e matematicamente mais elegante — atribuindo um peso 599× superior a cada exemplo de fraude durante o cálculo do gradiente, sem introduzir ruído artificial. As fraudes sintéticas geradas pelo SMOTE (interpolações lineares entre fraudes reais) criaram exemplos que não correspondiam a nenhum padrão real, confundindo o modelo.
+*Conclusão da experiência:* O SMOTE *não trouxe valor* neste contexto. Todas as métricas pioraram. A explicação técnica reside no facto de o parâmetro _scale_pos_weight_ do XGBoost já tratar do desequilíbrio de forma nativa e matematicamente mais elegante, atribuindo um peso 599× superior a cada exemplo de fraude durante o cálculo do gradiente, sem introduzir ruído artificial. As fraudes sintéticas geradas pelo SMOTE (interpolações lineares entre fraudes reais) criaram exemplos que não correspondiam a nenhum padrão real, confundindo o modelo.
 
-*Resposta à PI 4:* A aplicação de SMOTE não melhora significativamente a deteção de fraudes face ao tratamento nativo via scale_pos_weight. O SMOTE é descartado da solução final.
+*Resposta à PI 4:* A aplicação de SMOTE não melhora significativamente a deteção de fraudes face ao tratamento nativo via _scale_pos_weight_. O SMOTE é descartado da solução final.
 
 ### 3.4. Validação Cruzada (Stratified K-Fold)
 
@@ -100,7 +100,7 @@ Para mitigar a variabilidade inerente a uma única divisão de dados, aplicámos
 | *Recall* | 0.8598 | 0.0413 |
 | *AUPRC* | 0.8131 | 0.0323 |
 
-Os desvios padrão inferiores a 0.05 confirmam *elevada estabilidade* — o desempenho do modelo não depende de uma divisão "afortunada" dos dados.
+Os desvios padrão inferiores a 0.05 confirmam *elevada estabilidade*. O desempenho do modelo não depende de uma divisão aleatória dos dados.
 
 ### 3.5. Re-calibração do Objetivo SMART
 
