@@ -53,7 +53,7 @@ Esta comparação é fundamental para identificar fenómenos de Overfitting (mem
 Nesta fase, submetemos o modelo vencedor (XGBoost) a um processo de sintonização fina (_Fine-Tuning_) para explorar se um ajuste exaustivo de hiperparâmetros resultaria em ganhos significativos para os objetivos SMART definidos, comparando a versão base com a versão otimizada.
 
 ### 3.1. Técnica e Configuração Ideal Encontrada
-Utilizámos o algoritmo _RandomizedSearchCV_ (30 combinações testadas via validação cruzada), focando a otimização na métrica de _Recall_ para garantir a proteção contra o risco financeiro. O algoritmo identificou a seguinte configuração ideal:
+Utilizámos o algoritmo RandomizedSearchCV (10 combinações aleatórias testadas via validação cruzada em 3 dobras, totalizando 30 fits), focando a otimização na métrica de Recall para garantir a proteção contra o risco financeiro. O algoritmo identificou a seguinte configuração ideal:
 * **Parâmetros Ótimos:** max_depth: 3, n_estimators: 200, learning_rate: 0.1, subsample: 0.7, colsample_bytree: 0.8 e scale_pos_weight: 899.21.
 
 ### 3.2. Comparação Crítica e Decisão Final (Modelo Base vs. Otimizado)
