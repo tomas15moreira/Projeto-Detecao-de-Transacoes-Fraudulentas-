@@ -138,9 +138,10 @@ A análise da importância dos atributos, medida pelo Gain (ganho médio de info
 | 4 | V8 | 247.37 |
 | 5 | V3 | 246.47 |
 
-1.  **V14**: Destacou-se como a variável com maior poder discriminatório (Gain = 6188.92), seguida de V4 (538.04) e V12 (285.48). De forma interessante, **V17**, que apresentava a correlação mais forte com Class na fase de EDA, não surge no top 5 de importância do modelo final, sugerindo que a sua capacidade preditiva é parcialmente capturada por V14.
-2.  **V12 e V10:** Atuam como variáveis de suporte, ajudando o modelo a refinar a fronteira de decisão.
-3.  **Variáveis de Baixo Impacto:** Notou-se que variáveis como _Time_ têm pouca relevância na decisão final, sugerindo que a fraude neste _dataset*_ não segue um padrão horário rígido, mas sim padrões de valor e tipo de transação (refletidos nas componentes PCA).
+Observações:
+1.  V14 domina claramente com um Gain 11× superior à segunda variável (V4). Esta componente PCA captura o desvio comportamental mais forte associado a fraude.
+2.  V17 não surge no top 5, apesar de ter apresentado a correlação mais forte com Class na fase de EDA (M2). Isto sugere que a informação de V17 é parcialmente redundante com V14 — o modelo extrai a mesma capacidade discriminante a partir de V14.
+3.  Variáveis de negócio criadas (Periodo_do_Dia, Nivel_da_Transacao_Monetaria) têm impacto residual, o que indica que os padrões temporais e monetários já estavam codificados nas componentes PCA originais.
 
 ### 4.3. Fiabilidade em Cenários Reais
 O modelo apresenta elevada fiabilidade para detetar padrões de fraude "óbvios" ou de alto impacto, onde o desvio estatístico é claro. No entanto, a fiabilidade é moderada em ataques de "baixa intensidade" (transações que mimetizam perfeitamente o perfil de consumo do cliente), onde a ausência de variáveis contextuais extra-transacionais (como localização GPS ou ID do dispositivo) impede uma separação perfeita das classes.
