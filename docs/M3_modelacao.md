@@ -143,6 +143,8 @@ Observações:
 2.  V17 não surge no top 5, apesar de ter apresentado a correlação mais forte com Class na fase de EDA (M2). Isto sugere que a informação de V17 é parcialmente redundante com V14 — o modelo extrai a mesma capacidade discriminante a partir de V14.
 3.  Variáveis de negócio criadas (Periodo_do_Dia, Nivel_da_Transacao_Monetaria) têm impacto residual, o que indica que os padrões temporais e monetários já estavam codificados nas componentes PCA originais.
 
+<img width="920" height="732" alt="Feature_importance" src="https://github.com/user-attachments/assets/44a214f1-fff7-4365-bb31-9ae9e9e66c57" />
+
 ### 4.3. Fiabilidade em Cenários Reais
 O modelo apresenta elevada fiabilidade para detetar padrões de fraude "óbvios" ou de alto impacto, onde o desvio estatístico é claro. No entanto, a fiabilidade é moderada em ataques de "baixa intensidade" (transações que mimetizam perfeitamente o perfil de consumo do cliente), onde a ausência de variáveis contextuais extra-transacionais (como localização GPS ou ID do dispositivo) impede uma separação perfeita das classes.
 
