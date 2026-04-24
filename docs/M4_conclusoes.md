@@ -32,5 +32,5 @@ de venda.")
 3. **Escalabilidade (Deployment):** (Ex: "Desenvolver uma interface web (Streamlit) para que o
 modelo possa ser utilizado por utilizadores não-técnicos em tempo real.")
 ---
-**Data de Conclusão:** [Inserir Data]
+**Data de Conclusão:** [Inserir Data]  
 **Versão do Projeto:** v4.0 Final--- 
