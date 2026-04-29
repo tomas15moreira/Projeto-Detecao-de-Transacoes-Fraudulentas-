@@ -154,7 +154,7 @@ A aplicação do SMOTE **não trouxe valor** neste contexto específico: todas a
 ---
 
 ## 4. Finalização (Milestone 4)
-
+### Resposta ao Problema
 ### Recomendações de Inovação
 *[A preencher após Milestone 4]*
 
