@@ -59,7 +59,7 @@ Para enriquecer a capacidade preditiva do modelo e extrair inteligência de neg�
 * **Nova Variável Nivel_da_Transacao_Monetaria**: Criada a partir da variável contínua _Amount_. Esta variável segmenta os valores monetários em diferentes escalões ou níveis (ex: Baixo, Médio, Alto). Esta categorização ajuda o modelo ao reduzir o "ruído" das variações exatas de cêntimos e euros, permitindo que os algoritmos de _Machine Learning_ (como árvores de decisão) identifiquem rapidamente se o perfil da fraude está associado a transações de teste (níveis baixos) ou a extrações de grande valor (níveis altos).
 
 ## 4. Dicionário de Dados Final (Pós-Processamento)
-A tabela seguinte apresenta a estrutura final do *dataset* processado que será utilizado na fase de modelação (Fase 3), detalhando os atributos finais e os respetivos métodos de pré-processamento aplicados:
+A tabela seguinte apresenta a estrutura final do _dataset_ processado que será utilizado na fase de modelação (Fase 3), detalhando os atributos finais e os respetivos métodos de pré-processamento aplicados:
 
 | Atributo | Tipo | Descrição | Método Aplicado |
 | :--- | :--- | :--- | :--- |
@@ -86,4 +86,4 @@ Nesta fase de Análise Exploratória e Engenharia de Atributos, o nosso conhecim
 Sim, de forma categórica. O conjunto de dados está agora isento de ruído (sem nulos ou duplicados), possui escalas matemáticas uniformizadas compatíveis com algoritmos sensíveis a distâncias, e foi enriquecido com inteligência de negócio através de novos atributos. 
 
 ---
-*Data de última atualização: [20/03/2026]* 
+*Data de última atualização: [29/04/2026]* 
