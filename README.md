@@ -145,7 +145,7 @@ A tradução das métricas para valor monetário mostra o impacto prático da so
 
 ### Re-calibração do Critério de Sucesso
 
-Durante a fase de experimentação, demonstrou-se que atingir o limiar de Recall ≥ 85% (Objetivo 2 original) exigia um *trade-off* operacionalmente insustentável: a Precision caía de 94% para 45%, com um aumento de 1.840% nos Falsos Positivos (de 5 para 97 transações legítimas bloqueadas). Esta evidência empírica levou à **re-calibração do critério de sucesso** para um objetivo composto que reflete o equilíbrio real exigido pelo negócio bancário:
+Durante a fase de experimentação, demonstrou-se que atingir o limiar de Recall ≥ 85% (Objetivo 2 original) exigia um *trade-off* operacionalmente insustentável: a Precision caía de 94% para 45%, com um aumento de 1.840% nos Falsos Positivos (de 5 para 97 transações legítimas bloqueadas). Esta evidência empírica levou à **re-calibração do critério** para um objetivo composto que reflete o equilíbrio real exigido pelo negócio bancário:
 
 > **Critério revisto:** Recall ≥ 75% **E** Precision ≥ 85% **E** AUPRC ≥ 0.80 — **todos cumpridos** pelo modelo final.
 
