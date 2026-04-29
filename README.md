@@ -149,11 +149,6 @@ Durante a fase de experimentação, demonstrou-se que atingir o limiar de Recall
 
 > **Critério revisto:** Recall ≥ 75% **E** Precision ≥ 85% **E** AUPRC ≥ 0.80 — **todos cumpridos** pelo modelo final.
 
-### Resposta à Pergunta de Investigação 4
-
-A aplicação do SMOTE **não trouxe valor** neste contexto específico: todas as métricas pioraram face ao tratamento nativo de desequilíbrio via `scale_pos_weight` (Recall: 0.77 vs. 0.79; F1: 0.82 vs. 0.86; Falsos Positivos: 11 vs. 5). A explicação técnica completa desta descoberta encontra-se em [`docs/M3_modelacao.md`](docs/M3_modelacao.md).
-
-> Para a documentação completa da fase de modelação, consultar [`docs/M3_modelacao.md`](docs/M3_modelacao.md).
 
 ### Resposta à Pergunta de Investigação 4
 
