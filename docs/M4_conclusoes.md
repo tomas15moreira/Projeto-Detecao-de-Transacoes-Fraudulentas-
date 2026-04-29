@@ -46,6 +46,7 @@
 ## Considerações Finais
 * Este projeto demonstra que é possível construir um sistema de deteção de fraude **fiável, eficiente e operacionalmente viável** mesmo num cenário de extremo desequilíbrio de classes. O modelo final cumpre os critérios SMART revistos, traduz-se num impacto financeiro mensurável (37,4M€/ano de proteção em escala bancária real), e está documentado com transparência suficiente para auditoria. Os resultados demonstram que o ciclo CRISP-DM foi executado de ponta a ponta, transformando um conjunto de dados anonimizado num produto de Ciência de Dados pronto para evolução e implementação.
 ---
-**Data de última atualização:** [29/04/2026]
+**Data de última atualização:** [29/04/2026]  
 **Data de Conclusão:** [Inserir Data]  
-**Versão do Projeto:** v4.0 Final--- 
+**Versão do Projeto:** v4.0 Final  
+
