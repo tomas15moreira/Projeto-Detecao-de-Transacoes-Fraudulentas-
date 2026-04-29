@@ -1,11 +1,11 @@
 # Deteção de Transações Fraudulentas em Cartões de Crédito: Modelação Preditiva em Contexto de Dados Não Equilibrados
 ## Resumo Executivo
 
-> Este projeto desenvolveu um sistema de deteção de fraude em tempo real para transações de cartão de crédito, capaz de **identificar 79% das fraudes com 94% de confiança** num cenário de extremo desequilíbrio de classes (apenas 0,17% de fraudes em 284.807 transações).
->
-> Em termos práticos, o modelo final (XGBoost) **protege 74% do valor financeiro em risco** — gerando apenas 5 bloqueios indevidos por cada 56.651 transações legítimas, um nível de atrito operacional perfeitamente gerível em produção bancária.
->
-> Numa simulação para um banco com 500.000 transações diárias, o sistema detetaria **660 fraudes por dia** com apenas 44 falsos alertas — uma proteção financeira anual estimada em milhões de euros.
+Este projeto desenvolveu um sistema de deteção de fraude em tempo real para transações de cartão de crédito, capaz de **identificar 79% das fraudes com 94% de confiança** num cenário de extremo desequilíbrio de classes (apenas 0,17% de fraudes em 284.807 transações).
+
+Em termos práticos, o modelo final (XGBoost) **protege 74% do valor financeiro em risco** — faz apenas 5 bloqueios indevidos por cada 56.651 transações legítimas, um nível de atrito operacional perfeitamente gerível em produção bancária.
+
+Numa simulação para um banco com 500.000 transações diárias, o sistema detetaria **660 fraudes por dia** com apenas 44 falsos alertas — uma proteção financeira anual estimada em milhões de euros.
 
 ---
 ## Identificação da Equipa
