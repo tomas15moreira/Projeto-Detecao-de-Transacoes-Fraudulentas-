@@ -6,6 +6,15 @@
 * **Interpretação dos Resultados:** Em linguagem simples, o modelo consegue identificar quase 80% de todas as fraudes ativas nos dados de teste com uma taxa de precisão de 94%. Isto significa que quando o sistema emite um alerta e bloqueia um cartão, há 94% de certeza estatística de que é um ataque real, provando ser uma ferramenta altamente cirúrgica em vez de um sistema de alarmes falsos.
 * **Valor para o Negócio:** A tradução destas métricas para impacto financeiro demonstra um valor prático extraordinário. Apenas no conjunto de teste, o modelo protegeu quase 11.000€ (74,3% do valor total em risco), o dobro do valor assegurado pelo modelo de referência (_Baseline_). Numa simulação de escala bancária real (500.000 transações/dia), este modelo protegeria mais de 37,4 Milhões de Euros por ano. O atrito operacional provou ser quase nulo: o sistema geraria apenas 44 bloqueios indevidos por dia, um volume perfeitamente gerível por uma pequena equipa de apoio ao cliente, sem necessidade de aumentar os custos operacionais do banco.
 
+**Respostas às Perguntas de Investigação iniciais:**
+
+| PI | Resposta |
+| :--- | :--- |
+| **PI 1** (Amount vs. Fraude) | Não existe correlação linear forte; as fraudes distribuem-se por vários escalões de valor. |
+| **PI 2** (Top 3 variáveis) | V14, V4 e V12 — confirmadas pela Feature Importance do modelo final. |
+| **PI 3** (Padrões temporais) | Sim — concentração no período da madrugada (2h–6h). |
+| **PI 4** (SMOTE vs. scale_pos_weight) | O SMOTE não melhorou; o tratamento nativo via `scale_pos_weight` foi superior. |
+
 ## 2. Análise Crítica e Limitações
 > **Identificação honesta das fronteiras e vulnerabilidades do projeto.**
 
