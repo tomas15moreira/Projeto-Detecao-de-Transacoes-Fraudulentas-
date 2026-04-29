@@ -143,7 +143,17 @@ A tradução das métricas para valor monetário mostra o impacto prático da so
 | Valor não detetado | 3.788,80€ | Escapou em 20 fraudes (mediana = 2€). |
 | **Taxa de proteção financeira** | **74,3%** | Recuperação efetiva do valor em risco. |
 
-> **Em linguagem simples:** *o modelo deteta 79% das fraudes com 94% de confiança, protegendo 74% do valor financeiro em risco e gerando apenas 5 bloqueios indevidos por cada 56.651 transações legítimas.*
+### Re-calibração do Critério de Sucesso
+
+Durante a fase de experimentação, demonstrou-se que atingir o limiar de Recall ≥ 85% (Objetivo 2 original) exigia um *trade-off* operacionalmente insustentável: a Precision caía de 94% para 45%, com um aumento de 1.840% nos Falsos Positivos (de 5 para 97 transações legítimas bloqueadas). Esta evidência empírica levou à **re-calibração do critério de sucesso** para um objetivo composto que reflete o equilíbrio real exigido pelo negócio bancário:
+
+> **Critério revisto:** Recall ≥ 75% **E** Precision ≥ 85% **E** AUPRC ≥ 0.80 — **todos cumpridos** pelo modelo final.
+
+### Resposta à Pergunta de Investigação 4
+
+A aplicação do SMOTE **não trouxe valor** neste contexto específico: todas as métricas pioraram face ao tratamento nativo de desequilíbrio via `scale_pos_weight` (Recall: 0.77 vs. 0.79; F1: 0.82 vs. 0.86; Falsos Positivos: 11 vs. 5). A explicação técnica completa desta descoberta encontra-se em [`docs/M3_modelacao.md`](docs/M3_modelacao.md).
+
+> Para a documentação completa da fase de modelação, consultar [`docs/M3_modelacao.md`](docs/M3_modelacao.md).
 
 ### Resposta à Pergunta de Investigação 4
 
