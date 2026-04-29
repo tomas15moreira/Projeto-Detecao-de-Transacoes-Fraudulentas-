@@ -21,13 +21,14 @@
 * **Prevenção de Viés e Discriminação (Fairness):** O modelo está inerentemente protegido contra preconceitos demográficos ou socioeconómicos. Ao basear as suas previsões exclusivamente em variáveis comportamentais e anonimizadas, e ao excluir deliberadamente atributos como género, idade, etnia ou localização exata (que não faziam parte do _dataset_ original), a solução julga a transação pelo seu risco estatístico e não pelo perfil do indivíduo. Isto elimina o risco de "redlining" ou de discriminação algorítmica involuntária.
 
 ## 4. Roadmap e Trabalhos Futuros
-> **Nota:** Sugestões concretas para quem quiser continuar ou escalar este projeto.
-1. **Melhoria Técnica:** (Ex: "Implementar técnicas de reamostragem (SMOTE) para lidar melhor
-com o desequilíbrio das classes.")
-2. **Novas Variáveis:** (Ex: "Integrar dados meteorológicos ou sazonais para refinar as previsões
-de venda.")
-3. **Escalabilidade (Deployment):** (Ex: "Desenvolver uma interface web (Streamlit) para que o
-modelo possa ser utilizado por utilizadores não-técnicos em tempo real.")
+> **Sugestões concretas para a evolução, escala e implementação real do projeto.**
+
+1. **Implementação de Limiares de Decisão Dinâmicos (_Threshold Tuning_):** O próximo passo técnico passaria pela criação de um sistema de probabilidade ajustável. Isto permitiria à equipa de gestão do banco "apertar" ou "relaxar" a sensibilidade do algoritmo em tempo real. Por exemplo, em épocas de elevado consumo (como o Natal ou a _Black Friday_), o limiar poderia ser relaxado para evitar o bloqueio numeroso de compras legítimas atípicas, enquanto em períodos de alerta de ciberataques, o modelo poderia tornar-se mais agressivo na deteção.
+2. **Enriquecimento com Variáveis Contextuais e Comportamentais:** A principal recomendação para reduzir os atuais Falsos Negativos (especialmente as micro-transações de teste de 2€) é a integração de dados extra-transacionais. O modelo beneficiaria imenso da inclusão de variáveis como:
+    * **Geolocalização e Endereço IP:** Para detetar discrepâncias entre o local da compra e a localização habitual do cliente.
+    * **Identificação do Dispositivo:** Para verificar se a transação está a ser feita a partir de um equipamento conhecido do utilizador.
+    * **Histórico de Navegação e Biometria Comportamental:** Para analisar se a interação com a aplicação bancária segue o padrão rítmico do cliente real.
+3. **Escalabilidade e Operacionalização:** Para que este modelo saia do ambiente de laboratório e passe para a produção real, o roadmap prevê a sua conversão num microsserviço. Através da utilização de ferramentas como **FastAPI** e **Docker**, o modelo seria "empacotado" numa API de alto desempenho, capaz de ser integrada diretamente no _pipeline_ de autorizações da rede de pagamentos. Isto permitiria analisar transações em milissegundos e emitir pareceres (Aprovar/Bloquear/Requerer 2FA) de forma instantânea e automatizada.
 ---
 **Data de Conclusão:** [Inserir Data]  
 **Versão do Projeto:** v4.0 Final--- 
