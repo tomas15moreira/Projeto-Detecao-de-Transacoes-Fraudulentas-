@@ -10,10 +10,10 @@ Através da análise de frequências, observou-se que a variável apresenta um d
 
 **Factos importantes:** A nossa variável alvo _Class_ está fortemente desequilibrada. Num universo total de 284.807 transações, temos 99,828% de transações normais (284.315 registos) e apenas 0,172% de transações fraudulentas (492 registos).
 
-**Métricas de Avaliação:** Este desequilíbrio extremo dita que a métrica padrão de _Accuracy_ (Exatidão) será enganadora. Um modelo "ingénuo" que classifique sempre todas as transações como 0 obterá uma accuracy de 99,83%, mas falhará redondamente o objetivo do negócio, pois deixará passar 100% das fraudes. Por conseguinte, a avaliação do modelo terá de ser ancorada em métricas robustas ao desequilíbrio, nomeadamente: _Recall_ (taxa de deteção de fraudes), _Precision_ (taxa de acerto quando diz que é fraude), _F1-Score_ e a área sob a curva AUPRC (_Area Under the Precision-Recall Curve_).
+**Métricas de Avaliação:** Este desequilíbrio extremo dita que a métrica padrão de _Accuracy_ (Exatidão) será mentirosa. Um modelo "ingénuo" que classifique sempre todas as transações como 0 obterá uma accuracy de 99,83%, mas falhará redondamente o objetivo do negócio, pois deixará passar 100% das fraudes. Por conseguinte, a avaliação do modelo terá de ser ancorada em métricas robustas ao desequilíbrio, nomeadamente: _Recall_ (taxa de deteção de fraudes), _Precision_ (taxa de acerto quando diz que é fraude), _F1-Score_ e a área sob a curva AUPRC (_Area Under the Precision-Recall Curve_).
 
 ### 1.2. Correlações Relevantes
-Para identificar as relações mais fortes com o nosso problema, gerámos uma Matriz de Correlação (_Heatmap_) e uma Matriz de Dispersão (_Pairplot_) no Kaggle. É importante notar que, como os atributos V1 a V28 resultam de uma transformação PCA prévia (para anonimização dos dados), eles não apresentam correlação entre si (correlação zero), o que nos permitiu focar exclusivamente na relação de cada atributo isolado com a variável alvo.
+Para identificar as relações mais fortes com o nosso problema, criámos uma Matriz de Correlação (_Heatmap_) e uma Matriz de Dispersão (_Pairplot_) no Kaggle. É importante notar que, como os atributos V1 a V28 resultam de uma transformação PCA prévia (para anonimização dos dados), eles não apresentam correlação entre si (correlação zero), o que nos permitiu focar exclusivamente na relação de cada atributo isolado com a variável alvo.
 
 
 
