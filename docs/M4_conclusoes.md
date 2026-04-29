@@ -11,8 +11,8 @@
 | PI | Resposta |
 | :--- | :--- |
 | **PI 1** (Amount vs. Fraude) | Não existe correlação linear forte; as fraudes distribuem-se por vários escalões de valor. |
-| **PI 2** (Top 3 variáveis) | V14, V4 e V12 — confirmadas pela Feature Importance do modelo final. |
-| **PI 3** (Padrões temporais) | Sim — concentração no período da madrugada (2h–6h). |
+| **PI 2** (Top 3 variáveis) | V14, V4 e V12, confirmadas pela Feature Importance do modelo final. |
+| **PI 3** (Padrões temporais) | Sim, concentração no período da madrugada (2h–6h). |
 | **PI 4** (SMOTE vs. scale_pos_weight) | O SMOTE não melhorou; o tratamento nativo via `scale_pos_weight` foi superior. |
 
 ## 2. Análise Crítica e Limitações
