@@ -4,18 +4,18 @@
 O setor bancário enfrenta um desafio contínuo com a fraude em cartões de crédito, que resulta em prejuízos financeiros diretos para as instituições e perda de confiança por parte dos consumidores. O problema central da modelação preditiva neste domínio não é apenas detetar a fraude, mas fazê-lo num cenário de extremo desequilíbrio de classes.
 
 **O Desafio dos Dados e do Negócio**
-O _dataset_ selecionado para este projeto, intitulado "Credit Card Fraud Detection" e disponibilizado no [Kaggle](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud), ilustra perfeitamente esta realidade. Este conjunto contém transações efetuadas por cartões de crédito europeus em setembro de 2013, recolhidas no âmbito de uma parceria de investigação entre a empresa Worldline e o _Machine Learning Group_ (MLG) da _Université Libre de Bruxelles_ (ULB) (Dal Pozzolo et al., 2015). As fraudes representam uma minoria ínfima: apenas 492 transações fraudulentas num universo de 284.807 transações totais (cerca de 0,172%).
+O _dataset_ selecionado para este projeto, intitulado "Credit Card Fraud Detection" e disponibilizado no [Kaggle](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud), ilustra perfeitamente esta realidade. Este conjunto contém transações efetuadas por cartões de crédito europeus em setembro de 2013, recolhidas no âmbito de uma parceria de investigação entre a empresa _Worldline_ e o _Machine Learning Group_ (MLG) da _Université Libre de Bruxelles_ (ULB) (Dal Pozzolo et al., 2015). As fraudes representam uma minoria reduzida: apenas 492 transações fraudulentas num universo de 284.807 transações totais (cerca de 0,172%).
 
-Perante esta distribuição, um modelo ingénuo que classificasse matematicamente todas as transações como "legítimas" atingiria uma exatidão (_accuracy_) superior a 99,8% (284.315 normais / 284.807 totais). Contudo, este modelo seria inútil do ponto de vista de negócio, pois falharia a deteção de todas as fraudes reais — um cenário com consequências financeiras e reputacionais graves.
+Perante esta distribuição, um modelo ingénuo que classificasse matematicamente todas as transações como "legítimas" atingiria uma exatidão (_accuracy_) superior a 99,8% (284.315 normais / 284.807 totais). Contudo, este modelo seria inútil do ponto de vista de negócio, pois falharia a deteção de todas as fraudes reais, um cenário com consequências financeiras e reputacionais graves.
 
 **O Trade-off de Gestão**
 A formulação da solução exige a gestão rigorosa do equilíbrio (_trade-off_) entre dois tipos de erro de classificação, com impactos distintos na operação bancária:
 
-* **Falsos Negativos (Risco Máximo):** Ocorre quando o modelo classifica uma fraude real como transação legítima. O impacto é uma perda financeira direta e irreversível para a instituição, que geralmente ressarce o cliente lesado.
-* **Falsos Positivos (Atrito Operacional):** Ocorre quando uma transação legítima é erradamente sinalizada como fraude. O impacto reflete-se no bloqueio indevido do cartão do cliente, gerando insatisfação, perda de confiança e potenciais danos reputacionais.
+* **Falsos Negativos (Risco Máximo):** Ocorre quando o modelo classifica uma fraude real como transação legítima. O impacto é uma perda financeira direta e irreversível para a instituição, que geralmente compensa o cliente afetado.
+* **Falsos Positivos (Atrito Operacional):** Ocorre quando uma transação legítima é erradamente sinalizada como fraude. O impacto reflete-se no bloqueio indevido do cartão do cliente, criando insatisfação, perda de confiança e potenciais danos reputacionais.
 
 **Pergunta de Investigação Central**
-Considerando as restrições do _dataset_ (onde as variáveis preditivas originais foram transformadas e anonimizadas por Análise de Componentes Principais — PCA — por motivos de privacidade), a questão central que orienta este projeto é:
+Considerando as restrições do _dataset_ (onde as variáveis preditivas originais foram transformadas e anonimizadas por Análise de Componentes Principais, PCA, por motivos de privacidade), a questão central que orienta este projeto é:
 
 > *"Como desenvolver um modelo de Machine Learning capaz de identificar eficazmente transações fraudulentas num cenário de extremo desequilíbrio de classes, minimizando o risco financeiro (Falsos Negativos) sem comprometer gravemente a experiência do cliente (Falsos Positivos)?"*
 
@@ -46,7 +46,7 @@ Para responder a este problema, a solução exigirá a seleção de métricas de
 A viabilidade deste projeto assenta na adequação, origem e integridade do conjunto de dados escolhido. Para garantir o rigor científico e a reprodutibilidade do estudo, a análise de viabilidade foi estruturada em duas dimensões principais: origem da informação e critérios de qualidade.
 
 **Disponibilidade e Origem**
-O _dataset_ utilizado, intitulado "Credit Card Fraud Detection", é de domínio público e encontra-se disponível na plataforma [Kaggle](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud). Os dados originais foram recolhidos e disponibilizados através de uma parceria de investigação oficial entre a empresa Worldline e o _Machine Learning Group_ (MLG) da _Université Libre de Bruxelles_ (ULB). Esta proveniência académica e corporativa atesta a legitimidade e a relevância real da amostra. O _dataset_ serviu de base a publicações científicas relevantes na área (Dal Pozzolo et al., 2015, 2018), o que reforça a sua credibilidade como referência para investigação.
+O _dataset_ utilizado, intitulado "Credit Card Fraud Detection", é de domínio público e encontra-se disponível na plataforma [Kaggle](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud). Os dados originais foram recolhidos e disponibilizados através de uma parceria de investigação oficial entre a empresa _Worldline_ e o _Machine Learning Group_ (MLG) da _Université Libre de Bruxelles_ (ULB). Esta proveniência académica e corporativa atesta a legitimidade e a relevância real da amostra. O _dataset_ serviu de base a publicações científicas relevantes na área (Dal Pozzolo et al., 2015, 2018), o que reforça a sua credibilidade como referência para investigação.
 
 **Critérios de Qualidade dos Dados**
 A viabilidade técnica do _dataset_ foi validada através da verificação rigorosa dos seguintes critérios:
@@ -150,6 +150,6 @@ Em suma, a equipa encontra-se munida de um conjunto de dados viável e de um pla
 | M4: Finalização |  | Pitch e Relatório Final. |
 ---
 
-*Data de última atualização: [17/04/2026]*
+*Data de última atualização: [29/04/2026]*
 
 
