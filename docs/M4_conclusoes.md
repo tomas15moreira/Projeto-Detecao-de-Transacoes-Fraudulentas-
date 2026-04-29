@@ -1,15 +1,11 @@
 # Relatório de Conclusão e Entrega de Valor (Milestone 4)
 ## 1. Síntese de Resultados e Impacto
-> **Nota:** Esta secção deve traduzir as métricas técnicas (F1-Score, RMSE, Silhouette, Lift) em
-resultados compreensíveis para qualquer pessoa.
-* **O Problema Resolvido:** (Retomar brevemente o objetivo da Milestone 1 e confirmar se foi
-alcançado).
-* **Interpretação dos Resultados:** * [Inserir aqui a explicação por palavras simples. Ex: "O
-modelo consegue identificar padrões de fraude com uma confiança de 90%, permitindo filtrar
-transações suspeitas antes do processamento."]
-* **Valor para o Utilizador/Negócio:** * [Explicar o benefício prático. Ex: "Com esta solução,
-a equipa de suporte pode focar-se apenas nos casos de alto risco, aumentando a eficiência
-operacional em 30%."]
+> **Tradução de métricas técnicas em impacto financeiro e operacional.**
+
+* **O Problema Resolvido:** O objetivo traçado no Milestone 1 foi o de desenvolver um modelo preditivo capaz de identificar transações fraudulentas num cenário de extremo desequilíbrio (apenas 0,17% de fraudes), minimizando as perdas financeiras sem causar atrito aos clientes. O objetivo foi plenamente alcançado: o modelo XGBoost final atingiu uma métrica AUPRC de 0.8251 (superando a meta SMART de ≥ 0.80) e um _Recall_ médio de 85,98% em validação cruzada.
+* **Interpretação dos Resultados:** Em linguagem simples, o modelo consegue identificar quase 80% de todas as fraudes ativas nos dados de teste com uma taxa de precisão de 94%. Isto significa que quando o sistema emite um alerta e bloqueia um cartão, há 94% de certeza estatística de que é um ataque real, provando ser uma ferramenta altamente cirúrgica em vez de um sistema de alarmes falsos.
+* **Valor para o Negócio:** A tradução destas métricas para impacto financeiro demonstra um valor prático extraordinário. Apenas no conjunto de teste, o modelo protegeu quase 11.000€ (74,3% do valor total em risco), o dobro do valor assegurado pelo modelo de referência (_Baseline_). Numa simulação de escala bancária real (500.000 transações/dia), este modelo protegeria mais de 37,4 Milhões de Euros por ano. O atrito operacional provou ser quase nulo: o sistema geraria apenas 44 bloqueios indevidos por dia, um volume perfeitamente gerível por uma pequena equipa de apoio ao cliente, sem necessidade de aumentar os custos operacionais do banco.
+
 ## 2. Análise Crítica e Limitações
 > **Nota:** Identificar de forma honesta as fronteiras do projeto e onde o modelo pode falhar.
 * **Limitações dos Dados:** * (Ex: "O volume de dados para a classe X era reduzido, o que pode
