@@ -137,7 +137,35 @@ A aplicação do SMOTE **não trouxe valor** neste contexto específico: todas a
 ## 4. Finalização (Milestone 4)
 
 ### Resposta ao Problema
-*[A preencher após Milestone 4]*
+### Modelo Final Selecionado: XGBoost com hiperparâmetros base
+
+Configuração: `n_estimators=100`, `max_depth=6`, `scale_pos_weight=599`, `random_state=42`.
+
+**Desempenho técnico no conjunto de teste:**
+
+| Métrica | Resultado | Estado | Tradução para o Negócio |
+| :--- | :---: | :---: | :--- |
+| AUPRC | 0.8251 | ✅ | A qualidade preditiva global supera o limiar SMART de 0.80. |
+| Recall | 0.7895 | ✅* | O modelo deteta 75 das 95 fraudes presentes (cumpre o critério revisto ≥ 75%). |
+| Precision | 0.9375 | ✅ | Quando o modelo sinaliza fraude, está correto em 94% dos casos — alta confiança. |
+| F1-Score | 0.8571 | — | Equilíbrio sólido entre deteção e qualidade dos alertas. |
+| Falsos Positivos | 5 | — | Apenas 5 clientes legítimos bloqueados em 56.651 transações normais (0,009%). |
+| Falsos Negativos | 20 | — | 20 fraudes escaparam — predominantemente micro-transações (mediana = 2€). |
+
+*Critério SMART revisto — ver secção seguinte.*
+
+### Impacto Financeiro Real (Conjunto de Teste)
+
+A tradução das métricas para valor monetário mostra o impacto prático da solução:
+
+| Indicador | Valor | Significado |
+| :--- | ---: | :--- |
+| Valor total das fraudes no teste | 14.766,31€ | Total exposto a risco. |
+| **Valor protegido pelo modelo** | **10.977,51€** | Capturado em 75 fraudes detetadas. |
+| Valor não detetado | 3.788,80€ | Escapou em 20 fraudes (mediana = 2€). |
+| **Taxa de proteção financeira** | **74,3%** | Recuperação efetiva do valor em risco. |
+
+> **Em linguagem simples:** *o modelo deteta 79% das fraudes com 94% de confiança, protegendo 74% do valor financeiro em risco e gerando apenas 5 bloqueios indevidos por cada 56.651 transações legítimas.*
 
 ### Recomendações de Inovação
 *[A preencher após Milestone 4]*
