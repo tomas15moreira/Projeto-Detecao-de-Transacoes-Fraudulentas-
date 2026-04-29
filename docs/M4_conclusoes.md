@@ -14,10 +14,12 @@
 * **Contextos de Falha (Zonas Cinzentas Estatísticas):** O modelo perde fiabilidade em ataques de "baixa intensidade" que mimetizam perfeitamente o comportamento habitual do cliente. Se um ataque não cria um desvio estatístico nas componentes PCA nem ocorre num padrão horário invulgar, o algoritmo é forçado a classificá-lo como transação normal para evitar o bloqueio abundante de clientes autênticos. A incapacidade de cruzar a transação com variáveis contextuais externas (como uma discrepância entre o endereço IP da compra e a localização GPS habitual do telemóvel do cliente) impede o modelo de separar perfeitamente as classes nesta zona de sobreposição.
 
 ## 3. Considerações Éticas e de Viés
-* **Privacidade:** (Ex: "Todos os identificadores pessoais foram removidos, garantindo que o
-modelo analisa apenas padrões de comportamento anónimos.")
-* **Transparência:** (Ex: "Utilizámos técnicas de 'Feature Importance' para garantir que as
-decisões do modelo são explicáveis e não operam como uma 'caixa negra'.")
+> **Auditoria ética à solução proposta e conformidade com as melhores práticas de IA Responsável.**
+
+* **Privacidade e Proteção de Dados (Conformidade RGPD):** A arquitetura da solução foi desenhada com um foco absoluto na privacidade. Uma vez que o _dataset_ utiliza variáveis transformadas por Análise de Componentes Principais (PCA), a identidade dos utilizadores está blindada por uma camada matemática irreversível. O modelo processa padrões de comportamento (como o volume e a frequência de gastos) sem nunca ter acesso a dados sensíveis ou identificadores pessoais, garantindo o cumprimento estrito do Regulamento Geral sobre a Proteção de Dados (RGPD).
+* **Transparência e Explicabilidade (Contra o efeito "Caixa Negra"):** No setor financeiro, o direito à explicação é fundamental. Através da aplicação de métricas de _Feature Importance_ (baseadas no ganho de entropia das árvores do XGBoost), garantimos que o modelo não opera como uma "caixa negra". É possível verificar e explicar aos reguladores e aos clientes quais foram os fatores (ex: anomalias nas componentes V14 ou V12) que desencadearam o bloqueio de uma transação, assegurando uma governação algorítmica transparente.
+* **Prevenção de Viés e Discriminação (Fairness):** O modelo está inerentemente protegido contra preconceitos demográficos ou socioeconómicos. Ao basear as suas previsões exclusivamente em variáveis comportamentais e anonimizadas, e ao excluir deliberadamente atributos como género, idade, etnia ou localização exata (que não faziam parte do _dataset_ original), a solução julga a transação pelo seu risco estatístico e não pelo perfil do indivíduo. Isto elimina o risco de "redlining" ou de discriminação algorítmica involuntária.
+
 ## 4. Roadmap e Trabalhos Futuros
 > **Nota:** Sugestões concretas para quem quiser continuar ou escalar este projeto.
 1. **Melhoria Técnica:** (Ex: "Implementar técnicas de reamostragem (SMOTE) para lidar melhor
