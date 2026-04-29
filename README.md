@@ -119,36 +119,6 @@ A partir das variáveis originais, foram criadas duas variáveis categóricas qu
 
 Configuração: `n_estimators=100`, `max_depth=6`, `scale_pos_weight=599`, `random_state=42`.
 
-| Métrica | Resultado | Estado |
-| :--- | :---: | :---: |
-| AUPRC | 0.8251 | ✅ (Obj. 1: ≥ 0.80) |
-| Recall | 0.7895 | ⚠️ (Obj. 2 original não cumprido — ver abaixo) |
-| Precision | 0.9375 | ✅ |
-| F1-Score | 0.8571 | — |
-| Falsos Positivos (Teste) | 5 | — |
-| Falsos Negativos (Teste) | 20 | — |
-
-### Re-calibração do Critério de Sucesso
-
-Durante a fase de experimentação, demonstrou-se que atingir o limiar de Recall ≥ 85% (Objetivo 2 original) exigia um *trade-off* operacionalmente insustentável: a Precision caía de 94% para 45%, com um aumento de 1.840% nos Falsos Positivos (de 5 para 97 transações legítimas bloqueadas). Esta evidência empírica levou à **re-calibração do critério de sucesso** para um objetivo composto que reflete o equilíbrio real exigido pelo negócio bancário:
-
-> **Critério revisto:** Recall ≥ 75% **E** Precision ≥ 85% **E** AUPRC ≥ 0.80 — **todos cumpridos** pelo modelo final.
-
-### Resposta à Pergunta de Investigação 4
-
-A aplicação do SMOTE **não trouxe valor** neste contexto específico: todas as métricas pioraram face ao tratamento nativo de desequilíbrio via `scale_pos_weight` (Recall: 0.77 vs. 0.79; F1: 0.82 vs. 0.86; Falsos Positivos: 11 vs. 5). A explicação técnica completa desta descoberta encontra-se em [`docs/M3_modelacao.md`](docs/M3_modelacao.md).
-
-> Para a documentação completa da fase de modelação, consultar [`docs/M3_modelacao.md`](docs/M3_modelacao.md).
-
----
-
-## 4. Finalização (Milestone 4)
-
-### Resposta ao Problema
-### Modelo Final Selecionado: XGBoost com hiperparâmetros base
-
-Configuração: `n_estimators=100`, `max_depth=6`, `scale_pos_weight=599`, `random_state=42`.
-
 **Desempenho técnico no conjunto de teste:**
 
 | Métrica | Resultado | Estado | Tradução para o Negócio |
@@ -174,6 +144,16 @@ A tradução das métricas para valor monetário mostra o impacto prático da so
 | **Taxa de proteção financeira** | **74,3%** | Recuperação efetiva do valor em risco. |
 
 > **Em linguagem simples:** *o modelo deteta 79% das fraudes com 94% de confiança, protegendo 74% do valor financeiro em risco e gerando apenas 5 bloqueios indevidos por cada 56.651 transações legítimas.*
+
+### Resposta à Pergunta de Investigação 4
+
+A aplicação do SMOTE **não trouxe valor** neste contexto específico: todas as métricas pioraram face ao tratamento nativo de desequilíbrio via `scale_pos_weight` (Recall: 0.77 vs. 0.79; F1: 0.82 vs. 0.86; Falsos Positivos: 11 vs. 5). A explicação técnica completa desta descoberta encontra-se em [`docs/M3_modelacao.md`](docs/M3_modelacao.md).
+
+> Para a documentação completa da fase de modelação, consultar [`docs/M3_modelacao.md`](docs/M3_modelacao.md).
+
+---
+
+## 4. Finalização (Milestone 4)
 
 ### Recomendações de Inovação
 *[A preencher após Milestone 4]*
