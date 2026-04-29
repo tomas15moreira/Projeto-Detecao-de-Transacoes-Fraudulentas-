@@ -33,7 +33,7 @@ Para estabelecer um patamar mínimo de desempenho, utilizámos a Regressão Log�
 * **Diagnóstico:** Sinais claros de Underfitting (Subajuste). A simplicidade do modelo linear não foi capaz de capturar as relações não-lineares dos dados.
 
 ### 2.2. Modelos Candidatos e Análise de Ajuste (Fit)
-Avançámos para métodos de _Ensemble Learning_ (Random Forest e XGBoost), reconhecidos pela eficácia em dados desbalanceados.
+Avançámos para métodos de _Ensemble Learning_ (Random Forest e XGBoost), reconhecidos pela eficácia em dados desiquilibrados.
 
 #### Tabela Comparativa de Desempenho (Treino vs. Teste)
 Esta comparação é fundamental para identificar fenómenos de Overfitting (memorização) ou Generalização (aprendizagem real).
@@ -69,13 +69,13 @@ A análise comparativa entre o desempenho do XGBoost Simples (configuração ori
 **Análise Crítica e Justificação:**
 Embora o processo de _tuning_ tenha conseguido elevar o _Recall_ para 83,16% no teste (e uma média de 85,98% em validação cruzada), fê-lo com um custo operacional desproporcional. A Precisão caiu drasticamente de 93,75% para 44,89% e o F1-Score desceu de 0.86 para 0.58. 
 
-Na prática, para detetar mais 4% de fraudes, o modelo passaria a bloquear indevidamente mais de metade das transações que sinaliza como suspeitas. Esta degradação geraria um atrito inaceitável com clientes legítimos. Além disso, o modelo otimizado baixou a AUPRC para 0.79, falhando o cumprimento do Objetivo SMART 1 (≥ 0.80) no conjunto de teste. 
+Na prática, para detetar mais 4% de fraudes, o modelo passaria a bloquear indevidamente mais de metade das transações que sinaliza como suspeitas. Esta degradação criaria um atrito inaceitável com clientes legítimos. Além disso, o modelo otimizado baixou a AUPRC para 0.79, falhando o cumprimento do Objetivo SMART 1 (≥ 0.80) no conjunto de teste. 
 
 **Conclusão:** Optámos por manter o XGBoost Simples como a solução final. Esta configuração provou ser a mais equilibrada e robusta, garantindo uma performance superior global e uma proteção financeira elevada sem comprometer a experiência do utilizador.
 
 ### 3.3. Experiência com SMOTE 
 
-Para explorar a hipótese de que a reamostragem sintética poderia superar o tratamento nativo de desequilíbrio, aplicámos o SMOTE (Synthetic Minority Over-sampling Technique) exclusivamente sobre os dados de treino (nunca sobre o teste), gerando um conjunto artificialmente balanceado (226.602 normais vs. 226.602 fraudes sintéticas). O XGBoost foi re-treinado sem scale_pos_weight nesta versão.
+Para explorar a hipótese de que a reamostragem sintética poderia superar o tratamento nativo de desequilíbrio, aplicámos o SMOTE (Synthetic Minority Over-sampling Technique) exclusivamente sobre os dados de treino (nunca sobre o teste), criando um conjunto artificialmente balanceado (226.602 normais vs. 226.602 fraudes sintéticas). O XGBoost foi re-treinado sem scale_pos_weight nesta versão.
 
 *Comparação direta com o XGBoost original (sem SMOTE):*
 
@@ -87,26 +87,26 @@ Para explorar a hipótese de que a reamostragem sintética poderia superar o tra
 | AUPRC     | 0.8251 | 0.8044 | -0.021 |
 | Falsos Positivos | 5 | 11 | +6 |
 
-*Conclusão da experiência:* O SMOTE *não trouxe valor* neste contexto. Todas as métricas pioraram. A explicação técnica reside no facto de o parâmetro _scale_pos_weight_ do XGBoost já tratar do desequilíbrio de forma nativa e matematicamente mais elegante, atribuindo um peso 599× superior a cada exemplo de fraude durante o cálculo do gradiente, sem introduzir ruído artificial. As fraudes sintéticas geradas pelo SMOTE (interpolações lineares entre fraudes reais) criaram exemplos que não correspondiam a nenhum padrão real, confundindo o modelo.
+*Conclusão da experiência:* O SMOTE *não trouxe valor* neste contexto. Todas as métricas pioraram. A explicação técnica reside no facto de o parâmetro _scale_pos_weight_ do XGBoost já tratar do desequilíbrio de forma nativa e matematicamente mais elegante, atribuindo um peso 599× superior a cada exemplo de fraude durante o cálculo do gradiente, sem introduzir ruído artificial. As fraudes sintéticas criadas pelo SMOTE (interpolações lineares entre fraudes reais) criaram exemplos que não correspondiam a nenhum padrão real, confundindo o modelo.
 
 *Resposta à PI 4:* A aplicação de SMOTE não melhora significativamente a deteção de fraudes face ao tratamento nativo via _scale_pos_weight_. O SMOTE é descartado da solução final.
 
-### 3.4. Validação Cruzada (Stratified K-Fold)
+### 3.4. Validação Cruzada (_Stratified K-Fold_)
 
-Para mitigar a variabilidade inerente a uma única divisão de dados, aplicámos Stratified K-Fold Cross-Validation com K=5 sobre o modelo XGBoost Tuned (que serviu como veículo de teste da estabilidade).
+Para mitigar a variabilidade inerente a uma única divisão de dados, aplicámos _Stratified K-Fold Cross-Validation_ com K=5 sobre o modelo XGBoost _Tuned_ (que serviu como veículo de teste da estabilidade).
 
 | Métrica | Média | Desvio Padrão |
 | :--- | :---: | :---: |
-| *Recall* | 0.8598 | 0.0413 |
-| *AUPRC* | 0.8131 | 0.0323 |
+| _Recall_ | 0.8598 | 0.0413 |
+| _AUPRC_ | 0.8131 | 0.0323 |
 
-Os desvios padrão inferiores a 0.05 confirmam *elevada estabilidade*. O desempenho do modelo não depende de uma divisão aleatória dos dados.
+Os desvios padrão inferiores a 0.05 confirmam elevada estabilidade. O desempenho do modelo não depende de uma divisão aleatória dos dados.
 
 ### 3.5. Re-calibração do Objetivo SMART
 
-A experimentação das secções 3.1 a 3.3 demonstrou que o objetivo original de *Recall ≥ 85%* era ambicioso face às restrições reais do problema. Atingir esse limiar exigiu sacrificar a Precisão a um nível operacionalmente insustentável (de 94% para 45%, com 97 Falsos Positivos).
+A experimentação das secções 3.1 a 3.3 demonstrou que o objetivo original de Recall ≥ 85% era ambicioso face às restrições reais do problema. Atingir esse limiar exigiu sacrificar a Precisão a um nível operacionalmente insustentável (de 94% para 45%, com 97 Falsos Positivos).
 
-Em vez de forçar artificialmente o cumprimento de uma meta numérica, optámos por *re-calibrar o critério de sucesso* com base na evidência empírica:
+Em vez de forçar artificialmente o cumprimento de uma meta numérica, optámos por re-calibrar o critério de sucesso com base na evidência empírica:
 
 > *Critério revisto:* Recall ≥ 75% *E* Precision ≥ 85% *E* AUPRC ≥ 0.80
 
@@ -124,7 +124,7 @@ A análise da matriz de confusão no conjunto de teste revela um desempenho de a
 
 **Análise Crítica das Falhas:**
 A menor fiabilidade do modelo em detetar estes 20 casos não é um erro algorítmico aleatório, mas sim uma limitação estatística dos dados:
-1.  **Escassez de Exemplos (Amostragem):** Mesmo com o ajuste de pesos, o treino conta com apenas ~400 exemplos de fraude contra centenas de milhares de transações normais. Estatisticamente, o modelo tem dificuldade em mapear "subgrupos de fraude" que ocorrem com padrões muito específicos ou raros.
+1.  **Escassez de Exemplos:** Mesmo com o ajuste de pesos, o treino conta com apenas ~400 exemplos de fraude contra centenas de milhares de transações normais. Estatisticamente, o modelo tem dificuldade em mapear "subgrupos de fraude" que ocorrem com padrões muito específicos ou raros.
 2.  **Sobreposição de Classes (Zonas Cinzentas):** A análise visual sugere que estes Falsos Negativos residem numa zona de intersecção estatística, onde os atributos da transação fraudulenta (valor, tempo e componentes PCA) são matematicamente indistinguíveis de uma transação legítima habitual do utilizador.
 
 ### 4.2. Importância dos Atributos (Feature Importance)
@@ -185,4 +185,4 @@ O modelo é fiável para detetar padrões de fraude com desvio estatístico clar
 
 O modelo está pronto para ser apresentado como solução final do projeto.
 ---
-*Data de última atualização: [22/04/2026]*
+*Data de última atualização: [29/04/2026]*
