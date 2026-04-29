@@ -1,4 +1,4 @@
-# Deteção de Transações Fraudulentas em Cartões de Crédito: Modelação Preditiva em Contexto de Dados Severamente não Equilibrados
+# Deteção de Transações Fraudulentas em Cartões de Crédito: Modelação Preditiva em Contexto de Dados Não Equilibrados
 
 ## Identificação da Equipa
 * **Grupo nº:** 8
