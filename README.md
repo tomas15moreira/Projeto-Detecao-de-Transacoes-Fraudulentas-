@@ -159,9 +159,44 @@ A aplicação do SMOTE **não trouxe valor** neste contexto específico: todas a
 ---
 
 ## 4. Finalização (Milestone 4)
+
 ### Resposta ao Problema
+
+O objetivo central do projeto, definido no Milestone 1, foi desenvolver um modelo de classificação supervisionada capaz de *identificar transações fraudulentas num cenário de extremo desequilíbrio de classes, minimizando perdas financeiras sem gerar atrito operacional excessivo. **O objetivo foi alcançado com solidez:*
+
+* *Eficácia técnica:* o modelo final (XGBoost) atinge uma AUPRC de *0.8251* (superior à meta SMART de ≥ 0.80), um Recall de *78,95%* e uma Precision de *93,75%* no conjunto de teste, cumprindo o critério SMART revisto (Recall ≥ 75% *E* Precision ≥ 85% *E* AUPRC ≥ 0.80).
+
+* *Impacto financeiro real:* dos 14.766,31€ em fraudes presentes no conjunto de teste, o modelo *protege 10.977,51€ (74,3% do valor em risco), gerando apenas **5 bloqueios indevidos* em 56.651 transações legítimas (0,009% de atrito).
+
+* *Escala bancária estimada:* numa simulação para 500.000 transações diárias, o modelo detetaria *660 fraudes por dia* (com apenas 44 alertas falsos), traduzindo-se numa *proteção financeira anual estimada superior a 37 milhões de euros*.
+
+* *Honestidade analítica:* as 20 fraudes que escapam ao modelo são predominantemente *micro-transações* (mediana = 2€), padrão consistente com a técnica criminal de Card Testing — uma limitação intrínseca que apenas se mitiga com variáveis extra-transacionais (geolocalização, IP, dispositivo).
+
+> *Em linguagem simples:* o modelo identifica 79% das fraudes com 94% de confiança, protege 74% do valor financeiro em risco e bloqueia menos de 1 em cada 10.000 transações legítimas — uma combinação operacionalmente viável para implementação em produção bancária.
+
 ### Recomendações de Inovação
-*[A preencher após Milestone 4]*
+
+A análise crítica do modelo (documentada em [docs/M4_conclusoes.md](docs/M4_conclusoes.md)) traça um roadmap claro com 4 evoluções concretas para escalar este projeto a um cenário real:
+
+1. *Limiares de Decisão Dinâmicos (*Threshold Tuning)** — sistema ajustável que permite "apertar" ou "relaxar" a sensibilidade do modelo conforme o contexto operacional (épocas de elevado consumo vs. períodos de alerta).
+
+2. *Enriquecimento com Variáveis Contextuais* — integração de geolocalização, endereço IP, identificação de dispositivo e biometria comportamental para reduzir os Falsos Negativos atuais, particularmente as micro-transações de Card Testing.
+
+3. *Operacionalização via API (*FastAPI + Docker)* — empacotamento do modelo num microsserviço de alto desempenho, integrável diretamente no *pipeline de autorizações, com tempo de inferência inferior a 200ms.
+
+4. *Arquiteturas Avançadas (*Autoencoders)* — exploração de modelos de deteção de anomalias não-supervisionada como segunda linha de defesa, especialmente útil contra ataques inéditos (*zero-day) sem precedente nos dados de treino.
+
+### Considerações Éticas e Limitações Reconhecidas
+
+O projeto incorpora explicitamente princípios de *IA Responsável*:
+
+* *Conformidade RGPD* — variáveis anonimizadas via PCA garantem privacidade total dos clientes.
+* *Transparência (Explainable AI)* — Feature Importance permite auditar e justificar cada decisão do modelo.
+* *Prevenção de Viés* — ausência deliberada de atributos demográficos elimina o risco de discriminação algorítmica.
+
+São reconhecidas como limitações principais a *interpretabilidade reduzida* das variáveis PCA, a *dificuldade na deteção de micro-fraudes* e a necessidade de monitorização de **Concept Drift** dado que os dados são de 2013 (técnicas de fraude evoluem rapidamente).
+
+> Para a análise crítica completa, roadmap detalhado e considerações éticas, consultar [docs/M4_conclusoes.md](docs/M4_conclusoes.md).
 
 ---
 ## Tecnologias e Ferramentas Utilizadas
