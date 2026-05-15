@@ -83,9 +83,9 @@ Antes da definição dos objetivos, foi realizada uma inspeção preliminar ao _
 
 ### Limpeza e Preparação
 
-* **Valores Nulos:** Confirmou-se a integridade total do *dataset* (zero valores nulos em todas as colunas).
-* **Registos Duplicados:** Foram identificadas e removidas 1.081 transações duplicadas, resultando num conjunto final de 283.726 registos únicos. Esta limpeza é fundamental para evitar o enviesamento (*overfitting*) dos modelos.
-* **Tratamento de Outliers:** Optou-se estrategicamente por manter os valores extremos (especialmente na variável `Amount`), dado que num contexto de deteção de fraude, a remoção cega de *outliers* poderia eliminar as próprias transações anómalas que pretendemos prever. A amplitude dos valores foi tratada com **`RobustScaler`** (mais robusto a *outliers* do que o `StandardScaler`) na fase de modelação.
+* **Valores Nulos:** Confirmou-se a integridade total do _dataset_ (zero valores nulos em todas as colunas).
+* **Registos Duplicados:** Foram identificadas e removidas 1.081 transações duplicadas, resultando num conjunto final de 283.726 registos únicos. Esta limpeza é fundamental para evitar o enviesamento (_overfitting_) dos modelos.
+* **Tratamento de Outliers:** Optou-se estrategicamente por manter os valores extremos (especialmente na variável `Amount`), dado que num contexto de deteção de fraude, a remoção cega de _outliers_ poderia eliminar as próprias transações anómalas que pretendemos prever. A amplitude dos valores foi tratada com `RobustScaler` (mais robusto a _outliers_ do que o `StandardScaler`) na fase de modelação.
 
 ### Engenharia de Atributos (*Feature Engineering*)
 
@@ -110,8 +110,8 @@ A partir das variáveis originais, foram criadas duas variáveis categóricas qu
 
 ### Abordagem Técnica
 
-* **Estratégia de Validação:** Divisão Treino/Teste 80/20 com `stratify=y` (preservação da proporção de fraudes), seguida de *Stratified K-Fold Cross-Validation* (K=5) para validação da estabilidade.
-* **Modelos Testados:** Regressão Logística (*baseline*), Random Forest, XGBoost, XGBoost + SMOTE, XGBoost com hiperparâmetros sintonizados (*RandomizedSearchCV*).
+* **Estratégia de Validação:** Divisão Treino/Teste 80/20 com `stratify=y` (preservação da proporção de fraudes), seguida de _Stratified K-Fold Cross-Validation_ (K=5) para validação da estabilidade.
+* **Modelos Testados:** Regressão Logística (_baseline_), Random Forest, XGBoost, XGBoost + SMOTE, XGBoost com hiperparâmetros sintonizados (_RandomizedSearchCV_).
 * **Métricas Principais:** AUPRC (qualidade global em dados desbalanceados), Recall (sensibilidade na deteção de fraudes), Precision (qualidade dos alertas), F1-Score (equilíbrio).
 
 ### Modelo Final Selecionado: XGBoost com hiperparâmetros base
@@ -122,9 +122,9 @@ Configuração: `n_estimators=100`, `max_depth=6`, `scale_pos_weight=599`, `rand
 
 | Métrica | Resultado | Estado | Tradução para o Negócio |
 | :--- | :---: | :---: | :--- |
-| AUPRC | 0.8251 | ✅ | A qualidade preditiva global supera o limiar SMART de 0.80. |
-| Recall | 0.7895 | ✅* | O modelo deteta 75 das 95 fraudes presentes (cumpre o critério revisto ≥ 75%). |
-| Precision | 0.9375 | ✅ | Quando o modelo sinaliza fraude, está correto em 94% dos casos — alta confiança. |
+| AUPRC | 0.8251 | - | A qualidade preditiva global supera o limiar SMART de 0.80. |
+| Recall | 0.7895 | - | O modelo deteta 75 das 95 fraudes presentes (cumpre o critério revisto ≥ 75%). |
+| Precision | 0.9375 | - | Quando o modelo sinaliza fraude, está correto em 94% dos casos — alta confiança. |
 | F1-Score | 0.8571 | — | Equilíbrio sólido entre deteção e qualidade dos alertas. |
 | Falsos Positivos | 5 | — | Apenas 5 clientes legítimos bloqueados em 56.651 transações normais (0,009%). |
 | Falsos Negativos | 20 | — | 20 fraudes escaparam — predominantemente micro-transações (mediana = 2€). |
@@ -138,9 +138,9 @@ A tradução das métricas para valor monetário mostra o impacto prático da so
 | Indicador | Valor | Significado |
 | :--- | ---: | :--- |
 | Valor total das fraudes no teste | 14.766,31€ | Total exposto a risco. |
-| **Valor protegido pelo modelo** | **10.977,51€** | Capturado em 75 fraudes detetadas. |
+| **Valor protegido pelo modelo** | 10.977,51€ | Capturado em 75 fraudes detetadas. |
 | Valor não detetado | 3.788,80€ | Escapou em 20 fraudes (mediana = 2€). |
-| **Taxa de proteção financeira** | **74,3%** | Recuperação efetiva do valor em risco. |
+| **Taxa de proteção financeira** | 74,3% | Recuperação efetiva do valor em risco. |
 
 ### Re-calibração do Critério de Sucesso
 
