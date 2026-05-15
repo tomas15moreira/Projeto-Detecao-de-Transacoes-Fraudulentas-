@@ -1,10 +1,10 @@
 # Deteção de Transações Fraudulentas em Cartões de Crédito: Modelação Preditiva em Contexto de Dados Não Equilibrados
 
-Este projeto desenvolveu um sistema de deteção de fraude em tempo real para transações de cartão de crédito, capaz de **identificar 79% das fraudes com 94% de confiança** num cenário de extremo desequilíbrio de classes (apenas 0,17% de fraudes em 284.807 transações).
+Este projeto desenvolveu um sistema de deteção de fraude em tempo real para transações de cartão de crédito, capaz de identificar 79% das fraudes com 94% de confiança num cenário de extremo desequilíbrio de classes (apenas 0,17% de fraudes em 284.807 transações).
 
-Em termos práticos, o modelo final (XGBoost) **protege 74% do valor financeiro em risco**, faz apenas 5 bloqueios indevidos por cada 56.651 transações legítimas, um nível de atrito operacional perfeitamente gerível em produção bancária.
+Em termos práticos, o modelo final (XGBoost) protege 74% do valor financeiro em risco, faz apenas 5 bloqueios indevidos por cada 56.651 transações legítimas, um nível de atrito operacional perfeitamente gerível em produção bancária.
 
-Numa simulação para um banco com 500.000 transações diárias, o sistema detetaria **660 fraudes por dia** com apenas 44 falsos alertas, uma proteção financeira anual estimada em milhões de euros.
+Numa simulação para um banco com 500.000 transações diárias, o sistema detetaria 660 fraudes por dia com apenas 44 falsos alertas, uma proteção financeira anual estimada em milhões de euros.
 
 ---
 ## Identificação da Equipa
@@ -41,41 +41,41 @@ A estrutura deste projeto segue as boas práticas de Ciência de Dados e Engenha
 
 ### Contexto e Problema de Negócio
 
-A fraude com cartões de crédito gera prejuízos financeiros massivos para bancos e consumidores. O desafio central é identificar transações fraudulentas em tempo real. No entanto, este é um problema de "procurar uma agulha no palheiro": a grande maioria das transações é legítima, tornando a deteção difícil sem gerar muitos alarmes falsos.
+A fraude com cartões de crédito gera prejuízos financeiros massivos para bancos e consumidores. O desafio central é identificar transações fraudulentas em tempo real. No entanto, a grande maioria das transações é legítima, tornando a deteção difícil sem gerar muitos alarmes falsos.
 
-**O Desafio Técnico:** O *dataset* apresenta um desequilíbrio extremo (apenas 0,172% das transações são fraudes), o que invalida métricas tradicionais como a Acurácia e exige abordagens metodológicas específicas para classes minoritárias.
+**O Desafio Técnico:** O _dataset_ apresenta um desequilíbrio extremo (apenas 0,172% das transações são fraudes), o que invalida métricas tradicionais como a Acurácia e exige abordagens metodológicas específicas para classes minoritárias.
 
 ### Resumo da Análise Inicial ao Conjunto de Dados
 
-Antes da definição dos objetivos, foi realizada uma inspeção preliminar ao *dataset* da qual se destacam as seguintes características estruturais:
+Antes da definição dos objetivos, foi realizada uma inspeção preliminar ao _dataset_ da qual se destacam as seguintes características estruturais:
 
 | Característica | Observação | Implicação para o projeto |
 | :--- | :--- | :--- |
-| **Dimensão** | 284.807 transações × 31 colunas | Volume adequado para algoritmos de *ensemble*. |
+| **Dimensão** | 284.807 transações × 31 colunas | Volume adequado para algoritmos de _ensemble_. |
 | **Integridade** | Zero valores nulos em todas as colunas | Dispensa estratégias de imputação. |
 | **Variável-alvo** | `Class` (0 = Normal, 1 = Fraude) | Problema de classificação binária supervisionada. |
 | **Variáveis preditoras** | V1–V28 (anonimizadas por PCA) + `Time` + `Amount` | Sem interpretação de negócio direta nas V1–V28; exige modelos não paramétricos. |
 | **Desequilíbrio** | 0,172% de fraudes (492 em 284.807) | Maior desafio técnico — condiciona métricas, algoritmos e estratégia de validação. |
-| **Período coberto** | 48 horas consecutivas de transações | Permite criação de *features* temporais (`Hora`, `Periodo_do_Dia`). |
+| **Período coberto** | 48 horas consecutivas de transações | Permite criação de _features_ temporais (`Hora`, `Periodo_do_Dia`). |
 
 ### Objetivos do Projeto (SMART)
 
-* **Objetivo 1 (Preditivo — Qualidade Global):** Desenvolver um modelo de classificação supervisionada para identificar transações fraudulentas em cartões de crédito com uma **AUPRC (*Area Under Precision-Recall Curve*) mínima de 0.80** no conjunto de teste, validado por *Stratified K-Fold Cross-Validation*, até à entrega do *Milestone 3* (23/04/2026).
+* **Objetivo 1 (Preditivo — Qualidade Global):** Desenvolver um modelo de classificação supervisionada para identificar transações fraudulentas em cartões de crédito com uma AUPRC (_Area Under Precision-Recall Curve_) mínima de 0.80 no conjunto de teste, validado por _Stratified K-Fold Cross-Validation_, até à entrega do _Milestone 3_ (23/04/2026).
 
-* **Objetivo 2 (Preditivo — Sensibilidade):** Desenvolver um modelo de classificação supervisionada que atinja uma **Sensibilidade (*Recall*) superior a 85%** na deteção de transações fraudulentas no conjunto de teste, minimizando os Falsos Negativos (fraudes não detetadas, que representam o maior risco financeiro), até à entrega do *Milestone 3* (23/04/2026).
+* **Objetivo 2 (Preditivo — Sensibilidade):** Desenvolver um modelo de classificação supervisionada que atinja uma Sensibilidade (_Recall_) superior a 85% na deteção de transações fraudulentas no conjunto de teste, minimizando os Falsos Negativos (fraudes não detetadas, que representam o maior risco financeiro), até à entrega do _Milestone 3_ (23/04/2026).
 
 ### Perguntas de Investigação
 
 1. Existe uma correlação direta entre o montante da transação e a probabilidade de esta ser classificada como fraude, ou as fraudes tendem a ocorrer em valores mais baixos para passar despercebidas?
 2. Quais são as 3 variáveis que mais contribuem para a previsão correta de uma transação ilícita?
 3. Existem padrões temporais específicos que sejam mais comuns nas transações fraudulentas comparativamente às transações legítimas?
-4. A aplicação de técnicas de reamostragem sintética (*SMOTE — Synthetic Minority Over-sampling Technique*) sobre os dados de treino melhora significativamente a capacidade de deteção de fraudes (*Recall*) face ao tratamento nativo de desequilíbrio via `scale_pos_weight`?
+4. A aplicação de técnicas de reamostragem sintética (_SMOTE — Synthetic Minority Over-sampling Technique_) sobre os dados de treino melhora significativamente a capacidade de deteção de fraudes (_Recall_) face ao tratamento nativo de desequilíbrio via `scale_pos_weight`?
 
 ### Fonte de Dados
 
 * **Dataset:** [Credit Card Fraud Detection (Kaggle)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
 * **Dimensão:** 284.807 transações, 31 colunas.
-* **Origem científica:** dados recolhidos e disponibilizados pelo *Machine Learning Group* da *Université Libre de Bruxelles* (ULB) em parceria com a empresa Worldline, no âmbito de investigação sobre deteção de fraude em transações de cartão de crédito.
+* **Origem científica:** dados recolhidos e disponibilizados pelo _Machine Learning Group_ da _Université Libre de Bruxelles_ (ULB) em parceria com a empresa Worldline, no âmbito de investigação sobre deteção de fraude em transações de cartão de crédito.
 
 ---
 
