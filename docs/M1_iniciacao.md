@@ -22,9 +22,7 @@ Considerando as restrições do _dataset_ (onde as variáveis preditivas origina
 Para responder a este problema, a solução exigirá a seleção de métricas de avaliação que penalizem a incapacidade de deteção da classe minoritária, como a AUPRC (_Area Under the Precision-Recall Curve_), bem como o tratamento metodológico do desequilíbrio de classes durante o treino dos algoritmos.
 
 ## 2. Objetivos SMART
-1. **Objetivo 1 (Preditivo — Qualidade Global):** Desenvolver um modelo de classificação supervisionada para identificar transações fraudulentas em cartões de crédito com uma **AUPRC mínima de 0.80** no conjunto de teste, validado por _Stratified K-Fold Cross-Validation_, até à entrega do _Milestone 3_ (23/04/2026).
-
-2. **Objetivo 2 (Preditivo — Sensibilidade):** Desenvolver um modelo de classificação supervisionada que atinja uma **Sensibilidade (_Recall_) superior a 85%** na deteção de transações fraudulentas no conjunto de teste, minimizando os Falsos Negativos (que representam o maior risco financeiro), até à entrega do _Milestone 3_ (23/04/2026).
+1. **Objetivo 1 (Preditivo — Qualidade Global e Sensibilidade):** Desenvolver um modelo de classificação supervisionada para identificar transações fraudulentas em cartões de crédito que cumpra simultaneamente três critérios de desempenho no conjunto de teste, AUPRC (Area Under Precision-Recall Curve) ≥ 0.80, Recall ≥ 75% e Precision ≥ 85%, validado por Stratified K-Fold Cross-Validation, garantindo uma proteção financeira efetiva sobre as fraudes sem comprometer a experiência operacional do banco (minimização de Falsos Positivos), até à entrega do Milestone 3 (23/04/2026).
 
 **Perguntas de Investigação**
 1. Existe uma correlação direta entre o montante da transação e a probabilidade de esta ser classificada como fraude, ou as fraudes tendem a ocorrer em valores mais baixos para passar despercebidas?
@@ -147,9 +145,9 @@ Em suma, a equipa encontra-se munida de um conjunto de dados viável e de um pla
 | M1: Iniciação | 24/02/2026 | Repositório estruturado e Plano de Projeto. |
 | M2: Exploração | 24/03/2026 | Notebook de EDA e Dados Processados. |
 | M3: Modelação | 23/04/2026 | Comparação de algoritmos e métricas. |
-| M4: Finalização |  | Pitch e Relatório Final. |
+| M4: Finalização | 18/05/2026 | Pitch e Relatório Final. |
 ---
 
-*Data de última atualização: [29/04/2026]*
+*Data de última atualização: [15/05/2026]*
 
 
