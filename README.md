@@ -60,9 +60,7 @@ Antes da definição dos objetivos, foi realizada uma inspeção preliminar ao _
 
 ### Objetivos do Projeto (SMART)
 
-* **Objetivo 1 (Preditivo — Qualidade Global):** Desenvolver um modelo de classificação supervisionada para identificar transações fraudulentas em cartões de crédito com uma AUPRC (_Area Under Precision-Recall Curve_) mínima de 0.80 no conjunto de teste, validado por _Stratified K-Fold Cross-Validation_, até à entrega do _Milestone 3_ (23/04/2026).
-
-* **Objetivo 2 (Preditivo — Sensibilidade):** Desenvolver um modelo de classificação supervisionada que atinja uma Sensibilidade (_Recall_) superior a 85% na deteção de transações fraudulentas no conjunto de teste, minimizando os Falsos Negativos (fraudes não detetadas, que representam o maior risco financeiro), até à entrega do _Milestone 3_ (23/04/2026).
+* **Objetivo 1 (Preditivo — Qualidade Global e Sensibilidade):** Desenvolver um modelo de classificação supervisionada para identificar transações fraudulentas em cartões de crédito que cumpra simultaneamente três critérios de desempenho no conjunto de teste, AUPRC (Area Under Precision-Recall Curve) ≥ 0.80, Recall ≥ 75% e Precision ≥ 85%, validado por Stratified K-Fold Cross-Validation, garantindo uma proteção financeira efetiva sobre as fraudes sem comprometer a experiência operacional do banco (minimização de Falsos Positivos), até à entrega do Milestone 3 (23/04/2026).
 
 ### Perguntas de Investigação
 
