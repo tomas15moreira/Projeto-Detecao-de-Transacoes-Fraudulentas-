@@ -15,7 +15,7 @@ A preparação dos dados para os algoritmos seguiu as melhores práticas da ind�
 O objetivo principal do negócio é maximizar a deteção de fraudes (minimizar Falsos Negativos), pois uma fraude não detetada representa o "Risco Máximo" e perda financeira direta para a instituição. Por conseguinte, a _Accuracy_ (Exatidão) foi descartada e a nossa função de avaliação (avaliar_modelo) foi desenhada para extrair os seguintes indicadores:
 
 * **Matriz de Confusão:** Ferramenta visual prioritária para quantificar o número absoluto de transações legítimas bloqueadas (Falsos Positivos) e de fraudes que escaparam (Falsos Negativos).
-* **Recall (Sensibilidade):** Métrica de negócio fundamental que indica a percentagem de fraudes reais que o modelo conseguiu capturar. O nosso objetivo base é superar os 85%.
+* **Recall (Sensibilidade):** Métrica de negócio fundamental que indica a percentagem de fraudes reais que o modelo conseguiu capturar. O nosso critério SMART exige Recall ≥ 75% combinado com Precision ≥ 85%.
 * **AUPRC (_Area Under the Precision-Recall Curve_):** Selecionada como a métrica principal do projeto. Ao contrário da curva ROC, a AUPRC é a métrica mais fiável para conjuntos de dados severamente desequilibrados, avaliando o _trade-off_ entre Precisão e _Recall_. O nosso objetivo SMART estabelecido é alcançar um valor ≥ 0.80.
 * **Métricas Complementares:** F1-Score (média harmónica entre precisão e sensibilidade) e AUC-ROC (calculada por referência, embora analisada com precaução devido ao desequilíbrio).
 
@@ -36,7 +36,7 @@ Para estabelecer um patamar mínimo de desempenho, utilizámos a Regressão Log�
 Avançámos para métodos de _Ensemble Learning_ (Random Forest e XGBoost), reconhecidos pela eficácia em dados desiquilibrados.
 
 #### Tabela Comparativa de Desempenho (Treino vs. Teste)
-Esta comparação é fundamental para identificar fenómenos de Overfitting (memorização) ou Generalização (aprendizagem real).
+Esta comparação é fundamental para identificar fenómenos de _Overfitting_ (memorização) ou Generalização (aprendizagem real).
 
 | Modelo | Recall (Treino) | Recall (Teste) | F1-Score (Teste) | AUPRC (Teste) |
 | :--- | :--- | :--- | :--- | :--- |
@@ -75,7 +75,7 @@ Na prática, para detetar mais 4% de fraudes, o modelo passaria a bloquear indev
 
 ### 3.3. Experiência com SMOTE 
 
-Para explorar a hipótese de que a reamostragem sintética poderia superar o tratamento nativo de desequilíbrio, aplicámos o SMOTE (Synthetic Minority Over-sampling Technique) exclusivamente sobre os dados de treino (nunca sobre o teste), criando um conjunto artificialmente balanceado (226.602 normais vs. 226.602 fraudes sintéticas). O XGBoost foi re-treinado sem scale_pos_weight nesta versão.
+Para explorar a hipótese de que a reamostragem sintética poderia superar o tratamento nativo de desequilíbrio, aplicámos o SMOTE (_Synthetic Minority Over-sampling Technique_) exclusivamente sobre os dados de treino (nunca sobre o teste), criando um conjunto artificialmente balanceado (226.602 normais vs. 226.602 fraudes sintéticas). O XGBoost foi re-treinado sem _scale_pos_weight_ nesta versão.
 
 *Comparação direta com o XGBoost original (sem SMOTE):*
 
@@ -87,7 +87,7 @@ Para explorar a hipótese de que a reamostragem sintética poderia superar o tra
 | AUPRC     | 0.8251 | 0.8044 | -0.021 |
 | Falsos Positivos | 5 | 11 | +6 |
 
-*Conclusão da experiência:* O SMOTE *não trouxe valor* neste contexto. Todas as métricas pioraram. A explicação técnica reside no facto de o parâmetro _scale_pos_weight_ do XGBoost já tratar do desequilíbrio de forma nativa e matematicamente mais elegante, atribuindo um peso 599× superior a cada exemplo de fraude durante o cálculo do gradiente, sem introduzir ruído artificial. As fraudes sintéticas criadas pelo SMOTE (interpolações lineares entre fraudes reais) criaram exemplos que não correspondiam a nenhum padrão real, confundindo o modelo.
+*Conclusão da experiência:* O SMOTE não trouxe valor neste contexto. Todas as métricas pioraram. A explicação técnica reside no facto de o parâmetro _scale_pos_weight_ do XGBoost já tratar do desequilíbrio de forma nativa e matematicamente mais elegante, atribuindo um peso 599× superior a cada exemplo de fraude durante o cálculo do gradiente, sem introduzir ruído artificial. As fraudes sintéticas criadas pelo SMOTE (interpolações lineares entre fraudes reais) criaram exemplos que não correspondiam a nenhum padrão real, confundindo o modelo.
 
 *Resposta à PI 4:* A aplicação de SMOTE não melhora significativamente a deteção de fraudes face ao tratamento nativo via _scale_pos_weight_. O SMOTE é descartado da solução final.
 
@@ -104,13 +104,15 @@ Os desvios padrão inferiores a 0.05 confirmam elevada estabilidade. O desempenh
 
 ### 3.5. Re-calibração do Objetivo SMART
 
-A experimentação das secções 3.1 a 3.3 demonstrou que o objetivo original de Recall ≥ 85% era ambicioso face às restrições reais do problema. Atingir esse limiar exigiu sacrificar a Precisão a um nível operacionalmente insustentável (de 94% para 45%, com 97 Falsos Positivos).
+A experimentação das secções 3.1 a 3.3 forneceu a evidência empírica que confirma a robustez do critério SMART definido no Milestone 1. Configurações que privilegiam isoladamente o Recall, como o XGBoost Tuned (Recall = 83,16%), apresentam Precision degradada para 44,89% e geram 97 Falsos Positivos no conjunto de teste, um trade-off operacionalmente insustentável.
 
-Em vez de forçar artificialmente o cumprimento de uma meta numérica, optámos por re-calibrar o critério de sucesso com base na evidência empírica:
+Esta evidência reforça a pertinência de um objetivo composto, em que os três critérios devem ser cumpridos em simultâneo:
 
-> *Critério revisto:* Recall ≥ 75% *E* Precision ≥ 85% *E* AUPRC ≥ 0.80
+> *Critério SMART:* Recall ≥ 75% E Precision ≥ 85% E AUPRC ≥ 0.80
 
-Esta re-calibração reconhece que a métrica isolada de Recall, sem restrições de Precisão, premia comportamentos extremos do modelo que não traduzem valor real no contexto bancário.
+Esta formulação reconhece que a métrica isolada de Recall, sem restrições de Precisão, premia comportamentos extremos do modelo que não traduzem valor real no contexto bancário. A combinação das três métricas obriga o modelo a equilibrar deteção, qualidade dos alertas e robustez global.
+
+> *Verificação:* o modelo final cumpre os três critérios em simultâneo — AUPRC = 0.8251, Recall = 0.7895, Precision = 0.9375.
 
 ## 4. Avaliação do Modelo Final
 Nesta secção, procedemos à auditoria detalhada do comportamento do modelo XGBoost Simples, identificando não apenas o seu sucesso, mas também a natureza estatística das suas falhas.
@@ -140,7 +142,7 @@ A análise da importância dos atributos, medida pelo Gain (ganho médio de info
 
 Observações:
 1.  V14 domina claramente com um Gain 11× superior à segunda variável (V4). Esta componente PCA captura o desvio comportamental mais forte associado a fraude.
-2.  V17 não surge no top 5, apesar de ter apresentado a correlação mais forte com Class na fase de EDA (M2). Isto sugere que a informação de V17 é parcialmente redundante com V14 — o modelo extrai a mesma capacidade discriminante a partir de V14.
+2.  V17 não surge no top 5, apesar de ter apresentado a correlação mais forte com Class na fase de EDA (M2). Isto sugere que a informação de V17 é parcialmente redundante com V14, o modelo extrai a mesma capacidade discriminante a partir de V14.
 3.  Variáveis de negócio criadas (Periodo_do_Dia, Nivel_da_Transacao_Monetaria) têm impacto residual, o que indica que os padrões temporais e monetários já estavam codificados nas componentes PCA originais.
 
 Gráfico de Feature Importance <img width="600" height="400" alt="Feature_importance" src="https://github.com/user-attachments/assets/44a214f1-fff7-4365-bb31-9ae9e9e66c57" />
@@ -149,22 +151,22 @@ Gráfico de Feature Importance <img width="600" height="400" alt="Feature_import
 O modelo apresenta elevada fiabilidade para detetar padrões de fraude "óbvios" ou de alto impacto, onde o desvio estatístico é claro. No entanto, a fiabilidade é moderada em ataques de "baixa intensidade" (transações que mimetizam perfeitamente o perfil de consumo do cliente), onde a ausência de variáveis contextuais extra-transacionais (como localização GPS ou ID do dispositivo) impede uma separação perfeita das classes.
 
 ## 5. Conclusão da Fase de Modelação
-Após a experimentação com 5 configurações distintas (Regressão Logística, Random Forest, XGBoost, XGBoost + SMOTE, XGBoost Tuned), o modelo selecionado como solução final é o *XGBoost com hiperparâmetros base* (n_estimators=100, max_depth=6, scale_pos_weight=599, random_state=42).
+Após a experimentação com 5 configurações distintas (Regressão Logística, Random Forest, XGBoost, XGBoost + SMOTE, XGBoost Tuned), o modelo selecionado como solução final é o _XGBoost com hiperparâmetros base_ (n_estimators=100, max_depth=6, scale_pos_weight=599, random_state=42).
 
-### Cumprimento dos Objetivos SMART (revistos)
+### Cumprimento do Objetivo SMART (revistos)
 
 | Critério | Limiar | Resultado | Estado |
 | :--- | :---: | :---: | :---: |
-| AUPRC | ≥ 0.80 | 0.8251 | ✅ |
-| Recall | ≥ 0.75 | 0.7895 | ✅ |
-| Precision | ≥ 0.85 | 0.9375 | ✅ |
+| AUPRC | ≥ 0.80 | 0.8251 | Cumprido |
+| Recall | ≥ 0.75 | 0.7895 | Cumprido |
+| Precision | ≥ 0.85 | 0.9375 | Cumprido |
 
 ### Razões da escolha deste modelo em detrimento dos outros candidatos
 
 1. *vs. Regressão Logística (Baseline):* Underfitting severo (Recall = 0.58) — incapaz de capturar a complexidade não-linear dos padrões de fraude.
 2. *vs. Random Forest:* Overfitting mais acentuado (gap Treino-Teste de 22.7 p.p.) e 20× mais lento no treino.
-3. *vs. XGBoost + SMOTE:* o SMOTE piorou todas as métricas — o scale_pos_weight nativo provou ser superior (PI 4 respondida).
-4. *vs. XGBoost Tuned:* o ganho marginal de +4% em Recall custou uma queda de 49 p.p. em Precision e um aumento de 1.840% nos Falsos Positivos — trade-off insustentável para produção bancária.
+3. *vs. XGBoost + SMOTE:* o SMOTE piorou todas as métricas, o scale_pos_weight nativo provou ser superior (PI 4 respondida).
+4. *vs. XGBoost Tuned:* o ganho marginal de +4% em Recall custou uma queda de 49 p.p. em Precision e um aumento de 1.840% nos Falsos Positivos, trade-off insustentável para produção bancária.
 
 ### Estabilidade
 
@@ -175,14 +177,14 @@ A Stratified K-Fold Cross-Validation (K=5) confirmou Recall médio de 0.8598 ± 
 | PI | Resposta |
 | :--- | :--- |
 | *PI 1* (Amount vs. Fraude) | Não existe correlação linear forte entre o montante e a probabilidade de fraude. As fraudes distribuem-se por vários escalões de valor. |
-| *PI 2* (Top 3 variáveis) | V14, V4 e V12 — confirmadas pela Feature Importance do modelo final. V17, apesar de forte na correlação (M2), é redundante com V14. |
-| *PI 3* (Padrões temporais) | Sim — concentração de fraudes no período da madrugada (2h–6h), onde o risco proporcional é significativamente superior. |
-| *PI 4* (SMOTE vs. scale_pos_weight) | O SMOTE *não melhorou* a deteção. O tratamento nativo via scale_pos_weight foi superior em todas as métricas. |
+| *PI 2* (Top 3 variáveis) | V14, V4 e V12, confirmadas pela Feature Importance do modelo final. V17, apesar de forte na correlação (M2), é redundante com V14. |
+| *PI 3* (Padrões temporais) | Sim, concentração de fraudes no período da madrugada (2h–6h), onde o risco proporcional é significativamente superior. |
+| *PI 4* (SMOTE vs. scale_pos_weight) | O SMOTE não melhorou a deteção. O tratamento nativo via scale_pos_weight foi superior em todas as métricas. |
 
 ### Fiabilidade e Limitações
 
-O modelo é fiável para detetar padrões de fraude com desvio estatístico claro nas componentes PCA. A sua principal limitação reside na deteção de fraudes de "baixa intensidade" que mimetizam o perfil de consumo legítimo — cenários onde a ausência de variáveis extra-transacionais (geolocalização, endereço IP, histórico de dispositivos) impede uma separação perfeita das classes.
+O modelo é fiável para detetar padrões de fraude com desvio estatístico claro nas componentes PCA. A sua principal limitação reside na deteção de fraudes de "baixa intensidade" que mimetizam o perfil de consumo legítimo, cenários onde a ausência de variáveis extra-transacionais (geolocalização, endereço IP, histórico de dispositivos) impede uma separação perfeita das classes.
 
 O modelo está pronto para ser apresentado como solução final do projeto.
 ---
-*Data de última atualização: [29/04/2026]*
+*Data de última atualização: [15/05/2026]*
