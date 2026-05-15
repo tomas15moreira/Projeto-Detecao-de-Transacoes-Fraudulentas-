@@ -112,6 +112,30 @@ A partir das variáveis originais, foram criadas duas variáveis categóricas qu
 * **Modelos Testados:** Regressão Logística (_baseline_), Random Forest, XGBoost, XGBoost + SMOTE, XGBoost com hiperparâmetros sintonizados (_RandomizedSearchCV_).
 * **Métricas Principais:** AUPRC (qualidade global em dados desbalanceados), Recall (sensibilidade na deteção de fraudes), Precision (qualidade dos alertas), F1-Score (equilíbrio).
 
+### Comparação Empírica de Modelos Testados
+
+A seleção do modelo final resultou de uma comparação rigorosa entre cinco configurações algorítmicas distintas, avaliadas no mesmo conjunto de teste (56.746 transações, das quais 95 fraudes). A tabela seguinte apresenta os resultados completos:
+
+| Modelo | AUPRC | Recall | Precision | F1-Score | Falsos Positivos | Falsos Negativos | Notas |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| Regressão Logística (Baseline) | 0.6955 | 0.5789 | 0.8462 | 0.6875 | 10 | 40 | Underfitting — modelo linear insuficiente |
+| Random Forest | 0.7805 | 0.7474 | 0.8875 | 0.8114 | 9 | 24 | Bom desempenho, mas mais lento e menos preciso que XGBoost |
+| *XGBoost (base)* | *0.8251* | *0.7895* | *0.9375* | *0.8571* | *5* | *20* | *Modelo selecionado — cumpre os 3 critérios SMART* |
+| XGBoost + SMOTE | 0.8044 | 0.7684 | 0.8690 | 0.8156 | 11 | 22 | Todas as métricas pioraram face ao XGBoost base |
+| XGBoost Tuned (RandomizedSearchCV) | 0.7936 | 0.8316 | 0.4489 | 0.5830 | 97 | 16 | Recall alto mas Precision insustentável (97 FPs) |
+
+*Critério SMART aplicado:* AUPRC ≥ 0.80 *E* Recall ≥ 75% *E* Precision ≥ 85%
+
+| Modelo | AUPRC ≥ 0.80 | Recall ≥ 75% | Precision ≥ 85% | Cumpre SMART? |
+| :--- | :---: | :---: | :---: | :---: |
+| Regressão Logística | Não | Não | Não | Não |
+| Random Forest | Não | Não | Sim | Não |
+| *XGBoost (base)* | *Sim* | *Sim* | *Sim* | *Sim* |
+| XGBoost + SMOTE | Sim | Sim | Sim | Sim (mas inferior em todas as métricas) |
+| XGBoost Tuned | Não | Sim | Não | Não |
+
+> Apenas o *XGBoost com hiperparâmetros base* cumpre os três critérios SMART *e* apresenta o melhor desempenho global em quatro das cinco métricas principais (AUPRC, Precision, F1-Score e Falsos Positivos). Esta é a base da nossa seleção, detalhada em seguida.
+
 ### Modelo Final Selecionado: XGBoost com hiperparâmetros base
 
 Configuração: `n_estimators=100`, `max_depth=6`, `scale_pos_weight=599`, `random_state=42`.
