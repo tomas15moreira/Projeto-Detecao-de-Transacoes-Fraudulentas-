@@ -1,5 +1,4 @@
 # Deteção de Transações Fraudulentas em Cartões de Crédito: Modelação Preditiva em Contexto de Dados Não Equilibrados
-## Resumo Executivo
 
 Este projeto desenvolveu um sistema de deteção de fraude em tempo real para transações de cartão de crédito, capaz de **identificar 79% das fraudes com 94% de confiança** num cenário de extremo desequilíbrio de classes (apenas 0,17% de fraudes em 284.807 transações).
 
