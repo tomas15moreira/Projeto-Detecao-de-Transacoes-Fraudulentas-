@@ -118,14 +118,14 @@ Configuração: `n_estimators=100`, `max_depth=6`, `scale_pos_weight=599`, `rand
 
 **Desempenho técnico no conjunto de teste:**
 
-| Métrica | Resultado | Estado | Tradução para o Negócio |
-| :--- | :---: | :---: | :--- |
-| AUPRC | 0.8251 | - | A qualidade preditiva global supera o limiar SMART de 0.80. |
-| Recall | 0.7895 | - | O modelo deteta 75 das 95 fraudes presentes (cumpre o critério revisto ≥ 75%). |
-| Precision | 0.9375 | - | Quando o modelo sinaliza fraude, está correto em 94% dos casos — alta confiança. |
-| F1-Score | 0.8571 | — | Equilíbrio sólido entre deteção e qualidade dos alertas. |
-| Falsos Positivos | 5 | — | Apenas 5 clientes legítimos bloqueados em 56.651 transações normais (0,009%). |
-| Falsos Negativos | 20 | — | 20 fraudes escaparam — predominantemente micro-transações (mediana = 2€). |
+| Métrica | Resultado | Tradução para o Negócio |
+| :--- | :---: | :--- |
+| AUPRC | 0.8251 | A qualidade preditiva global supera o limiar SMART de 0.80. |
+| Recall | 0.7895 | O modelo deteta 75 das 95 fraudes presentes (cumpre o critério revisto ≥ 75%). |
+| Precision | 0.9375 | Quando o modelo sinaliza fraude, está correto em 94% dos casos — alta confiança. |
+| F1-Score | 0.8571 | Equilíbrio sólido entre deteção e qualidade dos alertas. |
+| Falsos Positivos | 5 | Apenas 5 clientes legítimos bloqueados em 56.651 transações normais (0,009%). |
+| Falsos Negativos | 20 | 20 fraudes escaparam — predominantemente micro-transações (mediana = 2€). |
 
 *Critério SMART revisto — ver secção seguinte.*
 
