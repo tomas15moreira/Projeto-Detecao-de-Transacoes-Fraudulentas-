@@ -32,9 +32,9 @@ Para responder a este problema, a solução exigirá a seleção de métricas de
 
 ## 3. Metodologia de Gestão (PBL)
 * **Divisão de Tarefas:**
-    * **João Freire:** Modelação e Engenharia de Dados.
-    * **Rodrigo Ferrão:** Análise Exploratória e Visualização.
-    * **Tomás Moreira:** Gestão do Repositório e Documentação.
+    * **João Freire:** Gestão do Repositório e Documentação Técnica.
+    * **Rodrigo Ferrão:** Análise Exploratória e Visualização dos Dados.
+    * **Tomás Moreira:** Modelação e Engenharia de Dados.
 * **Ferramentas de Colaboração:**
     * **Gestão de Tarefas:** GitHub Projects.
     * **Comunicação:** Grupo dedicado no WhatsApp/Discord para _dailies_ rápidas.
