@@ -22,6 +22,7 @@ Numa simulação para um banco com 500.000 transações diárias, o sistema dete
   * João Freire — [joaodfeire2004](https://www.kaggle.com/joaodfeire2004)
 * **Link do Notebook:** [Kaggle — Projeto Deteção de Transações Fraudulentas](https://www.kaggle.com/code/tomsalm/projeto-detec-o-de-transa-es-fraudulentas)
 * **Link do Dataset:** [Kaggle — Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
+* **Link do Video da Apresentação do Projeto:** (https://drive.google.com/file/d/1wUQWVoG2FaGgMuQ0casesXYxRl9yy7sG/view?usp=sharing)
 * **Ambiente de Computação:** Kaggle Notebooks (Python 3, GPU desativada)
 
 ## Organização do Repositório
