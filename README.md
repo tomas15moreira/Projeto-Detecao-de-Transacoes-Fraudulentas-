@@ -7,6 +7,9 @@ Em termos práticos, o modelo final (XGBoost) protege 74% do valor financeiro em
 Numa simulação para um banco com 500.000 transações diárias, o sistema detetaria 660 fraudes por dia com apenas 44 falsos alertas, uma proteção financeira anual estimada em milhões de euros.
 
 ---
+## Vídeo de Apresentação Projeto
+* **Link do Vídeo da Apresentação do Projeto:** (https://drive.google.com/file/d/1wUQWVoG2FaGgMuQ0casesXYxRl9yy7sG/view?usp=sharing)
+---
 ## Identificação da Equipa
 * **Grupo nº:** 8
 * **Membros:**
@@ -22,7 +25,6 @@ Numa simulação para um banco com 500.000 transações diárias, o sistema dete
   * João Freire — [joaodfeire2004](https://www.kaggle.com/joaodfeire2004)
 * **Link do Notebook:** [Kaggle — Projeto Deteção de Transações Fraudulentas](https://www.kaggle.com/code/tomsalm/projeto-detec-o-de-transa-es-fraudulentas)
 * **Link do Dataset:** [Kaggle — Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
-* **Link do Video da Apresentação do Projeto:** (https://drive.google.com/file/d/1wUQWVoG2FaGgMuQ0casesXYxRl9yy7sG/view?usp=sharing)
 * **Ambiente de Computação:** Kaggle Notebooks (Python 3, GPU desativada)
 
 ## Organização do Repositório
